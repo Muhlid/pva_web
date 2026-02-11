@@ -137,7 +137,7 @@ function addEvent() {
     const title = document.getElementById('evTitle').value;
     const date = document.getElementById('evDate').value;
     const route = document.getElementById('evRoute').value;
-    const img = document.getElementById('evImg').value || "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1000"; // Resim boşsa dağ resmi koy
+    const img = document.getElementById('evImg').value || "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1000";
 
     if(!title || !date) return alert("Title and Date are required!");
 
@@ -147,6 +147,12 @@ function addEvent() {
     
     closeAdminModal();
     loadEvents();
+    
+    // ANA SAYFAYI ANINDA GÜNCELLE
+    if(typeof loadHomePreviews === 'function') {
+        loadHomePreviews();
+    }
+    
     alert("Event Successfully Published!");
 }
 
@@ -202,8 +208,14 @@ function addNews() {
     
     closeAdminModal();
     loadNews();
+    
+    // ANA SAYFAYI ANINDA GÜNCELLE
+    if(typeof loadHomePreviews === 'function') {
+        loadHomePreviews();
+    }
+    
     alert("News Successfully Published!");
-}
+       }
 
 function deleteNews(id) {
     if(confirm("Are you sure you want to delete this news?")) {
@@ -226,3 +238,48 @@ function closeLightbox() {
     const lightbox = document.getElementById('lightboxModal');
     lightbox.style.display = 'none'; // Modalı gizle
 }
+// --- ANA SAYFA ÖZETLERİNİ YÜKLEME ---
+function loadHomePreviews() {
+    const newsPreview = document.getElementById('home-news-preview');
+    const newsData = getSafeData('pva_news');
+    
+    if (newsPreview) {
+        if (newsData.length > 0) {
+            const latestNews = newsData[0];
+            newsPreview.innerHTML = `
+                <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-newspaper"></i> Latest NOTAM</h3>
+                <h4 style="color:white; margin:10px 0 5px 0; font-size:1.1rem;">${latestNews.title}</h4>
+                <p style="color:#ccc; font-size:0.9rem; margin-bottom:10px;">${latestNews.content.substring(0, 70)}...</p>
+                <span style="color:var(--pva-green); font-size:0.8rem; font-weight:bold;"><i class="far fa-clock"></i> ${latestNews.date}</span><br>
+                <button class="update-btn" onclick="navigate('news')">Read More</button>
+            `;
+        } else {
+            newsPreview.innerHTML = `
+                <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-newspaper"></i> Latest NOTAM</h3>
+                <p style="color:#ccc; font-size:0.9rem;">No recent operations news available.</p>
+            `;
+        }
+    }
+
+    const eventPreview = document.getElementById('home-event-preview');
+    const eventData = getSafeData('pva_events');
+
+    if (eventPreview) {
+        if (eventData.length > 0) {
+            const nextEvent = eventData[0];
+            eventPreview.innerHTML = `
+                <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-calendar-alt"></i> Upcoming Event</h3>
+                <h4 style="color:white; margin:10px 0 5px 0; font-size:1.1rem;">${nextEvent.title}</h4>
+                <p style="color:#ccc; font-size:0.9rem; margin:2px 0;"><strong>Route:</strong> ${nextEvent.route}</p>
+                <p style="color:var(--pva-green); font-size:0.8rem; font-weight:bold; margin-bottom:10px;"><i class="far fa-calendar-check"></i> ${nextEvent.date}</p>
+                <button class="update-btn" onclick="navigate('events')">View Details</button>
+            `;
+        } else {
+            eventPreview.innerHTML = `
+                <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-calendar-alt"></i> Upcoming Event</h3>
+                <p style="color:#ccc; font-size:0.9rem;">No upcoming events scheduled at the moment.</p>
+            `;
+        }
+    }
+       }
+    
