@@ -408,3 +408,31 @@ main { padding-top: 100px; padding-bottom: 50px; text-align: center; }
 .update-btn { display: inline-block; margin-top: 15px; color: white; background: var(--pva-green); padding: 6px 20px; border-radius: 15px; text-decoration: none; font-size: 0.8rem; font-weight: bold; cursor: pointer; border: 1px solid var(--pva-green); transition: 0.3s; }
 .update-btn:hover { background: transparent; color: var(--pva-gold); border-color: var(--pva-gold);
 }
+/* --- BÜYÜK EKRANLAR VE PC İÇİN UYUM (RESPONSIVE) --- */
+@media (min-width: 768px) {
+    /* PC'de yazıları büyüt */
+    .hero-text h1 { font-size: 3.5rem; }
+    .hero-text p { font-size: 1.2rem; }
+    
+    /* Üst menüyü PC ekranında tam ortaya sabitle */
+    .glass-header { 
+        max-width: 1200px; 
+        left: 50%; 
+        transform: translateX(-50%); 
+    }
+    
+    /* Kartların dev gibi esnemesini engelle ve ortala */
+    .cards-wrapper, .dest-grid, .fleet-grid, .staff-grid, .ranks-grid, .gallery-grid, .about-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    /* Kutuların PC'deki maksimum genişlik sınırları */
+    .route-card { max-width: 350px; }
+    .staff-card { max-width: 300px; }
+    .fleet-card { max-width: 380px; }
+    .ceo-card { max-width: 600px; } /* CEO kartı ortada büyük dursun */
+    
+    /* PC'de About kutularını yan yana diz */
+    .about-grid { display: flex; flex-direction: row; }
+}
