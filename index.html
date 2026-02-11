@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistan Virtual Airlines | PVA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="glass-header">
+        <div class="logo">
+            <img src="https://i.ibb.co/mVTDxrzD/image-1.png" alt="PVA Logo">
+            <div>PVA <span>VIRTUAL</span></div>
+        </div>
+        <div class="header-actions">
+            <a href="https://discord.gg/CV238aGWrT" target="_blank" class="discord-btn">
+                <i class="fab fa-discord"></i> <span>Discord</span>
+            </a>
+            <div class="menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <div id="glass-nav" class="nav-overlay">
+        <div class="close-btn" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
+        <ul>
+            <li><a href="#" onclick="navigate('home')">HOME</a></li>
+            <li><a href="#" onclick="navigate('apply')">APPLY NOW</a></li>
+            <li><a href="#" onclick="navigate('events')">EVENTS</a></li>
+            <li><a href="#" onclick="navigate('destinations')">DESTINATIONS</a></li>
+            <li><a href="#" onclick="navigate('fleet')">OUR FLEET</a></li>
+            <li><a href="#" onclick="navigate('radar')">LIVE RADAR</a></li>
+            <li><a href="#" onclick="navigate('news')">NEWS</a></li>
+            <li><a href="#" onclick="navigate('staff')">STAFF</a></li>
+            <li><a href="#" onclick="navigate('ranks')">RANKS</a></li>
+            <li><a href="#" onclick="navigate('gallery')">GALLERY</a></li> </ul>
+    </div>
+
+    <main id="main-container">
+
+        <section id="home" class="active-section">
+            <div class="hero-text">
+                <h1>PAKISTAN VIRTUAL AIRLINES</h1>
+                <p style="color: var(--pva-gold);">Great People to Fly With</p>
+                <button class="join-btn" onclick="navigate('apply')">JOIN OUR TEAM <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-box"><i class="fas fa-users"></i><div class="stat-number" data-target="150">0</div><div class="stat-text">Active Pilots</div></div>
+                <div class="stat-box"><i class="fas fa-route"></i><div class="stat-number" data-target="53">0</div><div class="stat-text">Destinations</div></div>
+                <div class="stat-box"><i class="fas fa-plane-departure"></i><div class="stat-number" data-target="6">0</div><div class="stat-text">Fleet Size</div></div>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-box">
+                    <h2><i class="fas fa-info-circle"></i> Who We Are</h2>
+                    <p>Pakistan Virtual Airlines (PVA) is a premier virtual organization operating on the Infinite Flight platform. We are a community of seasoned aviators dedicated to simulating the rich heritage of Pakistan International Airlines.</p>
+                </div>
+                <div class="about-box mission-box">
+                    <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+                    <p>To provide our pilots with an authentic aviation career path that mirrors real-world procedures, fostering a culture of discipline, skill development, and professional pride in every flight.</p>
+                </div>
+                            <h2 class="section-title">LATEST UPDATES</h2>
+            <div class="home-updates-grid">
+                <div class="update-card" id="home-news-preview">
+                    <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-newspaper"></i> Latest NOTAM</h3>
+                    <p style="color:#ccc; font-size:0.9rem;">Loading latest news...</p>
+                </div>
+                <div class="update-card" id="home-event-preview">
+                    <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-calendar-alt"></i> Upcoming Event</h3>
+                    <p style="color:#ccc; font-size:0.9rem;">Loading next event...</p>
+                </div>
+               </div>
+            </div>
+
+            <h2 class="section-title">FEATURED DESTINATIONS</h2>
+            <div class="cards-wrapper">
+                <div class="route-card" style="background-image: url('https://i.ibb.co/KpryJzbs/1770653534903.png');">
+                    <div class="card-overlay"><span class="badge">EXTREME</span><div class="card-info"><h3>SKARDU (OPSD)</h3></div></div>
+                </div>
+                <div class="route-card" style="background-image: url('https://i.ibb.co/7dHwSwzG/1770746782568.png');">
+                    <div class="card-overlay"><span class="badge">HUB</span><div class="card-info"><h3>ISLAMABAD (OPIS)</h3></div></div>
+                </div>
+                <div class="route-card" style="background-image: url('https://i.ibb.co/DHjGX831/1770653560734.png');">
+                    <div class="card-overlay"><span class="badge">HUB</span><div class="card-info"><h3>KARACHI (OPKC)</h3></div></div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">OFFICIAL PARTNERS</h2>
+            <div class="partners-container">
+                <div class="partner-logo"><img src="https://i.ibb.co/PzZWsHN5/63ee3e38bcfb61e9a3cf71b9-Logo-Sim-Brief-N.png" alt="SimBrief"></div>
+                <div class="partner-logo"><img src="https://i.ibb.co/DgTpCggc/D8-F105-F5-368-A-43-C0-B8-A8-FAB2-E6-D94-C63-PNG.png" alt="Atlas"></div>
+                <div class="partner-logo"><img src="https://i.ibb.co/3mWW7hPh/nfinite-Flight-logo-edited-edited-edite.png" alt="Infinite Flight"></div>
+                <div class="partner-logo"><img src="https://i.ibb.co/vxzB01Qx/834efb25d403cb19ce6c0e67f0df68e46575d3b7.jpg" alt="IFVARB"></div>
+            </div>
+        </section>
+
+        <section id="apply" class="hidden-section">
+            <div class="apply-container">
+                <div class="section-header"><h2>JOIN THE CREW</h2><p>Start your career with PVA</p></div>
+                <div class="solid-iframe-box">
+                    <iframe src="https://tally.so/r/81x0OO?transparentBackground=1" width="100%" height="900px" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="hidden-section">
+            <div class="section-header">
+                <h2>FLIGHT EVENTS</h2>
+                <button class="admin-login-btn" onclick="openAdminModal('event')"><i class="fas fa-lock"></i> Event Admin</button>
+            </div>
+            <div class="events-container" id="events-list"></div>
+        </section>
+
+        <section id="destinations" class="hidden-section">
+            <div class="section-header"><h2>FLIGHT NETWORK</h2></div>
+            <div class="dest-wrapper">
+                <div class="dest-box">
+                    <h3 style="color: var(--pva-gold);"><i class="fas fa-globe"></i> INTERNATIONAL</h3>
+                    <div class="dest-grid">
+                        <div class="dest-card popular"><span>London</span><small>EGLL</small></div>
+                        <div class="dest-card popular"><span>Dubai</span><small>OMDB</small></div>
+                        <div class="dest-card popular"><span>Toronto</span><small>CYYZ</small></div>
+                        <div class="dest-card"><span>Baku</span><small>UBBB</small></div>
+                        <div class="dest-card"><span>Kabul</span><small>OAKB</small></div>
+                        <div class="dest-card"><span>Dhaka</span><small>VGHS</small></div>
+                        <div class="dest-card"><span>Beijing</span><small>ZBAA</small></div>
+                        <div class="dest-card"><span>Copenhagen</span><small>EKCH</small></div>
+                        <div class="dest-card"><span>Paris</span><small>LFPG</small></div>
+                        <div class="dest-card"><span>Najaf</span><small>ORNI</small></div>
+                        <div class="dest-card"><span>Delhi</span><small>VIDP</small></div>
+                        <div class="dest-card"><span>Mumbai</span><small>VABB</small></div>
+                        <div class="dest-card"><span>Milan</span><small>LIMC</small></div>
+                        <div class="dest-card"><span>Tokyo</span><small>RJAA</small></div>
+                        <div class="dest-card"><span>Kuala Lumpur</span><small>WMKK</small></div>
+                        <div class="dest-card"><span>Oslo</span><small>ENGM</small></div>
+                        <div class="dest-card"><span>Muscat</span><small>OOMS</small></div>
+                        <div class="dest-card"><span>Doha</span><small>OTHH</small></div>
+                        <div class="dest-card"><span>Dammam</span><small>OEDF</small></div>
+                        <div class="dest-card"><span>Jeddah</span><small>OEJN</small></div>
+                        <div class="dest-card"><span>Medina</span><small>OEMA</small></div>
+                        <div class="dest-card"><span>Riyadh</span><small>OERK</small></div>
+                        <div class="dest-card"><span>Barcelona</span><small>LEBL</small></div>
+                        <div class="dest-card"><span>Bangkok</span><small>VTBS</small></div>
+                        <div class="dest-card"><span>Abu Dhabi</span><small>OMAA</small></div>
+                        <div class="dest-card"><span>Sharjah</span><small>OMSJ</small></div>
+                        <div class="dest-card"><span>Birmingham</span><small>EGBB</small></div>
+                        <div class="dest-card"><span>Manchester</span><small>EGCC</small></div>
+                    </div>
+                </div>
+                
+                <div class="dest-box" style="margin-top: 40px;">
+                    <h3 style="color: var(--pva-gold);"><i class="fas fa-map-marker-alt"></i> DOMESTIC</h3>
+                    <p style="text-align: left; color:#ccc; margin-bottom: 20px;">Whether you plan to explore the beauty of Pakistan's northern areas or need to attend an urgent business meeting in Islamabad, PIA will fly you there!</p>
+                    <div class="dest-grid">
+                        <div class="dest-card popular"><span>Skardu</span><small>OPSD</small></div>
+                        <div class="dest-card"><span>Bahawalpur</span><small>OPBW</small></div>
+                        <div class="dest-card"><span>Chitral</span><small>OPCH</small></div>
+                        <div class="dest-card"><span>Dadu</span><small>OPDU</small></div>
+                        <div class="dest-card"><span>Dalbandin</span><small>OPDB</small></div>
+                        <div class="dest-card"><span>D.G. Khan</span><small>OPDG</small></div>
+                        <div class="dest-card"><span>Faisalabad</span><small>OPFA</small></div>
+                        <div class="dest-card"><span>Gilgit</span><small>OPGT</small></div>
+                        <div class="dest-card"><span>Gwadar</span><small>OPGD</small></div>
+                        <div class="dest-card"><span>Islamabad</span><small>OPIS</small></div>
+                        <div class="dest-card"><span>Kadanwari</span><small>OPKW</small></div>
+                        <div class="dest-card"><span>Karachi</span><small>OPKC</small></div>
+                        <div class="dest-card"><span>Lahore</span><small>OPLA</small></div>
+                        <div class="dest-card"><span>Moenjodaro</span><small>OPMJ</small></div>
+                        <div class="dest-card"><span>Multan</span><small>OPMT</small></div>
+                        <div class="dest-card"><span>Panjgur</span><small>OPPG</small></div>
+                        <div class="dest-card"><span>Peshawar</span><small>OPPS</small></div>
+                        <div class="dest-card"><span>Quetta</span><small>OPQT</small></div>
+                        <div class="dest-card"><span>Rahim Yar Khan</span><small>OPRK</small></div>
+                        <div class="dest-card"><span>Sialkot</span><small>OPST</small></div>
+                        <div class="dest-card"><span>Sawan</span><small>OPSW</small></div>
+                        <div class="dest-card"><span>Sukkur</span><small>OPSK</small></div>
+                        <div class="dest-card"><span>Turbat</span><small>OPTU</small></div>
+                        <div class="dest-card"><span>Zamzama</span><small>OPZM</small></div>
+                        <div class="dest-card"><span>Zhob</span><small>OPZB</small></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fleet" class="hidden-section">
+            <div class="section-header"><h2>THE PVA FLEET</h2></div>
+            <div class="fleet-grid">
+                <div class="fleet-card">
+                    <div class="fleet-img"><img src="https://i.ibb.co/Y7hBxvXF/79542be6-2408-4066-9f6d-e5d240ce52fa-1746209209.png" alt="A320"></div>
+                    <div class="fleet-info">
+                        <h3>Airbus A320-200</h3><span class="fleet-badge">REGIONAL</span>
+                        <div class="tech-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> <strong>Cruise:</strong> Mach 0.78</div>
+                            <div class="spec"><i class="fas fa-map-marker-alt"></i> <strong>Range:</strong> 3,300 nmi</div>
+                            <div class="spec"><i class="fas fa-users"></i> <strong>Capacity:</strong> 180 Pax</div>
+                            <div class="spec"><i class="fas fa-weight-hanging"></i> <strong>MTOW:</strong> 78,000 kg</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> <strong>Engines:</strong> 2x CFM56</div>
+                            <div class="spec"><i class="fas fa-cloud"></i> <strong>Ceiling:</strong> 39,000 ft</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-img"><img src="https://i.ibb.co/zT9WNhRW/6d6e6762-00b7-49eb-bb22-076e4e1ccfe7-1746211026.png" alt="777-200ER"></div>
+                    <div class="fleet-info">
+                        <h3>Boeing 777-200ER</h3><span class="fleet-badge">LONG HAUL</span>
+                        <div class="tech-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> <strong>Cruise:</strong> Mach 0.84</div>
+                            <div class="spec"><i class="fas fa-map-marker-alt"></i> <strong>Range:</strong> 7,065 nmi</div>
+                            <div class="spec"><i class="fas fa-users"></i> <strong>Capacity:</strong> 313 Pax</div>
+                            <div class="spec"><i class="fas fa-weight-hanging"></i> <strong>MTOW:</strong> 297,550 kg</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> <strong>Engines:</strong> 2x GE90 / PW4000</div>
+                            <div class="spec"><i class="fas fa-cloud"></i> <strong>Ceiling:</strong> 43,100 ft</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-img"><img src="https://i.ibb.co/SXGc18Lf/0540ce4a-6b0f-4515-a5a1-67f3df2da594-1746210519.png" alt="777-200LR"></div>
+                    <div class="fleet-info">
+                        <h3>Boeing 777-200LR</h3><span class="fleet-badge">WORLDLINER</span>
+                        <div class="tech-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> <strong>Cruise:</strong> Mach 0.84</div>
+                            <div class="spec"><i class="fas fa-map-marker-alt"></i> <strong>Range:</strong> 8,555 nmi</div>
+                            <div class="spec"><i class="fas fa-users"></i> <strong>Capacity:</strong> 317 Pax</div>
+                            <div class="spec"><i class="fas fa-weight-hanging"></i> <strong>MTOW:</strong> 347,500 kg</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> <strong>Engines:</strong> 2x GE90-110B1</div>
+                            <div class="spec"><i class="fas fa-cloud"></i> <strong>Ceiling:</strong> 43,100 ft</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-img"><img src="https://i.ibb.co/ZRV2dD6k/67bf7950-906b-4b6d-abb5-73742cedb079-1746211058.png" alt="777-300ER"></div>
+                    <div class="fleet-info">
+                        <h3>Boeing 777-300ER</h3><span class="fleet-badge" style="background:var(--pva-gold); color:black;">FLAGSHIP</span>
+                        <div class="tech-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> <strong>Cruise:</strong> Mach 0.84</div>
+                            <div class="spec"><i class="fas fa-map-marker-alt"></i> <strong>Range:</strong> 7,370 nmi</div>
+                            <div class="spec"><i class="fas fa-users"></i> <strong>Capacity:</strong> 396 Pax</div>
+                            <div class="spec"><i class="fas fa-weight-hanging"></i> <strong>MTOW:</strong> 351,500 kg</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> <strong>Engines:</strong> 2x GE90-115B</div>
+                            <div class="spec"><i class="fas fa-cloud"></i> <strong>Ceiling:</strong> 43,100 ft</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-img"><img src="https://i.ibb.co/pB89HPWz/165d2710-b06c-4a4a-a70e-9b49c488d0a7-1746211078.png" alt="747-200"></div>
+                    <div class="fleet-info">
+                        <h3>Boeing 747-200</h3><span class="fleet-badge classic">LEGEND</span>
+                        <div class="tech-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> <strong>Cruise:</strong> Mach 0.84</div>
+                            <div class="spec"><i class="fas fa-map-marker-alt"></i> <strong>Range:</strong> 6,850 nmi</div>
+                            <div class="spec"><i class="fas fa-users"></i> <strong>Capacity:</strong> 452 Pax</div>
+                            <div class="spec"><i class="fas fa-weight-hanging"></i> <strong>MTOW:</strong> 377,842 kg</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> <strong>Engines:</strong> 4x RB211 / CF6</div>
+                            <div class="spec"><i class="fas fa-cloud"></i> <strong>Ceiling:</strong> 45,100 ft</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <div class="fleet-img"><img src="https://i.ibb.co/pBKwsn5n/67e33b4f-b2db-44fc-82be-93e5da157666-1746211107.png" alt="DC-10"></div>
+                    <div class="fleet-info">
+                        <h3>McDonnell Douglas DC-10</h3><span class="fleet-badge classic">CLASSIC</span>
+                        <div class="tech-specs">
+                            <div class="spec"><i class="fas fa-tachometer-alt"></i> <strong>Cruise:</strong> Mach 0.82</div>
+                            <div class="spec"><i class="fas fa-map-marker-alt"></i> <strong>Range:</strong> 5,200 nmi</div>
+                            <div class="spec"><i class="fas fa-users"></i> <strong>Capacity:</strong> 380 Pax</div>
+                            <div class="spec"><i class="fas fa-weight-hanging"></i> <strong>MTOW:</strong> 259,450 kg</div>
+                            <div class="spec"><i class="fas fa-cogs"></i> <strong>Engines:</strong> 3x GE CF6-50</div>
+                            <div class="spec"><i class="fas fa-cloud"></i> <strong>Ceiling:</strong> 42,000 ft</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+                <section id="ranks" class="hidden-section">
+            <div class="section-header">
+                <h2>PILOT RANKS</h2>
+                <p>Climb the ladder of excellence and unlock new perks</p>
+            </div>
+            
+            <div class="ranks-grid">
+                <div class="rank-card">
+                    <img src="https://i.ibb.co/7xFdpQ4y/cadet-rank-1745681375.png" class="rank-badge" alt="Cadet">
+                    <h3>Cadet</h3><div class="rank-hours">0 - 20 Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>2 hours flights</li><li>Dash 8-Q400</li><li>All Dash 8-Q400 routes (Pakistan) except Chitral and Gilgit</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card">
+                    <img src="https://i.ibb.co/WWmvS0Dg/second-officer-1745681332.png" class="rank-badge" alt="Second Officer">
+                    <h3>Second Officer</h3><div class="rank-hours">20 - 50 Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>A320</li><li>4 hours flights</li><li>Routes of the week short haul</li><li>All domestic routes (Pakistan) except Skardu</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card">
+                    <img src="https://i.ibb.co/chF8P9K4/First-Officer-1745681400.png" class="rank-badge" alt="First Officer">
+                    <h3>First Officer</h3><div class="rank-hours">50 - 100 Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>Codeshare Routes (< 4 hours)</li><li>Skardu Routes</li><li>All Dash 8-Q400 Routes</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card">
+                    <img src="https://i.ibb.co/M53SKHQx/Snr-first-officer-1745681430.png" class="rank-badge" alt="Senior First Officer">
+                    <h3>Senior First Officer</h3><div class="rank-hours">100 - 250 Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>B777-200ER, B777-200LR & B747-200</li><li>8 Hours Flights</li><li>Codeshare Routes (< 8 Hours)</li><li>All routes except Toronto</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card">
+                    <img src="https://i.ibb.co/NvbgHML/Captain-1745681464.png" class="rank-badge" alt="Captain">
+                    <h3>Captain</h3><div class="rank-hours">250 - 500 Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>B777-200ER, B777-200LR & B747-200</li><li>All Routes of the week</li><li>Codeshare routes (> 8 Hours)</li><li>All routes</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card">
+                    <img src="https://i.ibb.co/htvbpBc/snr-capt-1745681489.png" class="rank-badge" alt="Senior Captain">
+                    <h3>Senior Captain</h3><div class="rank-hours">500 - 750 Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>1.5x multiplier for regular flights</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card">
+                    <img src="https://i.ibb.co/1YwzMJbf/Commander-1745681507.png" class="rank-badge" alt="Commander">
+                    <h3>Commander</h3><div class="rank-hours">750+ Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>2x multiplier for regular flights</li><li>VIP flights</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card premium-rank">
+                    <img src="https://i.ibb.co/KpSpSBP3/2025-12-11-23-16-04-1765476997.jpg" class="rank-badge" alt="Emerald">
+                    <h3>Emerald</h3><div class="rank-hours">1000+ Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>+1 Route of your choice</li><li>Priority Event departure</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card premium-rank">
+                    <img src="https://i.ibb.co/6ctC2q6j/MG-0784-1765477494.jpg" class="rank-badge" alt="Diamond">
+                    <h3>Diamond</h3><div class="rank-hours">1500+ Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>Ability to host group flights</li><li>Ultra long haul flights</li><li>Special call sign (20-30)</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card premium-rank">
+                    <img src="https://i.ibb.co/99mB2C1y/MG-0785-1765477494.jpg" class="rank-badge" alt="Sapphire">
+                    <h3>Sapphire</h3><div class="rank-hours">2500+ Hours</div>
+                    <ul class="rank-unlocks">
+                        <li>Access to Staff lounge</li><li>1.5x multiplier on all flights</li>
+                    </ul>
+                </div>
+
+                <div class="rank-card premium-rank">
+                    <img src="https://i.ibb.co/C3n8ktNS/MG-0785-1765477773.jpg" class="rank-badge" alt="Elite Falcon">
+                    <h3>Elite Falcon</h3><div class="rank-hours">750+ Hours (Special)</div>
+                    <ul class="rank-unlocks">
+                        <li>All current and future premium perks</li><li>Permanent access to the server</li><li>2x multiplier on all flights</li><li>Special Falcon name tag</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="radar" class="hidden-section">
+            <div class="iframe-wrapper">
+                <div class="section-header"><h2>LIVE TRAFFIC</h2></div>
+                <div class="solid-iframe-box" style="border: 2px solid var(--pva-gold);">
+                    <iframe src="https://pva-global--muhliscan.replit.app/" width="100%" height="700px" style="border:none; background-color: #000;"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="hidden-section">
+            <div class="news-container">
+                <div class="section-header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <h2>Operations News</h2>
+                    <button class="admin-login-btn" onclick="openAdminModal('news')"><i class="fas fa-lock"></i> News Admin</button>
+                </div>
+                <div id="local-news-container"></div>
+                <div id="news-feed-container"></div>
+            </div>
+        </section>
+
+                <section id="staff" class="hidden-section">
+            <div class="section-header"><h2>MEET OUR CREW</h2><p>The Visionaries Behind Pakistan Virtual Airlines</p></div>
+            
+            <div class="ceo-container">
+                <div class="staff-card ceo-card">
+                    <i class="fas fa-crown ceo-crown"></i>
+                    <div class="avatar"><img src="https://i.ibb.co/5WXmJTvG/2025-05-04-23-07-21-1746382051.jpg" alt="Mughees Hassan"></div>
+                    <h3>Mughees Hassan</h3><span class="role">CEO</span>
+                    <p class="staff-desc">"Proud to be a part of Infinite Flight. Currently serving as an IFATC member, my goal is to lead PVA into a new era of excellence."</p>
+                    <a href="https://community.infiniteflight.com/u/mughees_hassan/summary" target="_blank" class="ifc-btn">IFC PROFILE</a>
+                </div>
+            </div>
+
+            <div class="staff-grid">
+                <div class="staff-card">
+                    <div class="avatar"><img src="https://i.ibb.co/S4qqPSzn/MG-0780-1765475301.jpg" alt="Rohaan Aamir"></div>
+                    <h3>Rohaan Aamir</h3><span class="role">COO</span>
+                    <p class="staff-desc">"An experienced pilot and founder of IFPK, Rohaan possesses the expertise needed to manage a massive community and airport development project in Pakistan."</p>
+                    <a href="https://community.infiniteflight.com/u/Rohaan_Aamir/summary" target="_blank" class="ifc-btn">IFC PROFILE</a>
+                </div>
+
+                <div class="staff-card">
+                    <div class="avatar"><img src="https://i.ibb.co/3yY8z2yM/MG-0781-1765475698.jpg" alt="Abu Bakar"></div>
+                    <h3>Abu Bakar</h3><span class="role">CMO</span>
+                    <p class="staff-desc">"A seasoned IF player and co-founder of Project Pakistan. Vital for livery approvals and brand identity on the IFC."</p>
+                    <a href="https://community.infiniteflight.com/u/Abu_Bakar/summary" target="_blank" class="ifc-btn">IFC PROFILE</a>
+                </div>
+
+                <div class="staff-card highlight-card">
+                    <div class="avatar"><img src="https://i.ibb.co/JjcDzw7s/1365813-2.jpg" alt="Muhlis"></div>
+                    <h3>Muhlis</h3><span class="role">Digital Manager</span>
+                    <p class="staff-desc">"Spearheading our technological growth by managing all digital assets and internal systems, ensuring PVA remains a cutting-edge virtual operator."</p>
+                    <a href="https://community.infiniteflight.com/u/muhlis/summary" target="_blank" class="ifc-btn">IFC PROFILE</a>
+                </div>
+
+                <div class="staff-card">
+                    <div class="avatar"><img src="https://i.ibb.co/N2FWpwcF/7945c8ff57cae41e9050a915a66d213868cea0ac-2-288x288-1765475922.jpg" alt="iiBaloch"></div>
+                    <h3>iiBaloch</h3><span class="role">Events Manager</span>
+                    <p class="staff-desc">"Passionate about community flights. I organize events that celebrate the spirit of Pakistani aviation within Infinite Flight."</p>
+                    <a href="https://community.infiniteflight.com/u/iibaloch/summary" target="_blank" class="ifc-btn">IFC PROFILE</a>
+                </div>
+
+                <div class="staff-card">
+                    <div class="avatar"><img src="https://i.ibb.co/9mzVD9Pr/1398203-2-1750072148.jpg" alt="Pilot-Sarim-niazi"></div>
+                    <h3>Pilot-Sarim-niazi</h3><span class="role">Recruiter</span>
+                    <p class="staff-desc">"An expert in leadership across various virtual airlines, Sarim ensures our pilot network remains professional, realistic, and highly engaging."</p>
+                    <a href="https://community.infiniteflight.com/u/pilot-sarim-niazi/summary" target="_blank" class="ifc-btn">IFC PROFILE</a>
+                </div>
+
+                <div class="staff-card">
+                    <div class="avatar"><img src="https://i.ibb.co/V0wjSmZg/1391654-2-1765476037.jpg" alt="Ishaan"></div>
+                    <h3>Ishaan</h3><span class="role">Route Manager</span>
+                    <p class="staff-desc">"Dedicated to mapping out the most realistic and engaging flight plans across our vast global and domestic network."</p>
+                    <a href="https://community.infiniteflight.com/u/Aviator.Ishaan_11/summary" target="_blank" class="ifc-btn">IFC PROFILE</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery"class="hidden-section">
+            <div class="section-header">
+                <h2>FLIGHT GALLERY</h2>
+                <p>Moments captured by our talented pilots above the skies</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg')">
+                    <img src="https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg')">
+                    <img src="https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg')">
+                    <img src="https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg')">
+                    <img src="https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg')">
+                    <img src="https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg')">
+                    <img src="https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/1tywCcMW/nfinite-Flight-2026-02-02-20-19-33.jpg')">
+                    <img src="https://i.ibb.co/1tywCcMW/nfinite-Flight-2026-02-02-20-19-33.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/VWkWYFwQ/nfinite-Flight-2026-01-19-13-40-21.jpg')">
+                    <img src="https://i.ibb.co/VWkWYFwQ/nfinite-Flight-2026-01-19-13-40-21.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/DfRKtcHY/nfinite-Flight-2026-02-11-09-35-39.jpg')">
+                    <img src="https://i.ibb.co/DfRKtcHY/nfinite-Flight-2026-02-11-09-35-39.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/G3HrMTfr/nfinite-Flight-2026-01-13-16-49-58.jpg')">
+                    <img src="https://i.ibb.co/G3HrMTfr/nfinite-Flight-2026-01-13-16-49-58.jpg" alt="PVA Flight">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/0jPg703V/Screenshot-20260125-040519.jpg')">
+                    <img src="https://i.ibb.co/0jPg703V/Screenshot-20260125-040519.jpg" alt="PVA Flight">
+                </div>
+            </div>
+        </section>
+
+        <div id="adminModal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeAdminModal()">&times;</span>
+                <div id="loginArea">
+                    <h3 style="color:var(--pva-gold);"><i class="fas fa-user-shield"></i> Security Clearance</h3>
+                    <div style="position: relative; width: 90%; margin: 15px auto;">
+                        <input type="password" id="adminPass" placeholder="Enter Password" style="width: 100%; box-sizing: border-box; padding-right: 40px;">
+                        <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 12px; cursor: pointer; color: #888; font-size: 1.2rem;" onclick="togglePassVisibility()"></i>
+                    </div>
+                    <input type="hidden" id="adminType"> 
+                    <button class="join-btn" onclick="checkAdminPass()" style="margin-top:10px; width:90%;">LOGIN</button>
+                </div>
+                <div id="addEventArea" style="display:none;">
+                    <h3 style="color:var(--pva-gold);">Publish Event</h3>
+                    <input type="text" id="evTitle" placeholder="Event Title (e.g. Group Flight)">
+                    <input type="text" id="evDate" placeholder="Date & Time (e.g. APR 10 | 12:00Z)">
+                    <input type="text" id="evRoute" placeholder="Route (e.g. OPLA - OPKC)">
+                    <input type="text" id="evImg" placeholder="Image URL (https://...)">
+                    <button class="join-btn" onclick="addEvent()" style="width:90%; margin-top:10px;">Post Event</button>
+                </div>
+                <div id="addNewsArea" style="display:none;">
+                    <h3 style="color:var(--pva-gold);">Publish News</h3>
+                    <input type="text" id="newsTitleInput" placeholder="News Title">
+                    <input type="text" id="newsContentInput" placeholder="Content details...">
+                    <input type="text" id="newsDateInput" placeholder="Date (e.g. 10 APR 2026)">
+                    <input type="text" id="newsImgInput" placeholder="Image URL (https://...)">
+                    <button class="join-btn" onclick="addNews()" style="width:90%; margin-top:10px;">Post News</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="lightboxModal" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="">
+    </div>
+
+    <footer class="legal-footer">
+        <p><strong>Disclaimer:</strong> All logos and brand elements used by PVA are the exclusive property of Pakistan International Airlines Corporation Limited (PIACL). We are not affiliated with PIACL in any way. This is a virtual airline for simulation purposes only.</p>
+        <p>&copy; 2026 Pakistan Virtual Airlines.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
