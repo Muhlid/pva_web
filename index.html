@@ -36,7 +36,7 @@
         </div>
     </nav>
 
-    <div id="mobile-nav-overlay" class="mobile-overlay" onclick="toggleMobileMenu()"></div>
+        <div id="mobile-nav-overlay" class="mobile-overlay" onclick="toggleMobileMenu()"></div>
     <div id="mobile-nav" class="mobile-side-menu">
         <div class="mobile-header">
             <span>MENU</span>
@@ -44,10 +44,10 @@
         </div>
         <a href="#" onclick="navigate('home')"><i class="fas fa-home"></i> Home</a>
         <a href="#" onclick="navigate('about')"><i class="fas fa-info-circle"></i> Hubs & About</a>
-        <a href="#" onclick="navigate('fleet')"><i class="fas fa-plane"></i> Fleet</a>
-        <a href="#" onclick="navigate('radar')"><i class="fas fa-radar"></i> Live Radar</a>
+        <a href="#" onclick="navigate('events')"><i class="fas fa-calendar-alt"></i> Events</a> <a href="#" onclick="navigate('fleet')"><i class="fas fa-plane"></i> Fleet</a>
         <a href="#" onclick="navigate('ranks')"><i class="fas fa-medal"></i> Ranks</a>
         <a href="#" onclick="navigate('destinations')"><i class="fas fa-map-marker-alt"></i> Destinations</a>
+        <a href="#" onclick="navigate('radar')"><i class="fas fa-satellite-dish"></i> Live Radar</a>
         <a href="#" onclick="navigate('gallery')"><i class="fas fa-images"></i> Gallery</a>
         <a href="#" onclick="navigate('staff')"><i class="fas fa-users"></i> Staff</a>
         <a href="#" onclick="navigate('news')"><i class="fas fa-newspaper"></i> News</a>
@@ -288,14 +288,18 @@
             <div class="events-container" id="events-list"></div>
         </section>
 
-        <section id="radar" class="hidden-section">
+                <section id="radar" class="hidden-section">
             <div class="iframe-wrapper">
                 <div class="section-header"><h2>LIVE TRAFFIC</h2></div>
-                <div class="solid-iframe-box" style="border: 2px solid var(--pva-gold);">
-                    <iframe src="https://pva-global--muhliscan.replit.app/" width="100%" height="700px" style="border:none; background-color: #000;"></iframe>
+                <div class="solid-iframe-box" style="border: 2px solid var(--pva-gold); background: #000; height: 80vh; position: relative;">
+                    
+                    <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: gray;">Loading Radar...</p>
+                    
+                    <iframe src="https://pva-global--muhliscan.replit.app" width="100%" height="100%" style="border:none; position: relative; z-index: 2;"></iframe>
+                    
                 </div>
             </div>
-        </section>
+                </section>
 
         <section id="apply" class="hidden-section">
             <div class="apply-container">
