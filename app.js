@@ -1,285 +1,237 @@
-let isAdminLoggedIn = false; // Admin yetkisi takip ediliyor
+let isAdminLoggedIn = false;
 
-// --- ANİMASYON ---
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    counters.forEach(counter => {
-        counter.innerText = '0';
-        const updateCounter = () => {
-            const target = +counter.getAttribute('data-target');
-            const c = +counter.innerText;
-            const increment = target / 50; 
-            if (c < target) {
-                counter.innerText = `${Math.ceil(c + increment)}`;
-                setTimeout(updateCounter, 30);
-            } else {
-                counter.innerText = target;
-            }
-        };
-        updateCounter();
-    });
-}
-
-// --- MENÜ GEÇİŞLERİ ---
-function toggleMenu() {
-    document.getElementById('glass-nav').classList.toggle('active');
-}
-
+// --- NAVİGASYON VE MENÜ ---
 function navigate(sectionId) {
-    toggleMenu(); 
+    // Tüm sayfaları gizle
     document.querySelectorAll('main > section').forEach(sec => {
         sec.classList.remove('active-section');
         sec.classList.add('hidden-section');
     });
+    
+    // İstenen sayfayı aç
     const target = document.getElementById(sectionId);
     if(target) {
         target.classList.remove('hidden-section');
         target.classList.add('active-section');
+        window.scrollTo(0, 0);
     }
     
-    // Hangi sayfaya girilirse o sayfanın verilerini yükle
-    if (sectionId === 'home') animateCounters();
-    if (sectionId === 'events') loadEvents();
-    if (sectionId === 'news') loadNews();
+    // Mobil menü açıksa kapat
+    document.getElementById('mobile-nav').classList.remove('active');
+    document.getElementById('mobile-nav-overlay').classList.remove('active');
+    
+    // Sayfa özel yüklemelerini yap
+    if(sectionId === 'news') loadNews();
+    if(sectionId === 'events') loadEvents();
+    if(sectionId === 'home') loadHomePreviews();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    animateCounters();
-    loadEvents();
-    loadNews();
-});
-
-// --- ADMIN ŞİFRE VE GÖZ İKONU KONTROLÜ ---
-function togglePassVisibility() {
-    const passInput = document.getElementById('adminPass');
-    const icon = document.getElementById('togglePassword');
-    if (passInput.type === 'password') {
-        passInput.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-    } else {
-        passInput.type = 'password';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
-    }
+function toggleMobileMenu() {
+    document.getElementById('mobile-nav').classList.toggle('active');
+    document.getElementById('mobile-nav-overlay').classList.toggle('active');
 }
 
+// --- VERİ YÖNETİMİ ---
+function getSafeData(key) {
+    try { return JSON.parse(localStorage.getItem(key)) || []; } catch(e) { return []; }
+}
+
+// --- ADMIN PANELİ ---
 function openAdminModal(type) {
     document.getElementById('adminModal').style.display = 'flex';
-    document.getElementById('adminType').value = type; 
+    document.getElementById('adminType').value = type;
     document.getElementById('loginArea').style.display = 'block';
     document.getElementById('addEventArea').style.display = 'none';
     document.getElementById('addNewsArea').style.display = 'none';
     document.getElementById('adminPass').value = '';
 }
-
-function closeAdminModal() {
-    document.getElementById('adminModal').style.display = 'none';
-}
+function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
 
 function checkAdminPass() {
-    const pass = document.getElementById('adminPass').value;
-    const type = document.getElementById('adminType').value;
-
-    if (pass === "pva2026") {
-        isAdminLoggedIn = true; 
+    if(document.getElementById('adminPass').value === "pva2026") {
+        isAdminLoggedIn = true;
         document.getElementById('loginArea').style.display = 'none';
         
-        loadEvents(); 
-        loadNews();
-
-        if (type === 'event') document.getElementById('addEventArea').style.display = 'block';
-        if (type === 'news') document.getElementById('addNewsArea').style.display = 'block';
-    } else {
-        alert("Access Denied! Incorrect Password.");
-    }
+        const type = document.getElementById('adminType').value;
+        if(type === 'event') document.getElementById('addEventArea').style.display = 'block';
+        if(type === 'news') document.getElementById('addNewsArea').style.display = 'block';
+        
+        loadNews(); loadEvents(); // Admin butonlarını görünür yapmak için yenile
+    } else { alert("Incorrect Password!"); }
 }
 
-// --- GÜVENLİ VERİ ÇEKME FONKSİYONU (Anti-Crash) ---
-function getSafeData(key) {
-    try {
-        return JSON.parse(localStorage.getItem(key)) || [];
-    } catch(e) {
-        return [];
-    }
+// --- NEWS (HABERLER) İŞLEMLERİ ---
+function addNews() {
+    const title = document.getElementById('newsTitleInput').value;
+    const content = document.getElementById('newsContentInput').value;
+    const date = document.getElementById('newsDateInput').value;
+    const img = document.getElementById('newsImgInput').value;
+
+    if(!title || !content) return alert("Title and Content required!");
+
+    const data = getSafeData('pva_news');
+    data.unshift({id: Date.now(), title, content, date, img});
+    localStorage.setItem('pva_news', JSON.stringify(data));
+    
+    closeAdminModal();
+    loadNews(); // Listeyi yenile
+    loadHomePreviews(); // Ana sayfayı yenile
+    alert("News Published!");
 }
 
-// --- EVENTS (ETKİNLİKLER) SİSTEMİ ---
+function loadNews() {
+    const container = document.getElementById('local-news-container');
+    if(!container) return; // Eğer news sayfasında değilsek dur
+    
+    container.innerHTML = ""; // Temizle
+    const data = getSafeData('pva_news');
+
+    if (data.length === 0) {
+        container.innerHTML = "<p style='color:#ccc;'>No active news found.</p>";
+        return;
+    }
+
+    data.forEach(n => {
+        let delBtn = isAdminLoggedIn ? `<button onclick="delItem('pva_news', ${n.id})" style="background:red; color:white; border:none; padding:5px 10px; margin-top:10px; cursor:pointer;">Delete</button>` : "";
+        let imgHtml = n.img ? `<div style="width:100%; height:200px; background:url('${n.img}') center/cover; border-radius:5px; margin-bottom:10px;"></div>` : "";
+        
+        container.innerHTML += `
+        <div class="news-item" style="background:rgba(255,255,255,0.05); border-left:4px solid var(--pva-gold); padding:20px; margin-bottom:20px; border-radius:10px; text-align:left;">
+            ${imgHtml}
+            <h3 style="color:var(--pva-gold); margin-top:0;">${n.title}</h3>
+            <p style="color:#ddd; line-height:1.6;">${n.content}</p>
+            <small style="color:#aaa;"><i class="far fa-calendar"></i> ${n.date}</small><br>
+            ${delBtn}
+        </div>`;
+    });
+}
+
+// --- EVENTS (ETKİNLİKLER) İŞLEMLERİ ---
+function addEvent() {
+    // Form verilerini al
+    const server = document.getElementById('evServer').value || "Expert Server";
+    const route = document.getElementById('evRoute').value;
+    const aircraft = document.getElementById('evAircraft').value || "Any";
+    const ete = document.getElementById('evETE').value || "TBD";
+    const multiplier = document.getElementById('evMultiplier').value || "1.0x";
+    const time = document.getElementById('evTime').value; // UTC Saati
+    const date = document.getElementById('evDate').value;
+    const img = document.getElementById('evImg').value;
+
+    if(!route || !date || !time) return alert("Route, Date and Time are required!");
+
+    const data = getSafeData('pva_events');
+    data.unshift({
+        id: Date.now(),
+        server, route, aircraft, ete, multiplier, time, date, img
+    });
+    localStorage.setItem('pva_events', JSON.stringify(data));
+    
+    closeAdminModal();
+    loadEvents();
+    loadHomePreviews();
+    alert("Event Published!");
+}
+
 function loadEvents() {
     const list = document.getElementById('events-list');
     if(!list) return;
     
-    const events = getSafeData('pva_events');
-    list.innerHTML = '';
+    list.innerHTML = "";
+    const data = getSafeData('pva_events');
 
-    if (events.length === 0) {
-        list.innerHTML = '<p style="color:#ccc;">No upcoming events at the moment.</p>';
-    } else {
-        events.forEach(ev => {
-            let deleteBtn = isAdminLoggedIn ? `<button onclick="deleteEvent(${ev.id})" style="background:red; color:white; border:none; padding:8px 15px; border-radius:5px; margin-top:10px; cursor:pointer;"><i class="fas fa-trash"></i> Delete Event</button>` : '';
-            
-            list.innerHTML += `
-            <div class="event-card">
-                <div class="event-img" style="background-image: url('${ev.img}');"></div>
-                <div class="event-details">
-                    <span class="event-date">${ev.date}</span>
-                    <h3>${ev.title}</h3>
-                    <p><strong>Route:</strong> ${ev.route}</p>
-                    <p><strong>Server:</strong> Expert Server</p>
-                    ${deleteBtn}
+    if (data.length === 0) {
+        list.innerHTML = "<p style='color:#ccc;'>No upcoming events.</p>";
+        return;
+    }
+
+    data.forEach(e => {
+        let delBtn = isAdminLoggedIn ? `<button onclick="delItem('pva_events', ${e.id})" style="background:red; color:white; border:none; padding:5px 10px; margin-top:10px; cursor:pointer;">Delete</button>` : "";
+        let imgHtml = e.img ? `<div style="width:100%; height:150px; background:url('${e.img}') center/cover; border-radius:5px; margin-bottom:10px;"></div>` : "";
+        
+        // --- UTC SAATİ YEREL SAATE ÇEVİRME ---
+        // Gelen tarih ve saat stringini birleştir (Örn: 2026-02-12T19:00:00Z)
+        const utcDateStr = `${e.date}T${e.time}:00Z`;
+        const dateObj = new Date(utcDateStr);
+        
+        // Yerel saati al (Tarayıcının saatine göre)
+        const localTimeStr = dateObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
+        const timeDisplay = `${e.time}Z (${localTimeStr} Local)`;
+        // -------------------------------------
+
+        list.innerHTML += `
+        <div class="event-card" style="background:rgba(255,255,255,0.05); border-top:3px solid var(--pva-gold); padding:20px; margin-bottom:20px; border-radius:10px; text-align:left;">
+            ${imgHtml}
+            <h3 style="color:var(--pva-gold); margin-top:0;">${e.route}</h3>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.9rem; color:#ccc;">
+                <div><strong>Server:</strong> ${e.server}</div>
+                <div><strong>Aircraft:</strong> ${e.aircraft}</div>
+                <div><strong>ETE:</strong> ${e.ete}</div>
+                <div><strong>Multiplier:</strong> ${e.multiplier}</div>
+                <div style="grid-column: 1 / -1; color:white; margin-top:10px;">
+                    <i class="far fa-clock"></i> <strong>Time:</strong> ${timeDisplay} <br>
+                    <i class="far fa-calendar"></i> <strong>Date:</strong> ${e.date}
                 </div>
-            </div>`;
-        });
-    }
+            </div>
+            ${delBtn}
+        </div>`;
+    });
 }
 
-function addEvent() {
-    const title = document.getElementById('evTitle').value;
-    const date = document.getElementById('evDate').value;
-    const route = document.getElementById('evRoute').value;
-    const img = document.getElementById('evImg').value || "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1000";
-
-    if(!title || !date) return alert("Title and Date are required!");
-
-    const events = getSafeData('pva_events');
-    events.unshift({ id: Date.now(), title, date, route, img });
-    localStorage.setItem('pva_events', JSON.stringify(events));
-    
-    closeAdminModal();
-    loadEvents();
-    
-    // ANA SAYFAYI ANINDA GÜNCELLE
-    if(typeof loadHomePreviews === 'function') {
-        loadHomePreviews();
-    }
-    
-    alert("Event Successfully Published!");
-}
-
-function deleteEvent(id) {
-    if(confirm("Are you sure you want to delete this event?")) {
-        let events = getSafeData('pva_events');
-        events = events.filter(ev => ev.id !== id);
-        localStorage.setItem('pva_events', JSON.stringify(events));
-        loadEvents();
-    }
-}
-
-// --- NEWS (HABERLER) SİSTEMİ ---
-function loadNews() {
-    const container = document.getElementById('local-news-container');
-    if(!container) return;
-
-    const newsData = getSafeData('pva_news');
-    container.innerHTML = '';
-
-    if (newsData.length === 0) {
-        container.innerHTML = '<p style="color:#ccc;">No recent operations news.</p>';
-    } else {
-        newsData.forEach(n => {
-            let imgHTML = n.img ? `<div class="news-img-box" style="width:100%; height:200px; overflow:hidden;"><img src="${n.img}" style="width:100%; height:100%; object-fit:cover;"></div>` : '';
-            let deleteBtn = isAdminLoggedIn ? `<button onclick="deleteNews(${n.id})" style="background:red; color:white; border:none; padding:8px 15px; border-radius:5px; margin-top:10px; cursor:pointer;"><i class="fas fa-trash"></i> Delete News</button>` : '';
-            
-            container.innerHTML += `
-            <div class="news-item" style="background: rgba(255,255,255,0.05); border-left: 4px solid var(--pva-green); border-radius: 10px; margin-bottom: 20px; overflow: hidden; text-align: left;">
-                ${imgHTML}
-                <div style="padding: 15px;">
-                    <h4 style="margin:0;color:var(--pva-gold); font-size:1.2rem;">${n.title}</h4>
-                    <p style="color:#ccc;font-size:0.95rem; margin:10px 0;">${n.content}</p>
-                    <span style="color:var(--pva-green); font-weight:bold;"><i class="far fa-clock"></i> ${n.date}</span><br>
-                    ${deleteBtn}
-                </div>
-            </div>`;
-        });
-    }
-}
-
-function addNews() {
-    const title = document.getElementById('newsTitleInput').value;
-    const content = document.getElementById('newsContentInput').value;
-    const date = document.getElementById('newsDateInput').value || "Just now";
-    const img = document.getElementById('newsImgInput').value;
-
-    if(!title || !content) return alert("Title and Content are required!");
-
-    const newsData = getSafeData('pva_news');
-    newsData.unshift({ id: Date.now(), title, content, date, img });
-    localStorage.setItem('pva_news', JSON.stringify(newsData));
-    
-    closeAdminModal();
-    loadNews();
-    
-    // ANA SAYFAYI ANINDA GÜNCELLE
-    if(typeof loadHomePreviews === 'function') {
-        loadHomePreviews();
-    }
-    
-    alert("News Successfully Published!");
-       }
-
-function deleteNews(id) {
-    if(confirm("Are you sure you want to delete this news?")) {
-        let newsData = getSafeData('pva_news');
-        newsData = newsData.filter(n => n.id !== id);
-        localStorage.setItem('pva_news', JSON.stringify(newsData));
-        loadNews();
-    }
-}
-// --- GALERİ TAM EKRAN (LIGHTBOX) KODLARI ---
-function openLightbox(imageSrc) {
-    const lightbox = document.getElementById('lightboxModal');
-    const lightboxImg = document.getElementById('lightboxImg');
-    
-    lightboxImg.src = imageSrc; // Tıklanan resmin linkini büyük ekrana aktar
-    lightbox.style.display = 'flex'; // Modalı görünür yap
-}
-
-function closeLightbox() {
-    const lightbox = document.getElementById('lightboxModal');
-    lightbox.style.display = 'none'; // Modalı gizle
-}
-// --- ANA SAYFA ÖZETLERİNİ YÜKLEME ---
+// --- ANA SAYFA ÖNİZLEME (PREVIEW) ---
 function loadHomePreviews() {
-    const newsPreview = document.getElementById('home-news-preview');
-    const newsData = getSafeData('pva_news');
+    const n = getSafeData('pva_news')[0];
+    const e = getSafeData('pva_events')[0];
     
-    if (newsPreview) {
-        if (newsData.length > 0) {
-            const latestNews = newsData[0];
-            newsPreview.innerHTML = `
-                <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-newspaper"></i> Latest NOTAM</h3>
-                <h4 style="color:white; margin:10px 0 5px 0; font-size:1.1rem;">${latestNews.title}</h4>
-                <p style="color:#ccc; font-size:0.9rem; margin-bottom:10px;">${latestNews.content.substring(0, 70)}...</p>
-                <span style="color:var(--pva-green); font-size:0.8rem; font-weight:bold;"><i class="far fa-clock"></i> ${latestNews.date}</span><br>
-                <button class="update-btn" onclick="navigate('news')">Read More</button>
-            `;
-        } else {
-            newsPreview.innerHTML = `
-                <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-newspaper"></i> Latest NOTAM</h3>
-                <p style="color:#ccc; font-size:0.9rem;">No recent operations news available.</p>
-            `;
-        }
+    const np = document.getElementById('home-news-preview');
+    const ep = document.getElementById('home-event-preview');
+    
+    if(np && n) {
+        let imgHtml = n.img ? `<div style="width:100%; height:120px; background:url('${n.img}') center/cover; border-radius:5px; margin-bottom:10px;"></div>` : "";
+        np.innerHTML = `
+            ${imgHtml}
+            <h3><i class="fas fa-bullhorn"></i> LATEST NEWS</h3>
+            <h4 style="color:white; margin:5px 0;">${n.title}</h4>
+            <p style="color:#ccc; font-size:0.9rem;">${n.content.substring(0, 60)}...</p>
+            <button class="update-btn" onclick="navigate('news')">READ MORE</button>
+        `;
     }
 
-    const eventPreview = document.getElementById('home-event-preview');
-    const eventData = getSafeData('pva_events');
+    if(ep && e) {
+        // Ana sayfada da yerel saati gösterelim
+        const utcDateStr = `${e.date}T${e.time}:00Z`;
+        const dateObj = new Date(utcDateStr);
+        const localTimeStr = dateObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
 
-    if (eventPreview) {
-        if (eventData.length > 0) {
-            const nextEvent = eventData[0];
-            eventPreview.innerHTML = `
-                <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-calendar-alt"></i> Upcoming Event</h3>
-                <h4 style="color:white; margin:10px 0 5px 0; font-size:1.1rem;">${nextEvent.title}</h4>
-                <p style="color:#ccc; font-size:0.9rem; margin:2px 0;"><strong>Route:</strong> ${nextEvent.route}</p>
-                <p style="color:var(--pva-green); font-size:0.8rem; font-weight:bold; margin-bottom:10px;"><i class="far fa-calendar-check"></i> ${nextEvent.date}</p>
-                <button class="update-btn" onclick="navigate('events')">View Details</button>
-            `;
-        } else {
-            eventPreview.innerHTML = `
-                <h3 style="color:var(--pva-gold); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-top:0;"><i class="fas fa-calendar-alt"></i> Upcoming Event</h3>
-                <p style="color:#ccc; font-size:0.9rem;">No upcoming events scheduled at the moment.</p>
-            `;
-        }
+        ep.innerHTML = `
+            <h3><i class="fas fa-plane-departure"></i> NEXT FLIGHT</h3>
+            <div style="font-size:1.1rem; font-weight:bold; color:white; margin:10px 0;">${e.route}</div>
+            <div style="font-size:0.9rem; color:#aaa; margin-bottom:5px;">${e.aircraft}</div>
+            <div style="font-size:0.9rem; color:var(--pva-gold); font-weight:bold;">
+                ${e.time}Z (${localTimeStr} Local)
+            </div>
+            <button class="update-btn" onclick="navigate('events')" style="margin-top:10px;">DETAILS</button>
+        `;
     }
-       }
-    
+}
+
+// --- SİLME FONKSİYONU ---
+function delItem(key, id) {
+    if(confirm("Are you sure you want to delete this item?")) {
+        let data = getSafeData(key).filter(i => i.id !== id);
+        localStorage.setItem(key, JSON.stringify(data));
+        loadNews(); loadEvents(); loadHomePreviews();
+    }
+}
+
+// --- LIGHTBOX ---
+function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightboxModal').style.display = 'flex';
+}
+function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
+
+// SAYFA YÜKLENİNCE BAŞLAT
+document.addEventListener('DOMContentLoaded', () => {
+    loadHomePreviews();
+});
