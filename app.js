@@ -235,3 +235,32 @@ function closeLightbox() { document.getElementById('lightboxModal').style.displa
 document.addEventListener('DOMContentLoaded', () => {
     loadHomePreviews();
 });
+// --- İNTRO KONTROL MOTORU (AKILLI SİSTEM) ---
+function closeIntro() {
+    const intro = document.getElementById('intro-overlay');
+    if (intro) {
+        intro.style.opacity = '0';
+        setTimeout(() => {
+            intro.style.visibility = 'hidden';
+            intro.style.display = 'none';
+        }, 1000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Diğer sayfa yükleme fonksiyonların (loadHomePreviews vb.) burada kalsın...
+    loadHomePreviews();
+    
+    // Video bitince introyu otomatik kapat
+    const introVideo = document.getElementById('pva-intro-video');
+    if (introVideo) {
+        introVideo.onended = () => {
+            closeIntro(); // Video süresi dolduğunda perdeyi kaldır
+        };
+        
+        // Eğer tarayıcı videoyu yükleyemezse diye 10 saniyelik güvenlik sigortası
+        setTimeout(() => {
+            closeIntro();
+        }, 10000);
+    }
+});
