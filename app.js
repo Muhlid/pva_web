@@ -196,10 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => closeIntro(), 10000); // Guvenlik icin 10 sn
     }
 });
-
+// --- PİLOT ŞİFRE KONTROLÜ ---
 function checkPilotPass() {
     const pass = document.getElementById('pilotPass').value;
     
+    //şifresinin kriptolanmış (Base64) hali:
     if(btoa(pass) === "cHZhMTIz") { 
         closePilotModal();
         navigate('pilots'); // Doğru şifre girilince Roster sayfasına atar
