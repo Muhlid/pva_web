@@ -49,7 +49,20 @@
                     </div>
                 </li>
                 <li><a href="javascript:void(0)" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
-                <li><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
+                                <li><a href="javascript:void(0)" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
+                
+                <li id="navPilotLoginBtn"><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
+                
+                <li id="navPilotProfile" class="dropdown" style="display:none;">
+                    <a href="javascript:void(0)" style="color:var(--pva-gold); font-weight:800;"><i class="fas fa-user-astronaut"></i> <span id="displayPilotName">PVA000</span></a>
+                    <div class="dropdown-content">
+                        <a href="javascript:void(0)" onclick="navigate('pilots')">Roster</a>
+                        <a href="javascript:void(0)" onclick="pilotLogout()" style="color: red;">Logout</a>
+                    </div>
+                </li>
+
+                <li><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn">LOGIN</a></li>
+                
                 <li><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn">LOGIN</a></li>
             </ul>
 
@@ -398,41 +411,42 @@
         </div>
     </div>
 
-    <div id="pilotModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 350px;">
+        <div id="pilotModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 380px;">
             <span class="close-modal" onclick="closePilotModal()">&times;</span>
-            <h3 style="color:var(--pva-green); text-align:center; margin-bottom: 20px;"><i class="fas fa-plane"></i> PILOT LOGIN</h3>
-            <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:15px;">Please enter your pilot passcode to access the roster.</p>
-            <input type="password" id="pilotPass" class="admin-input" placeholder="Pilot Password">
-            <button class="btn-primary" onclick="checkPilotPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">VERIFY & LOGIN</button>
-        </div>
-    </div>
+            
+            <div id="pilotChoiceArea">
+                <h3 style="color:var(--pva-green); text-align:center; margin-bottom: 20px;"><i class="fas fa-plane-departure"></i> PILOT PORTAL</h3>
+                <button class="btn-primary" onclick="showPilotLogin()" style="width:100%; margin-bottom:15px; background:var(--pva-green);">EXISTING PILOT LOGIN</button>
+                <button class="btn-outline" onclick="showPilotRegister()" style="width:100%; color:var(--pva-gold); border-color:var(--pva-gold);">NEW PILOT ENROLLMENT</button>
+            </div>
 
-    <div id="pilotRegisterModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 350px;">
-            <span class="close-modal" onclick="closePilotRegisterModal()">&times;</span>
-            <h3 style="color:var(--pva-green); text-align:center; margin-bottom:15px;"><i class="fas fa-id-badge"></i> REGISTER PROFILE</h3>
-            <input type="text" id="pCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042)">
-            <input type="text" id="pName" class="admin-input" placeholder="IFC Name">
-            <input type="text" id="pDiscord" class="admin-input" placeholder="Discord Name"> 
-            <select id="pRank" class="admin-input" style="color: #555;">
-                <option value="Cadet">Cadet (0-20 Hrs)</option>
-                <option value="Second Officer">Second Officer (20-50 Hrs)</option>
-                <option value="First Officer">First Officer (50-100 Hrs)</option>
-                <option value="Senior FO">Senior FO (100-250 Hrs)</option>
-                <option value="Captain">Captain (250-500 Hrs)</option>
-                <option value="Senior Captain">Senior Captain (500-750 Hrs)</option>
-                <option value="Commander">Commander (750+ Hrs)</option>
-            </select>
-            <input type="number" id="pHours" class="admin-input" placeholder="Total Flight Hours">
-            <button class="btn-primary" onclick="addPilot()" style="width:100%; margin-top:10px; background:var(--pva-green);">SAVE PROFILE</button>
-        </div>
-    </div>
+            <div id="pilotLoginArea" style="display:none;">
+                <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-sign-in-alt"></i> PILOT LOGIN</h3>
+                <input type="text" id="loginCallsign" class="admin-input" placeholder="Callsign (e.g. PVA001)">
+                <input type="password" id="loginPass" class="admin-input" placeholder="Password">
+                <button class="btn-primary" onclick="pilotLogin()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
+                <button class="btn-outline" onclick="resetPilotModal()" style="width:100%; margin-top:10px; border:none; color:#888;">Back</button>
+            </div>
 
-    <div id="lightboxModal" class="lightbox-overlay" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-img" id="lightboxImg" src="">
-    </div>
+            <div id="pilotRegisterArea" style="display:none;">
+                <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-plus"></i> NEW ENROLLMENT</h3>
+                <input type="text" id="regCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042) *UNIQUE*">
+                <input type="text" id="regName" class="admin-input" placeholder="IFC Name">
+                <input type="text" id="regDiscord" class="admin-input" placeholder="Discord Name">
+                <select id="regRank" class="admin-input" style="color: #555;">
+                    <option value="Cadet">Cadet (0-20 Hrs)</option>
+                    <option value="Second Officer">Second Officer (20-50 Hrs)</option>
+                    <option value="First Officer">First Officer (50-100 Hrs)</option>
+                    <option value="Captain">Captain (250-500 Hrs)</option>
+                </select>
+                <input type="number" id="regHours" class="admin-input" placeholder="Total Flight Hours">
+                <input type="password" id="regPass" class="admin-input" placeholder="Create a Password">
+                <button class="btn-primary" onclick="pilotRegister()" style="width:100%; margin-top:10px; background:var(--pva-gold); color:black;">REGISTER & LOGIN</button>
+                <button class="btn-outline" onclick="resetPilotModal()" style="width:100%; margin-top:10px; border:none; color:#888;">Back</button>
+            </div>
+        </div>
+        </div
 
     <script src="app.js"></script>
 </body>
