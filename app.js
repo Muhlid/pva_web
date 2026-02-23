@@ -31,19 +31,6 @@ function toggleMobileMenu() {
     document.getElementById('mobile-nav').classList.toggle('active');
     document.getElementById('mobile-nav-overlay').classList.toggle('active');
 }
-
-// --- İNTRO KAPATMA (GÜÇLENDİRİLDİ) ---
-function closeIntro() {
-    const intro = document.getElementById('intro-overlay');
-    if (intro) {
-        intro.style.opacity = '0'; // Saydamlaştır
-        intro.style.pointerEvents = 'none'; // Tıklamaları engellememesi için
-        setTimeout(() => {
-            intro.remove(); // Ekranı HTML'den tamamen silip yok eder. Kesin çözümdür.
-        }, 800);
-    }
-}
-
 // --- VERİTABANI KONTROLÜ ---
 function getSafeData(key) {
     try { 
@@ -392,9 +379,3 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHomePreviews();
     updateNavbarUI();
     
-    // Otomatik kapatıcıyı 5 saniye olarak ayarladık
-    setTimeout(() => {
-        closeIntro();
-    }, 5000); 
-});
-        
