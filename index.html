@@ -481,18 +481,25 @@
             <div id="pilotRegisterArea" style="display:none;">
                 <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-plus"></i> NEW ENROLLMENT</h3>
                 
-                <div id="regStep1">
+                                <div id="regStep1">
                     <p style="color:#666; font-size:0.85rem; font-weight:bold;">Step 1: Aviation Details</p>
                     <input type="text" id="regCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042)">
                     <select id="regRank" class="admin-input" style="color: #555;">
-                        <option value="Cadet">Cadet (0-20 Hrs)</option>
-                        <option value="Second Officer">Second Officer (20-50 Hrs)</option>
-                        <option value="First Officer">First Officer (50-100 Hrs)</option>
-                        <option value="Captain">Captain (250-500 Hrs)</option>
+                        <option value="Cadet">Cadet (0 - 20 Hrs)</option>
+                        <option value="Second Officer">Second Officer (20 - 50 Hrs)</option>
+                        <option value="First Officer">First Officer (50 - 100 Hrs)</option>
+                        <option value="Senior FO">Senior FO (100 - 250 Hrs)</option>
+                        <option value="Captain">Captain (250 - 500 Hrs)</option>
+                        <option value="Senior Captain">Senior Captain (500 - 750 Hrs)</option>
+                        <option value="Commander">Commander (+750 Hrs)</option>
+                        <option value="Emerald">Emerald (+1000 Hrs)</option>
+                        <option value="Diamond">Diamond (+1500 Hrs)</option>
+                        <option value="Sapphire">Sapphire (+2500 Hrs)</option>
+                        <option value="Elite Falcon">Elite Falcon (+750 Hrs)</option>
                     </select>
                     <input type="number" id="regHours" class="admin-input" placeholder="Current Flight Hours">
-                    <button class="btn-primary" onclick="nextRegStep(2)" style="width:100%; margin-top:10px; background:var(--pva-gold); color:black;">NEXT <i class="fas fa-arrow-right"></i></button>
-                </div>
+                    <button class="btn-primary" onclick="nextRegStep(2)" style="width:100%; margin-top:10px; background:var(--pva-gold); color:black; font-weight:800;">NEXT <i class="fas fa-arrow-right"></i></button>
+                                </div>
 
                 <div id="regStep2" style="display:none;">
                     <p style="color:#666; font-size:0.85rem; font-weight:bold;">Step 2: Community Links</p>
