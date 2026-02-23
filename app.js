@@ -421,40 +421,37 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavbarUI();
 });
                 
-// --- GLOBAL RADAR SİSTEMİ (KESİN GÖRÜNÜRLÜK GÜNCELLEMESİ) ---
+// --- GLOBAL CANLI RADAR (REPLIT ENTEGRASYONLU) ---
 async function loadLiveRadar() {
     const radarCont = document.getElementById('live-radar-display');
     const adminTool = document.getElementById('admin-radar-tool');
     
     if(!radarCont) return;
 
-    // Admin kontrolü: Giriş yapılmışsa paneli her zaman zorla göster
-    if (isAdminLoggedIn) {
-        if (adminTool) adminTool.style.display = 'block';
-    } else {
-        if (adminTool) adminTool.style.display = 'none';
+    // Replit üzerindeki canlı takip sistemi linkin
+    const radarUrl = "https://pva-global--muhliscan.replit.app/";
+
+    // Admin kontrolü: Replit otomatik çalıştığı için admin paneline artık gerek yok
+    // Ama yine de alanı temiz tutmak için admin aracını gizliyoruz
+    if (adminTool) {
+        adminTool.style.display = 'none';
     }
 
-    // Buluttan en son radar resmini çek
-    try {
-        const doc = await db.collection('pva_settings').doc('live_radar').get();
-        
-        if(doc.exists && doc.data().url) {
-            radarCont.innerHTML = `
-                <img src="${doc.data().url}" 
-                     style="max-width:100%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.2);" 
-                     onerror="this.onerror=null; this.src='https://i.ibb.co/mVTDxrzD/image-1.png';">
-            `;
-        } else {
-            radarCont.innerHTML = `
-                <img src="https://i.ibb.co/mVTDxrzD/image-1.png" style="width:200px; opacity:0.5;">
-                <p style="color:#888; margin-top:15px;">Radar currently offline. Standby for Staff update.</p>
-            `;
-        }
-    } catch (error) {
-        console.error("Radar sync error:", error);
-        radarCont.innerHTML = "<p style='color:red;'>Connection error with Global Radar Center.</p>";
-    }
+    // Radar alanına Replit sayfasını interaktif bir pencere (iframe) olarak gömüyoruz
+    radarCont.innerHTML = `
+        <div style="width: 100%; height: 650px; position: relative; background: #111; border-radius: 10px; overflow: hidden;">
+            <iframe 
+                src="${radarUrl}" 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                allowfullscreen 
+                loading="lazy"
+                title="PVA Global Operations Center">
+            </iframe>
+        </div>
+        <p style="color:#888; font-size: 0.8rem; margin-top: 10px; text-align: center;">
+            <i class="fas fa-sync-alt fa-spin"></i> Live Data Streamed from PVA Operations Center
+        </p>
+    `;
 }
 
 // --- RADAR GÜNCELLEME (BULUT YAZICI) ---
