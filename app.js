@@ -55,14 +55,17 @@ function openAdminModal(type) {
 function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
 
 function checkAdminPass() {
-    if(document.getElementById('adminPass').value === "pva2026") {
+    const pass = document.getElementById('adminPass').value;
+    if(btoa(pass) === "cHZhMjAyNg==") {
         isAdminLoggedIn = true;
         document.getElementById('loginArea').style.display = 'none';
         const type = document.getElementById('adminType').value;
         if(type === 'event') document.getElementById('addEventArea').style.display = 'block';
         if(type === 'news') document.getElementById('addNewsArea').style.display = 'block';
         loadNews(); loadEvents();
-    } else { alert("Incorrect Password!"); }
+    } else { 
+        alert("Incorrect Admin Password!"); 
+    }
 }
 
 function addNews() {
@@ -193,21 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => closeIntro(), 10000); // Guvenlik icin 10 sn
     }
 });
-// --- PİLOT GİRİŞ KONTROLLERİ ---
-function openPilotModal() {
-    document.getElementById('pilotModal').style.display = 'flex';
-    document.getElementById('pilotPass').value = ''; 
-}
-
-function closePilotModal() {
-    document.getElementById('pilotModal').style.display = 'none';
-}
-
 function checkPilotPass() {
     const pass = document.getElementById('pilotPass').value;
     
-    // Pilot Giriş Şifresi
-    if(pass === "pva123") { 
+    if(btoa(pass) === "cHZhMTIz") { 
         closePilotModal();
         navigate('pilots'); // Doğru şifre girilince Roster sayfasına atar
     } else {
