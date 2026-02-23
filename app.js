@@ -208,3 +208,12 @@ function checkPilotPass() {
         alert("Access Denied! Incorrect Pilot Password.");
     }
 }
+function openPilotModal() {
+    // Önce varsa mobil menüyü kapatalım ki arkada açık kalmasın
+    document.getElementById('mobile-nav').classList.remove('active');
+    document.getElementById('mobile-nav-overlay').classList.remove('active');
+    
+    // Sonra şifre ekranını açalım
+    document.getElementById('pilotModal').style.display = 'flex';
+    document.getElementById('pilotPass').value = ''; 
+}
