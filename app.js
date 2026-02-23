@@ -53,8 +53,11 @@ function toggleMobileMenu() {
     document.getElementById('mobile-nav-overlay').classList.toggle('active');
 }
 
-// --- MODAL AÇ/KAPAT ---
+// --- MODAL AÇ/KAPAT (ÜST ÜSTE BİNMEYİ ÖNLEYEN SİSTEM) ---
 function openAdminModal() {
+    // Önce pilot modalı açıksa onu kapatıyoruz
+    closePilotModal();
+    
     document.getElementById('adminModal').style.display = 'flex';
     if(isAdminLoggedIn) {
         document.getElementById('loginArea').style.display = 'none';
@@ -66,29 +69,41 @@ function openAdminModal() {
         document.getElementById('adminPass').value = '';
     }
 }
-function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
+
+function closeAdminModal() { 
+    document.getElementById('adminModal').style.display = 'none'; 
+}
 
 function openPilotModal() {
+    // Önce admin modalı açıksa onu kapatıyoruz
+    closeAdminModal();
+    
     document.getElementById('pilotModal').style.display = 'flex';
     resetPilotModal();
 }
-function closePilotModal() { document.getElementById('pilotModal').style.display = 'none'; }
 
-// --- PİLOT MENÜ & STEP-BY-STEP ---
+function closePilotModal() { 
+    document.getElementById('pilotModal').style.display = 'none'; 
+}
+
+// --- PİLOT MENÜ & STEP-BY-STEP (BOZULMAMIŞ ORİJİNAL MANTIK) ---
 function resetPilotModal() {
     document.getElementById('pilotChoiceArea').style.display = 'block';
     document.getElementById('pilotLoginArea').style.display = 'none';
     document.getElementById('pilotRegisterArea').style.display = 'none';
     if(document.getElementById('regStep1')) nextRegStep(1); 
 }
+
 function showPilotLogin() {
     document.getElementById('pilotChoiceArea').style.display = 'none';
     document.getElementById('pilotLoginArea').style.display = 'block';
 }
+
 function showPilotRegister() {
     document.getElementById('pilotChoiceArea').style.display = 'none';
     document.getElementById('pilotRegisterArea').style.display = 'block';
 }
+
 function nextRegStep(stepNum) {
     const s1 = document.getElementById('regStep1');
     const s2 = document.getElementById('regStep2');
