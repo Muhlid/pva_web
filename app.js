@@ -74,12 +74,24 @@ function closeAdminModal() {
     document.getElementById('adminModal').style.display = 'none'; 
 }
 
+// --- MODAL AÇMA FONKSİYONU (KESİN ÇÖZÜM) ---
 function openPilotModal() {
-    // Önce admin modalı açıksa onu kapatıyoruz
+    // 1. Önce Admin modalı açıksa onu gizle (Üst üste binmeyi önler)
     closeAdminModal();
     
-    document.getElementById('pilotModal').style.display = 'flex';
-    resetPilotModal();
+    // 2. Pilot modalını bul
+    const pilotModal = document.getElementById('pilotModal');
+    
+    if (pilotModal) {
+        // Modalın görünür olduğundan emin ol
+        pilotModal.style.display = 'flex';
+        
+        // Modal içindeki seçim alanını (Login/Register) sıfırla
+        resetPilotModal();
+    } else {
+        // Eğer modal ID'si yanlışsa konsola hata basar (F12 ile takip edebilirsin)
+        console.error("HATA: 'pilotModal' ID'li element bulunamadı. HTML dosyanızı kontrol edin.");
+    }
 }
 
 function closePilotModal() { 
