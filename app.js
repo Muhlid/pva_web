@@ -244,33 +244,94 @@ function loadHomePreviews() {
     }
 }
 
+// --- AKILLI HABER ARŞİVLEME SİSTEMİ ---
 function loadNews() {
-    const cont = document.getElementById('local-news-container');
-    if(!cont) return;
-    cont.innerHTML = "";
-    getSafeData('pva_news').forEach(n => {
-        let btn = isAdminLoggedIn ? `<br><button onclick="delItem('pva_news', ${n.id})" style="color:red; cursor:pointer; background:none; border:none; margin-top:10px;">Delete</button>` : "";
-        cont.innerHTML += `
+    const activeCont = document.getElementById('local-news-container');
+    const pastCont = document.getElementById('past-news-container');
+    if(!activeCont || !pastCont) return;
+    
+    activeCont.innerHTML = "";
+    pastCont.innerHTML = "";
+    
+    const data = getSafeData('pva_news');
+    let activeCount = 0;
+    let pastCount = 0;
+
+    data.forEach((n, index) => {
+        let btn = isAdminLoggedIn ? `<br><button onclick="delItem('pva_news', ${n.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; margin-top:10px; cursor:pointer;"><i class="fas fa-trash"></i> Delete</button>` : "";
+        
+        const cardHTML = `
         <div class="clean-card">
             <img src="${n.img}">
-            <div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${n.title}</h3><p style="color:#666;">${n.content}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Published on ${n.date} ${btn}</span></div>
+            <div class="card-body">
+                <h3 style="color:var(--pva-green); margin-top:0;">${n.title}</h3>
+                <p style="color:#666; font-size:0.9rem;">${n.content}</p>
+                <span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">
+                    <i class="far fa-calendar"></i> Published on ${n.date} ${btn}
+                </span>
+            </div>
         </div>`;
+
+        // İlk 3 haber "Latest" kısmına, eskiler "Archive" kısmına
+        if(index < 3) {
+            activeCont.innerHTML += cardHTML;
+            activeCount++;
+        } else {
+            pastCont.innerHTML += cardHTML;
+            pastCount++;
+        }
     });
+
+    if(activeCount === 0) activeCont.innerHTML = "<p style='color:#888; grid-column: 1/-1;'>No latest news available.</p>";
+    if(pastCount === 0) pastCont.innerHTML = "<p style='color:#888; grid-column: 1/-1;'>Archive is empty.</p>";
 }
 
+// --- AKILLI ETKİNLİK ZAMANLAYICI (OTOMATİK GEÇMİŞE ALIR) ---
 function loadEvents() {
-    const cont = document.getElementById('events-list');
-    if(!cont) return;
-    cont.innerHTML = "";
-    getSafeData('pva_events').forEach(e => {
-        const localStr = new Date(`${e.date}T${e.time}:00Z`).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
-        let btn = isAdminLoggedIn ? `<br><button onclick="delItem('pva_events', ${e.id})" style="color:red; cursor:pointer; background:none; border:none; margin-top:10px;">Delete</button>` : "";
-        cont.innerHTML += `
+    const activeCont = document.getElementById('events-list');
+    const pastCont = document.getElementById('past-events-list');
+    if(!activeCont || !pastCont) return;
+    
+    activeCont.innerHTML = "";
+    pastCont.innerHTML = "";
+    
+    const data = getSafeData('pva_events');
+    const now = new Date(); // Şu anki gerçek zaman
+    
+    let activeCount = 0;
+    let pastCount = 0;
+
+    data.forEach(e => {
+        // Etkinliğin saatini UTC olarak algıla
+        const eventDate = new Date(`${e.date}T${e.time}:00Z`);
+        const localStr = eventDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
+        let btn = isAdminLoggedIn ? `<br><button onclick="delItem('pva_events', ${e.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; margin-top:10px; cursor:pointer;"><i class="fas fa-trash"></i> Delete</button>` : "";
+        
+        const cardHTML = `
         <div class="clean-card">
             <img src="${e.img}">
-            <div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${e.route}</h3><p style="color:#666;">Aircraft: ${e.aircraft}<br>Server: ${e.server}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Starts on ${e.date} at ${e.time}Z (${localStr} Local) ${btn}</span></div>
+            <div class="card-body">
+                <h3 style="color:var(--pva-green); margin-top:0;">${e.route}</h3>
+                <p style="color:#666; font-size:0.9rem;">Aircraft: ${e.aircraft}<br>Server: ${e.server}</p>
+                <span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">
+                    <i class="far fa-clock"></i> ${e.time}Z (${localStr} Local) <br>
+                    <i class="far fa-calendar"></i> ${e.date} ${btn}
+                </span>
+            </div>
         </div>`;
+
+        // Etkinlik henüz geçmediyse yukarı, süresi dolduysa geçmişe (aşağı) at
+        if(eventDate >= now) {
+            activeCont.innerHTML += cardHTML;
+            activeCount++;
+        } else {
+            pastCont.innerHTML += cardHTML;
+            pastCount++;
+        }
     });
+
+    if(activeCount === 0) activeCont.innerHTML = "<p style='color:#888; grid-column: 1/-1;'>No upcoming events. Standby for briefing.</p>";
+    if(pastCount === 0) pastCont.innerHTML = "<p style='color:#888; grid-column: 1/-1;'>No past events in records.</p>";
 }
 
 function delItem(key, id) {
