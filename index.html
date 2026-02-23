@@ -413,36 +413,48 @@
         <div class="footer-bottom"><p>&copy; 2026 Pakistan Virtual Airlines.</p></div>
     </footer>
 
-    <div id="adminModal" class="modal-overlay">
-        <div class="modal-content">
+        <div id="adminModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 500px;">
             <span class="close-modal" onclick="closeAdminModal()">&times;</span>
+            
             <div id="loginArea">
                 <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-shield-alt"></i> ADMIN CLEARANCE</h3>
-                <input type="password" id="adminPass" class="admin-input" placeholder="Enter Password">
-                <input type="hidden" id="adminType" value="all"> 
+                <input type="password" id="adminPass" class="admin-input" placeholder="Enter Admin Password">
                 <button class="btn-primary" onclick="checkAdminPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
             </div>
-            <div id="addEventArea" style="display:none; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                <h3 style="color:var(--pva-green);">PUBLISH EVENT</h3>
-                <input type="text" id="evServer" class="admin-input" placeholder="Server (e.g. Expert Server)">
-                <input type="text" id="evRoute" class="admin-input" placeholder="Route (e.g. LHR-ISL)">
-                <input type="text" id="evAircraft" class="admin-input" placeholder="Aircraft/Livery">
-                <input type="text" id="evETE" class="admin-input" placeholder="ETE (e.g. 07:30)">
-                <input type="text" id="evMultiplier" class="admin-input" placeholder="Multiplier (e.g. 1.5x)">
-                <input type="text" id="evImg" class="admin-input" placeholder="Image URL (Opsiyonel)">
-                <div style="display:flex; gap:10px;">
+
+            <div id="adminControlPanel" style="display:none;">
+                <div style="display:flex; gap:10px; justify-content:center; margin-bottom: 20px; border-bottom:2px solid #eee; padding-bottom:15px;">
+                    <button class="btn-outline" style="padding:8px 15px; font-size:0.8rem;" onclick="switchAdminTab('pending')"><i class="fas fa-user-clock"></i> PENDING PILOTS</button>
+                    <button class="btn-outline" style="padding:8px 15px; font-size:0.8rem;" onclick="switchAdminTab('event')"><i class="fas fa-calendar-alt"></i> EVENTS</button>
+                    <button class="btn-outline" style="padding:8px 15px; font-size:0.8rem;" onclick="switchAdminTab('news')"><i class="fas fa-newspaper"></i> NEWS</button>
+                </div>
+
+                <div id="pendingPilotsArea" style="display:none;">
+                    <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-check"></i> WAITING ROOM</h3>
+                    <p style="text-align:center; font-size:0.85rem; color:#666;">Pilots waiting for your approval.</p>
+                    <div id="pending-list" style="margin-top:15px; max-height: 300px; overflow-y: auto;"></div>
+                </div>
+
+                <div id="addEventArea" style="display:none;">
+                    <h3 style="color:var(--pva-green);">PUBLISH EVENT</h3>
+                    <input type="text" id="evServer" class="admin-input" placeholder="Server (e.g. Expert Server)">
+                    <input type="text" id="evRoute" class="admin-input" placeholder="Route (e.g. LHR-ISL)">
+                    <input type="text" id="evAircraft" class="admin-input" placeholder="Aircraft/Livery">
                     <input type="time" id="evTime" class="admin-input">
                     <input type="date" id="evDate" class="admin-input">
+                    <input type="text" id="evImg" class="admin-input" placeholder="Image URL (Opsiyonel)">
+                    <button class="btn-primary" onclick="addEvent()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH EVENT</button>
                 </div>
-                <button class="btn-primary" onclick="addEvent()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH EVENT</button>
-            </div>
-            <div id="addNewsArea" style="display:none;">
-                <h3 style="color:var(--pva-green);">PUBLISH NEWS</h3>
-                <input type="text" id="newsTitleInput" class="admin-input" placeholder="News Title">
-                <textarea id="newsContentInput" class="admin-input" rows="4" placeholder="Content..."></textarea>
-                <input type="text" id="newsImgInput" class="admin-input" placeholder="Image URL (Opsiyonel)">
-                <input type="date" id="newsDateInput" class="admin-input">
-                <button class="btn-primary" onclick="addNews()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH NEWS</button>
+
+                <div id="addNewsArea" style="display:none;">
+                    <h3 style="color:var(--pva-green);">PUBLISH NEWS</h3>
+                    <input type="text" id="newsTitleInput" class="admin-input" placeholder="News Title">
+                    <textarea id="newsContentInput" class="admin-input" rows="4" placeholder="Content..."></textarea>
+                    <input type="date" id="newsDateInput" class="admin-input">
+                    <input type="text" id="newsImgInput" class="admin-input" placeholder="Image URL (Opsiyonel)">
+                    <button class="btn-primary" onclick="addNews()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH NEWS</button>
+                </div>
             </div>
         </div>
     </div>
@@ -467,19 +479,41 @@
             
             <div id="pilotRegisterArea" style="display:none;">
                 <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-plus"></i> NEW ENROLLMENT</h3>
-                <input type="text" id="regCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042) *UNIQUE*">
-                <input type="text" id="regName" class="admin-input" placeholder="IFC Name">
-                <input type="text" id="regDiscord" class="admin-input" placeholder="Discord Name">
-                <select id="regRank" class="admin-input" style="color: #555;">
-                    <option value="Cadet">Cadet (0-20 Hrs)</option>
-                    <option value="Second Officer">Second Officer (20-50 Hrs)</option>
-                    <option value="First Officer">First Officer (50-100 Hrs)</option>
-                    <option value="Captain">Captain (250-500 Hrs)</option>
-                </select>
-                <input type="number" id="regHours" class="admin-input" placeholder="Total Flight Hours">
-                <input type="password" id="regPass" class="admin-input" placeholder="Create a Password">
-                <button class="btn-primary" onclick="pilotRegister()" style="width:100%; margin-top:10px; background:var(--pva-gold); color:black;">REGISTER & LOGIN</button>
-                <button class="btn-outline" onclick="resetPilotModal()" style="width:100%; margin-top:10px; border:none; color:#888;">Back</button>
+                
+                <div id="regStep1">
+                    <p style="color:#666; font-size:0.85rem; font-weight:bold;">Step 1: Aviation Details</p>
+                    <input type="text" id="regCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042)">
+                    <select id="regRank" class="admin-input" style="color: #555;">
+                        <option value="Cadet">Cadet (0-20 Hrs)</option>
+                        <option value="Second Officer">Second Officer (20-50 Hrs)</option>
+                        <option value="First Officer">First Officer (50-100 Hrs)</option>
+                        <option value="Captain">Captain (250-500 Hrs)</option>
+                    </select>
+                    <input type="number" id="regHours" class="admin-input" placeholder="Current Flight Hours">
+                    <button class="btn-primary" onclick="nextRegStep(2)" style="width:100%; margin-top:10px; background:var(--pva-gold); color:black;">NEXT <i class="fas fa-arrow-right"></i></button>
+                </div>
+
+                <div id="regStep2" style="display:none;">
+                    <p style="color:#666; font-size:0.85rem; font-weight:bold;">Step 2: Community Links</p>
+                    <input type="text" id="regName" class="admin-input" placeholder="IFC Username">
+                    <input type="text" id="regDiscord" class="admin-input" placeholder="Discord Username">
+                    <div style="display:flex; gap:10px; margin-top:10px;">
+                        <button class="btn-outline" onclick="nextRegStep(1)" style="width:50%; border-color:#ccc; color:#666;">BACK</button>
+                        <button class="btn-primary" onclick="nextRegStep(3)" style="width:50%; background:var(--pva-gold); color:black;">NEXT <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div id="regStep3" style="display:none;">
+                    <p style="color:#666; font-size:0.85rem; font-weight:bold;">Step 3: Security</p>
+                    <input type="password" id="regPass" class="admin-input" placeholder="Create a Password">
+                    <p style="font-size:0.75rem; color:#888; margin-top:10px;"><i class="fas fa-info-circle"></i> Once submitted, your application will be reviewed by PVA Staff. You will not be able to login until approved.</p>
+                    <div style="display:flex; gap:10px; margin-top:10px;">
+                        <button class="btn-outline" onclick="nextRegStep(2)" style="width:40%; border-color:#ccc; color:#666;">BACK</button>
+                        <button class="btn-primary" onclick="submitPilotApplication()" style="width:60%; background:var(--pva-green);">SUBMIT</button>
+                    </div>
+                </div>
+
+                <button class="btn-outline" onclick="resetPilotModal()" style="width:100%; margin-top:15px; border:none; color:#888;">Cancel Registration</button>
             </div>
         </div>
     </div>
