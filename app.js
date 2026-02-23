@@ -164,37 +164,58 @@ async function submitPilotApplication() {
     closePilotModal();
 }
 
-// --- PİLOT GİRİŞİ (BULUT KONTROL) ---
+// --- PİLOT GİRİŞİ (BULUT VE MODAL KONTROLLÜ) ---
 async function pilotLogin() {
-    const callsign = document.getElementById('loginCallsign').value.trim().toUpperCase();
-    const pass = document.getElementById('loginPass').value;
-    const encodedPass = btoa(pass);
+    const callsignInput = document.getElementById('loginCallsign');
+    const passInput = document.getElementById('loginPass');
     
-    // Aktiflerde ara
-    const activeQ = await db.collection('pva_pilots').where('callsign', '==', callsign).where('password', '==', encodedPass).get();
-    if(!activeQ.empty) {
-        currentLoggedPilot = activeQ.docs[0].data();
-        isPilotLoggedIn = true;
-        updateNavbarUI();
-        closePilotModal();
-        navigate('pilots');
-        return;
-    } 
+    if(!callsignInput || !passInput) return;
+
+    const callsign = callsignInput.value.trim().toUpperCase();
+    const pass = passInput.value;
+    const encodedPass = btoa(pass); // Şifreleme
     
-    // Bekleyenlerde ara
-    const pendingQ = await db.collection('pva_pending').where('callsign', '==', callsign).where('password', '==', encodedPass).get();
-    if(!pendingQ.empty) {
-        alert("Account Status: PENDING\nYour application is still under review by the Staff. Please check back later.");
-    } else {
-        alert("Login Failed: Incorrect Callsign or Password, or account does not exist.");
+    try {
+        // 1. Aktiflerde ara
+        const activeQ = await db.collection('pva_pilots')
+            .where('callsign', '==', callsign)
+            .where('password', '==', encodedPass)
+            .get();
+
+        if(!activeQ.empty) {
+            currentLoggedPilot = activeQ.docs[0].data();
+            isPilotLoggedIn = true;
+            
+            updateNavbarUI(); 
+            closePilotModal(); // Modalı güvenli kapat
+            navigate('pilots'); // Roster'a yönlendir
+            return;
+        } 
+        
+        // 2. Bekleyenlerde ara
+        const pendingQ = await db.collection('pva_pending')
+            .where('callsign', '==', callsign)
+            .where('password', '==', encodedPass)
+            .get();
+
+        if(!pendingQ.empty) {
+            alert("Account Status: PENDING\nYour application is still under review by the Staff.");
+        } else {
+            alert("Login Failed: Incorrect Callsign or Password.");
+        }
+
+    } catch (error) {
+        console.error("Bulut Bağlantı Hatası:", error);
+        alert("Connection Error: Database is not responding.");
     }
 }
 
+// --- PİLOT ÇIKIŞI ---
 function pilotLogout() {
     currentLoggedPilot = null;
     isPilotLoggedIn = false;
     updateNavbarUI();
-    navigate('home');
+    navigate('home'); // Ana sayfaya dön
 }
 
 // --- ADMIN SİSTEMİ VE ONAYLAMA SÜRECİ ---
