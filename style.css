@@ -333,17 +333,23 @@ main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 .nav-pilot-btn {
     border: 2px solid var(--pva-gold) !important;
     color: var(--pva-gold) !important;
-    padding: 6px 15px !important;
-    border-radius: 4px;
+    padding: 8px 18px !important; /* Biraz daha genişlettik, tıklaması kolay olsun */
+    border-radius: 6px; /* Köşeleri biraz daha yumuşattık */
     font-weight: 700 !important;
     height: fit-content;
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: center; /* İkon ve yazıyı ortaladık */
+    gap: 8px; /* İkon ile yazı arasındaki mesafeyi açtık */
+    transition: all 0.3s ease; /* Üzerine gelince yumuşak geçiş sağlar */
+    cursor: pointer; /* Fare gelince el işareti çıksın */
 }
+
+/* Üzerine gelince (Hover) efekti ekleyelim, daha canlı dursun */
 .nav-pilot-btn:hover {
-    background: var(--pva-gold) !important;
-    color: #000000 !important;
+    background: var(--pva-gold);
+    color: #000 !important;
+    transform: translateY(-2px); /* Hafifçe yukarı zıplar */
 }
 
 /* Admin Butonu */
