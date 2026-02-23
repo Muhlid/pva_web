@@ -28,11 +28,11 @@
         setTimeout(forceCloseIntro, 5000);
     </script>
     
-    <nav class="top-navbar">
+        <nav class="top-navbar">
         <div class="nav-container">
             <div class="nav-logo" onclick="navigate('home')" style="cursor:pointer;">
                 <img src="https://i.ibb.co/mVTDxrzD/image-1.png" alt="PVA Logo">
-                <span style="color: var(--pva-green); font-weight:800;">PVA VIRTUAL</span>
+                <span style="color: var(--pva-gold); font-weight:800;">PVA VIRTUAL</span>
             </div>
             
             <ul class="nav-links">
@@ -61,11 +61,11 @@
                     </div>
                 </li>
                 
-                <li><a href="javascript:void(0)" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
+                <li style="display:flex; align-items:center;"><a href="javascript:void(0)" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
                 
-                <li id="navPilotLoginBtn"><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
+                <li id="navPilotLoginBtn" style="display:flex; align-items:center;"><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-pilot-btn"><i class="fas fa-plane"></i> PILOT LOGIN</a></li>
                 
-                <li id="navPilotProfile" class="dropdown" style="display:none;">
+                <li id="navPilotProfile" class="dropdown" style="display:none; align-items:center;">
                     <a href="javascript:void(0)" style="color:var(--pva-gold); font-weight:800;"><i class="fas fa-user-astronaut"></i> <span id="displayPilotName">PVA000</span></a>
                     <div class="dropdown-content">
                         <a href="javascript:void(0)" onclick="navigate('pilots')">Roster</a>
@@ -73,7 +73,7 @@
                     </div>
                 </li>
 
-                <li><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn">LOGIN</a></li>
+                <li style="display:flex; align-items:center;"><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn"><i class="fas fa-lock"></i> ADMIN</a></li>
             </ul>
 
             <div class="hamburger" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
