@@ -447,3 +447,18 @@ main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
     background: var(--pva-green);
     color: #ffffff;
 }
+/* ========================================= */
+/* ADMIN BUTONU YAZI GÖRÜNMEZLİĞİ ÇÖZÜMÜ */
+/* ========================================= */
+.top-navbar .nav-links > li > a.nav-login-btn {
+    background-color: #FFFFFF !important;
+    color: #004d23 !important; /* Asil Koyu Yeşil Yazı */
+    font-weight: 900 !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+.top-navbar .nav-links > li > a.nav-login-btn:hover {
+    background-color: var(--pva-gold) !important;
+    color: #000000 !important;
+    border-color: var(--pva-gold) !important;
+}
