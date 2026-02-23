@@ -50,6 +50,7 @@
                     </div>
                 </li>
                 <li><a href="#" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
+                <li><a href="#" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
                 <li><a href="#" onclick="openAdminModal('news')" class="nav-login-btn">LOGIN</a></li>
             </ul>
 
@@ -311,6 +312,30 @@
             </div>
         </section>
 
+        <section id="pilots" class="hidden-section page-section">
+            <h1 class="page-title">PVA Roster</h1>
+            <p style="text-align:center; color:#555; margin-bottom:40px;">Official roster of active Pakistan Virtual Airlines Pilots.</p>
+            
+            <div class="table-responsive" style="max-width: 1000px; margin: 0 auto; background: white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); padding:20px;">
+                <table class="staff-table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: var(--pva-green); color: white;">
+                            <th style="padding:15px; text-align:left;">Callsign</th>
+                            <th style="padding:15px; text-align:left;">Name</th>
+                            <th style="padding:15px; text-align:left;">Rank</th>
+                            <th style="padding:15px; text-align:left;">Flight Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pilot-roster-body">
+                        <tr style="border-bottom:1px solid #eee;"><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA001</td><td style="padding:15px;">Mughees Hassan</td><td style="padding:15px;">CEO</td><td style="padding:15px;">1500+</td></tr>
+                        <tr style="border-bottom:1px solid #eee;"><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA002</td><td style="padding:15px;">Rohaan Aamir</td><td style="padding:15px;">COO</td><td style="padding:15px;">1200+</td></tr>
+                        <tr style="border-bottom:1px solid #eee;"><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA007</td><td style="padding:15px;">Muhlis</td><td style="padding:15px;">Digital Manager</td><td style="padding:15px;">850+</td></tr>
+                        <tr style="border-bottom:1px solid #eee;"><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA042</td><td style="padding:15px;">John Doe</td><td style="padding:15px;">First Officer</td><td style="padding:15px;">75</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
         <section id="staff" class="hidden-section page-section">
             <h1 class="page-title">Staff Team</h1>
             <div class="staff-group" style="margin-bottom: 40px;">
@@ -394,7 +419,7 @@
                 <span class="close-modal" onclick="closeAdminModal()">&times;</span>
                 
                 <div id="loginArea">
-                    <h3 style="color:var(--pva-green);">SECURITY CLEARANCE</h3>
+                    <h3 style="color:var(--pva-green);">ADMIN CLEARANCE</h3>
                     <input type="password" id="adminPass" class="admin-input" placeholder="Enter Password">
                     <input type="hidden" id="adminType"> 
                     <button class="btn-primary" onclick="checkAdminPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
@@ -425,6 +450,16 @@
                     <input type="date" id="newsDateInput" class="admin-input">
                     <button class="btn-primary" onclick="addNews()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH NEWS</button>
                 </div>
+            </div>
+        </div>
+
+        <div id="pilotModal" class="modal-overlay">
+            <div class="modal-content" style="max-width: 350px;">
+                <span class="close-modal" onclick="closePilotModal()">&times;</span>
+                <h3 style="color:var(--pva-green); text-align:center; margin-bottom: 20px;"><i class="fas fa-plane"></i> PILOT LOGIN</h3>
+                <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:15px;">Please enter your pilot passcode to access the roster.</p>
+                <input type="password" id="pilotPass" class="admin-input" placeholder="Pilot Password">
+                <button class="btn-primary" onclick="checkPilotPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">VERIFY & LOGIN</button>
             </div>
         </div>
 
@@ -463,12 +498,11 @@
             <div class="footer-col">
                 <h4>LINKS</h4>
                 <a href="https://www.instagram.com/pakistanvirtual.if?igsh=MW9tcXBzYXp0MXlkYg==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://community.infiniteflight.com/t/pakistan-virtual-airlines-great-people-to-fly-with-official-thread-2025/1039058">IFC Thread</a>
+                <a href="https://community.infiniteflight.com/t/pakistan-virtual-airlines-great-people-to-fly-with-official-thread-2025/1039058" target="_blank">IFC Thread</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy;All logos and branding used by PVA are the sole property of Pakistan International airlines corporation limited. We are in no way affliated with PIACL
-                2026 Pakistan Virtual Airlines.</p>
+            <p>&copy; 2026 Pakistan Virtual Airlines.</p>
         </div>
     </footer>
 
