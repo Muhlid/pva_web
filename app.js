@@ -74,35 +74,45 @@ function closeAdminModal() {
     document.getElementById('adminModal').style.display = 'none'; 
 }
 
-// --- MODAL AÇMA FONKSİYONU (KESİN ÇÖZÜM) ---
+// --- MODAL AÇMA FONKSİYONU (GÜÇLENDİRİLMİŞ KESİN ÇÖZÜM) ---
 function openPilotModal() {
     // 1. Önce Admin modalı açıksa onu gizle (Üst üste binmeyi önler)
     closeAdminModal();
     
-    // 2. Pilot modalını bul
+    // 2. Senin HTML'indeki "pilotModal" ID'li elementi bul
     const pilotModal = document.getElementById('pilotModal');
     
     if (pilotModal) {
-        // Modalın görünür olduğundan emin ol
-        pilotModal.style.display = 'flex';
+        // Modalın görünür olduğundan emin olmak için "important" ile flex yapıyoruz
+        pilotModal.style.setProperty('display', 'flex', 'important');
         
         // Modal içindeki seçim alanını (Login/Register) sıfırla
         resetPilotModal();
     } else {
-        // Eğer modal ID'si yanlışsa konsola hata basar (F12 ile takip edebilirsin)
+        // Hata durumunda konsola yazar
         console.error("HATA: 'pilotModal' ID'li element bulunamadı. HTML dosyanızı kontrol edin.");
     }
 }
 
 function closePilotModal() { 
-    document.getElementById('pilotModal').style.display = 'none'; 
+    const pilotModal = document.getElementById('pilotModal');
+    if (pilotModal) {
+        pilotModal.style.setProperty('display', 'none', 'important');
+    }
 }
 
-// --- PİLOT MENÜ & STEP-BY-STEP (BOZULMAMIŞ ORİJİNAL MANTIK) ---
+// --- PİLOT MENÜ & STEP-BY-STEP (ORİJİNAL MANTIK KORUNDU) ---
 function resetPilotModal() {
-    document.getElementById('pilotChoiceArea').style.display = 'block';
-    document.getElementById('pilotLoginArea').style.display = 'none';
-    document.getElementById('pilotRegisterArea').style.display = 'none';
+    // Senin alanlarını tek tek kontrol ederek sıfırlıyoruz
+    const choiceArea = document.getElementById('pilotChoiceArea');
+    const loginArea = document.getElementById('pilotLoginArea');
+    const registerArea = document.getElementById('pilotRegisterArea');
+
+    if (choiceArea) choiceArea.style.display = 'block';
+    if (loginArea) loginArea.style.display = 'none';
+    if (registerArea) registerArea.style.display = 'none';
+    
+    // Kayıt adımlarını da en başa al
     if(document.getElementById('regStep1')) nextRegStep(1); 
 }
 
@@ -120,11 +130,14 @@ function nextRegStep(stepNum) {
     const s1 = document.getElementById('regStep1');
     const s2 = document.getElementById('regStep2');
     const s3 = document.getElementById('regStep3');
+    
     if(s1 && s2 && s3) {
         s1.style.display = 'none';
         s2.style.display = 'none';
         s3.style.display = 'none';
-        document.getElementById('regStep' + stepNum).style.display = 'block';
+        
+        const targetStep = document.getElementById('regStep' + stepNum);
+        if (targetStep) targetStep.style.display = 'block';
     }
 }
 
