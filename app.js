@@ -73,6 +73,7 @@ function openPilotRegisterModal() {
     document.getElementById('pilotRegisterModal').style.display = 'flex'; 
     document.getElementById('pCallsign').value = '';
     document.getElementById('pName').value = '';
+    document.getElementById('pDiscord').value = ''; // Yeni Eklendi
     document.getElementById('pHours').value = '';
 }
 function closePilotRegisterModal() { document.getElementById('pilotRegisterModal').style.display = 'none'; }
@@ -109,17 +110,19 @@ function checkPilotPass() {
     } else { alert("Access Denied! Incorrect Pilot Password."); }
 }
 
-// Pilot Kayıt / Silme
 function addPilot() {
     const callsign = document.getElementById('pCallsign').value;
     const name = document.getElementById('pName').value;
+    const discord = document.getElementById('pDiscord').value || "-"; // Yeni Eklendi
     const rank = document.getElementById('pRank').value;
     const hours = document.getElementById('pHours').value;
 
-    if(!callsign || !name || !hours) return alert("Callsign, Name and Hours are required!");
+    // Discord ismini zorunlu yapmak istersen buraya !discord ekleyebilirsin
+    if(!callsign || !name || !hours) return alert("Callsign, IFC Name and Hours are required!");
 
     const data = getSafeData('pva_pilots');
-    data.push({ id: Date.now(), callsign, name, rank, hours }); 
+    // Discord'u da paketin içine dahil ettik
+    data.push({ id: Date.now(), callsign, name, discord, rank, hours }); 
     localStorage.setItem('pva_pilots', JSON.stringify(data));
     
     closePilotRegisterModal();
@@ -158,23 +161,25 @@ function loadPilots() {
     const pilots = getSafeData('pva_pilots');
 
     if(pilots.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" style="padding:15px; text-align:center; color:#888;">No pilots registered yet.</td></tr>`;
+        // Sütun sayısı 4'ten 5'e çıktığı için colspan=5 yapıldı
+        tbody.innerHTML = `<tr><td colspan="5" style="padding:15px; text-align:center; color:#888;">No pilots registered yet.</td></tr>`;
         return;
     }
 
     pilots.forEach(p => {
         let delBtn = isAdminLoggedIn ? `<button onclick="deletePilot(${p.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; float:right;"><i class="fas fa-trash"></i></button>` : "";
         
+        // p.discord tabloya eklendi
         tbody.innerHTML += `
         <tr style="border-bottom:1px solid #eee;">
             <td style="padding:15px; font-weight:bold; color:var(--pva-green);">${p.callsign}</td>
             <td style="padding:15px;">${p.name}</td>
+            <td style="padding:15px;"><i class="fab fa-discord" style="color:#7289da;"></i> ${p.discord || "-"}</td>
             <td style="padding:15px;">${p.rank}</td>
             <td style="padding:15px;">${p.hours} ${delBtn}</td>
         </tr>`;
     });
 }
-
 // Haber ve Etkinlikler
 function addNews() {
     const title = document.getElementById('newsTitleInput').value;
