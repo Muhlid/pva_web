@@ -217,3 +217,7 @@ function openPilotModal() {
     document.getElementById('pilotModal').style.display = 'flex';
     document.getElementById('pilotPass').value = ''; 
 }
+
+function closePilotModal() {
+    document.getElementById('pilotModal').style.display = 'none';
+}
