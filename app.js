@@ -61,23 +61,108 @@ function openAdminModal(type) {
 }
 function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
 
+let currentLoggedPilot = null; // Giriş yapan pilotun bilgisini tutar
+
+// --- PİLOT MODAL EKRAN KONTROLLERİ ---
 function openPilotModal() {
-    document.getElementById('mobile-nav').classList.remove('active');
-    document.getElementById('mobile-nav-overlay').classList.remove('active');
+    const mobNav = document.getElementById('mobile-nav');
+    const mobOverlay = document.getElementById('mobile-nav-overlay');
+    if(mobNav) mobNav.classList.remove('active');
+    if(mobOverlay) mobOverlay.classList.remove('active');
+    
     document.getElementById('pilotModal').style.display = 'flex';
-    document.getElementById('pilotPass').value = ''; 
+    resetPilotModal();
 }
 function closePilotModal() { document.getElementById('pilotModal').style.display = 'none'; }
 
-function openPilotRegisterModal() { 
-    document.getElementById('pilotRegisterModal').style.display = 'flex'; 
-    document.getElementById('pCallsign').value = '';
-    document.getElementById('pName').value = '';
-    document.getElementById('pDiscord').value = ''; // Yeni Eklendi
-    document.getElementById('pHours').value = '';
+function resetPilotModal() {
+    document.getElementById('pilotChoiceArea').style.display = 'block';
+    document.getElementById('pilotLoginArea').style.display = 'none';
+    document.getElementById('pilotRegisterArea').style.display = 'none';
 }
-function closePilotRegisterModal() { document.getElementById('pilotRegisterModal').style.display = 'none'; }
+function showPilotLogin() {
+    document.getElementById('pilotChoiceArea').style.display = 'none';
+    document.getElementById('pilotLoginArea').style.display = 'block';
+}
+function showPilotRegister() {
+    document.getElementById('pilotChoiceArea').style.display = 'none';
+    document.getElementById('pilotRegisterArea').style.display = 'block';
+}
 
+// --- PİLOT KAYIT OLMA (REGISTER) ---
+function pilotRegister() {
+    const callsign = document.getElementById('regCallsign').value.trim().toUpperCase();
+    const name = document.getElementById('regName').value.trim();
+    const discord = document.getElementById('regDiscord').value.trim() || "-";
+    const rank = document.getElementById('regRank').value;
+    const hours = document.getElementById('regHours').value;
+    const pass = document.getElementById('regPass').value;
+
+    if(!callsign || !name || !hours || !pass) return alert("Please fill all required fields!");
+
+    const pilots = getSafeData('pva_pilots');
+    
+    // AYNI KİŞİ KONTROLÜ (Bu callsign zaten var mı?)
+    const exists = pilots.find(p => p.callsign === callsign);
+    if(exists) {
+        return alert("Registration Failed: This Callsign is already in use by another pilot!");
+    }
+
+    // Yeni Pilotu Oluştur ve Kaydet (Şifre kriptolanarak saklanır)
+    const newPilot = { id: Date.now(), callsign, name, discord, rank, hours, password: btoa(pass) };
+    pilots.push(newPilot);
+    localStorage.setItem('pva_pilots', JSON.stringify(pilots));
+    
+    alert("Welcome aboard! Registration successful.");
+    
+    // Kayıt olunca otomatik giriş yap
+    currentLoggedPilot = newPilot;
+    isPilotLoggedIn = true;
+    updateNavbarUI();
+    closePilotModal();
+    navigate('pilots');
+}
+
+// --- PİLOT GİRİŞ YAPMA (LOGIN) ---
+function pilotLogin() {
+    const callsign = document.getElementById('loginCallsign').value.trim().toUpperCase();
+    const pass = document.getElementById('loginPass').value;
+    
+    const pilots = getSafeData('pva_pilots');
+    
+    // Kayıtlı pilotlar içinde girilen Callsign ve Şifreyi bulmaya çalış
+    const foundPilot = pilots.find(p => p.callsign === callsign && p.password === btoa(pass));
+    
+    if(foundPilot) {
+        currentLoggedPilot = foundPilot;
+        isPilotLoggedIn = true;
+        updateNavbarUI();
+        closePilotModal();
+        navigate('pilots');
+    } else {
+        alert("Login Failed: Incorrect Callsign or Password!");
+    }
+}
+
+// --- PİLOT ÇIKIŞ YAPMA (LOGOUT) ---
+function pilotLogout() {
+    currentLoggedPilot = null;
+    isPilotLoggedIn = false;
+    updateNavbarUI();
+    navigate('home');
+}
+
+// --- NAVBAR'I GÜNCELLEME (İSİM YAZDIRMA) ---
+function updateNavbarUI() {
+    if(isPilotLoggedIn && currentLoggedPilot) {
+        document.getElementById('navPilotLoginBtn').style.display = 'none';
+        document.getElementById('navPilotProfile').style.display = 'block';
+        document.getElementById('displayPilotName').innerText = currentLoggedPilot.callsign;
+    } else {
+        document.getElementById('navPilotLoginBtn').style.display = 'block';
+        document.getElementById('navPilotProfile').style.display = 'none';
+    }
+}
 // Şifre Sistemleri
 function checkAdminPass() {
     const pass = document.getElementById('adminPass').value;
