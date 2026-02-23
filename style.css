@@ -183,3 +183,36 @@ main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 .dropdown:hover .dropdown-content {
     display: flex; /* Hover olunca bloğu aktif eder */
 }
+/* --- CEO MESAJ KUTUSU TASARIMI --- */
+.ceo-message-container { 
+    margin: 50px auto; 
+    padding: 0 20px; 
+    max-width: 1000px; 
+}
+.ceo-message-box { 
+    background: var(--bg-white); 
+    border-radius: 12px; 
+    padding: 40px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    position: relative; 
+    border-top: 4px solid var(--pva-gold); 
+    text-align: left; 
+}
+.ceo-quote-icon { 
+    position: absolute; 
+    top: 30px; 
+    right: 40px; 
+    font-size: 3rem; 
+    color: rgba(0, 90, 67, 0.05); /* Arka planda devasa silik tırnak işareti */
+}
+.ceo-message-box p { 
+    color: var(--text-light); 
+    line-height: 1.8; 
+    font-size: 1.05rem; 
+    font-style: italic; 
+    margin-bottom: 20px; 
+    position: relative;
+    z-index: 2;
+}
+.ceo-signature strong { color: var(--text-dark); font-size: 1.2rem; }
+.ceo-signature span { color: var(--pva-green); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
