@@ -1,7 +1,7 @@
 let isAdminLoggedIn = false;
-let isPilotLoggedIn = false; // Yeni Pilot Giriş Durumu
+let isPilotLoggedIn = false;
 
-// NAVİGASYON
+// --- NAVİGASYON ---
 function navigate(sectionId) {
     document.querySelectorAll('main > section').forEach(sec => {
         sec.classList.remove('active-section');
@@ -15,13 +15,15 @@ function navigate(sectionId) {
         window.scrollTo(0, 0);
     }
     
-    document.getElementById('mobile-nav').classList.remove('active');
-    document.getElementById('mobile-nav-overlay').classList.remove('active');
+    const mobNav = document.getElementById('mobile-nav');
+    const mobOverlay = document.getElementById('mobile-nav-overlay');
+    if(mobNav) mobNav.classList.remove('active');
+    if(mobOverlay) mobOverlay.classList.remove('active');
     
     if(sectionId === 'news') loadNews();
     if(sectionId === 'events') loadEvents();
     if(sectionId === 'home') loadHomePreviews();
-    if(sectionId === 'pilots') loadPilots(); // Roster sayfasına tıklandığında listeyi çek
+    if(sectionId === 'pilots') loadPilots(); 
 }
 
 function toggleMobileMenu() {
@@ -40,16 +42,14 @@ function closeIntro() {
     }
 }
 
-// VERİ İŞLEMLERİ (Otomatik eklemeler kaldırıldı, liste boş başlayacak)
+// --- VERİTABANI (Local Storage) ---
 function getSafeData(key) {
     try { 
         return JSON.parse(localStorage.getItem(key)) || []; 
-    } catch(e) { 
-        return []; 
-    }
+    } catch(e) { return []; }
 }
 
-// MODAL AÇ/KAPAT
+// --- MODAL AÇ / KAPAT İŞLEMLERİ ---
 function openAdminModal(type) {
     document.getElementById('adminModal').style.display = 'flex';
     document.getElementById('adminType').value = type;
@@ -61,40 +61,56 @@ function openAdminModal(type) {
 function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
 
 function openPilotModal() {
-    document.getElementById('mobile-nav').classList.remove('active');
-    document.getElementById('mobile-nav-overlay').classList.remove('active');
-    document.getElementById('pilotModal').style.display = 'flex';
-    document.getElementById('pilotPass').value = ''; 
+    // Mobil menüyü güvenli şekilde kapat
+    const mobNav = document.getElementById('mobile-nav');
+    const mobOverlay = document.getElementById('mobile-nav-overlay');
+    if(mobNav) mobNav.classList.remove('active');
+    if(mobOverlay) mobOverlay.classList.remove('active');
+    
+    // Şifre ekranını aç
+    const pModal = document.getElementById('pilotModal');
+    if(pModal) {
+        pModal.style.display = 'flex';
+        document.getElementById('pilotPass').value = ''; 
+    } else {
+        alert("Pilot giriş ekranı bulunamadı. Lütfen index.html dosyasını kontrol edin.");
+    }
 }
 function closePilotModal() { document.getElementById('pilotModal').style.display = 'none'; }
 
-function openPilotRegisterModal() { document.getElementById('pilotRegisterModal').style.display = 'flex'; }
+function openPilotRegisterModal() { 
+    document.getElementById('pilotRegisterModal').style.display = 'flex'; 
+    // Kutuları temizle
+    document.getElementById('pCallsign').value = '';
+    document.getElementById('pName').value = '';
+    document.getElementById('pHours').value = '';
+}
 function closePilotRegisterModal() { document.getElementById('pilotRegisterModal').style.display = 'none'; }
 
-// ŞİFRE KONTROLLERİ (Kriptolu)
+// --- ŞİFRE KONTROLLERİ ---
 function checkAdminPass() {
     const pass = document.getElementById('adminPass').value;
-    if(btoa(pass) === "cHZhMjAyNg==") { // pva2026
+    if(btoa(pass) === "cHZhMjAyNg==") { // Şifre: pva2026
         isAdminLoggedIn = true;
         document.getElementById('loginArea').style.display = 'none';
         const type = document.getElementById('adminType').value;
         if(type === 'event') document.getElementById('addEventArea').style.display = 'block';
         if(type === 'news') document.getElementById('addNewsArea').style.display = 'block';
-        loadNews(); loadEvents(); loadPilots(); // Admin giriş yapınca her yerde silme butonları açılsın
-    } else { alert("Incorrect Password!"); }
+        loadNews(); loadEvents(); loadPilots(); 
+    } else { alert("Incorrect Admin Password!"); }
 }
 
 function checkPilotPass() {
     const pass = document.getElementById('pilotPass').value;
-    if(btoa(pass) === "cHZhMTIz") {  // pva123
+    if(btoa(pass) === "cHZhMTIz") {  // Şifre: pva123
         isPilotLoggedIn = true;
         closePilotModal();
-        navigate('pilots'); // Roster'a atar
-        loadPilots(); // "Register Profile" butonunu görünür yapar
+        navigate('pilots'); 
+        loadPilots(); 
     } else { alert("Access Denied! Incorrect Pilot Password."); }
 }
 
-// PİLOT LİSTESİ İŞLEMLERİ (YENİ)
+// --- PİLOT İŞLEMLERİ ---
 function addPilot() {
     const callsign = document.getElementById('pCallsign').value;
     const name = document.getElementById('pName').value;
@@ -104,7 +120,7 @@ function addPilot() {
     if(!callsign || !name || !hours) return alert("Callsign, Name and Hours are required!");
 
     const data = getSafeData('pva_pilots');
-    data.push({ id: Date.now(), callsign, name, rank, hours }); // Yeni pilotu listeye ekle
+    data.push({ id: Date.now(), callsign, name, rank, hours }); 
     localStorage.setItem('pva_pilots', JSON.stringify(data));
     
     closePilotRegisterModal();
@@ -125,7 +141,7 @@ function loadPilots() {
     const addBtn = document.getElementById('addPilotBtn');
     if(!tbody) return;
 
-    // Ekleme butonunu sadece Pilot veya Admin giriş yapmışsa göster
+    // Pilot profil ekleme butonunu sadece Admin veya Pilot giriş yapmışsa göster
     if(addBtn) {
         addBtn.style.display = (isPilotLoggedIn || isAdminLoggedIn) ? "inline-block" : "none";
     }
@@ -134,12 +150,11 @@ function loadPilots() {
     const pilots = getSafeData('pva_pilots');
 
     if(pilots.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" style="padding:15px; text-align:center;">No pilots registered yet.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" style="padding:15px; text-align:center; color:#888;">No pilots registered yet.</td></tr>`;
         return;
     }
 
     pilots.forEach(p => {
-        // Eğer admin giriş yaptıysa, pilot isminin yanına kırmızı sil butonu koy
         let delBtn = isAdminLoggedIn ? `<button onclick="deletePilot(${p.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; float:right;"><i class="fas fa-trash"></i></button>` : "";
         
         tbody.innerHTML += `
@@ -152,7 +167,7 @@ function loadPilots() {
     });
 }
 
-// HABER VE ETKİNLİK İŞLEMLERİ
+// --- HABER VE ETKİNLİK İŞLEMLERİ ---
 function addNews() {
     const title = document.getElementById('newsTitleInput').value;
     const content = document.getElementById('newsContentInput').value;
@@ -196,9 +211,9 @@ function loadHomePreviews() {
             <div class="clean-card">
                 <img src="${n.img}">
                 <div class="card-body">
-                    <h3>${n.title}</h3>
-                    <p>${n.content.substring(0, 70)}...</p>
-                    <span class="card-meta">Published on ${n.date}</span>
+                    <h3 style="color:var(--pva-green); margin-top:0;">${n.title}</h3>
+                    <p style="color:#666;">${n.content.substring(0, 70)}...</p>
+                    <span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Published on ${n.date}</span>
                 </div>
             </div>`;
         });
@@ -212,9 +227,9 @@ function loadHomePreviews() {
             <div class="clean-card">
                 <img src="${e.img}">
                 <div class="card-body">
-                    <h3>${e.route}</h3>
-                    <p>Aircraft: ${e.aircraft}<br>Server: ${e.server}</p>
-                    <span class="card-meta">Starts on ${e.date} at ${e.time}Z (${localStr} Local)</span>
+                    <h3 style="color:var(--pva-green); margin-top:0;">${e.route}</h3>
+                    <p style="color:#666;">Aircraft: ${e.aircraft}<br>Server: ${e.server}</p>
+                    <span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Starts on ${e.date} at ${e.time}Z (${localStr} Local)</span>
                 </div>
             </div>`;
         });
@@ -230,7 +245,7 @@ function loadNews() {
         cont.innerHTML += `
         <div class="clean-card">
             <img src="${n.img}">
-            <div class="card-body"><h3>${n.title}</h3><p>${n.content}</p><span class="card-meta">Published on ${n.date} ${btn}</span></div>
+            <div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${n.title}</h3><p style="color:#666;">${n.content}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Published on ${n.date} ${btn}</span></div>
         </div>`;
     });
 }
@@ -245,28 +260,31 @@ function loadEvents() {
         cont.innerHTML += `
         <div class="clean-card">
             <img src="${e.img}">
-            <div class="card-body"><h3>${e.route}</h3><p>Aircraft: ${e.aircraft}<br>Server: ${e.server}</p><span class="card-meta">Starts on ${e.date} at ${e.time}Z (${localStr} Local) ${btn}</span></div>
+            <div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${e.route}</h3><p style="color:#666;">Aircraft: ${e.aircraft}<br>Server: ${e.server}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Starts on ${e.date} at ${e.time}Z (${localStr} Local) ${btn}</span></div>
         </div>`;
     });
 }
 
 function delItem(key, id) {
-    if(confirm("Delete item?")) {
+    if(confirm("Are you sure you want to delete this item?")) {
         let data = getSafeData(key).filter(i => i.id !== id);
         localStorage.setItem(key, JSON.stringify(data));
         loadNews(); loadEvents(); loadHomePreviews();
     }
 }
 
-// LİGHTBOX
+// --- LİGHTBOX (GALERİ) ---
 function openLightbox(src) {
     document.getElementById('lightboxImg').src = src;
     document.getElementById('lightboxModal').style.display = 'flex';
 }
 function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
 
+// --- SAYFA BAŞLATMA ---
 document.addEventListener('DOMContentLoaded', () => {
     loadHomePreviews();
+    
+    // İntro video kapanma süresi
     const introVideo = document.getElementById('pva-intro-video');
     if (introVideo) {
         introVideo.onended = () => closeIntro();
