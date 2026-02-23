@@ -196,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => closeIntro(), 10000); // Guvenlik icin 10 sn
     }
 });
+
 function checkPilotPass() {
     const pass = document.getElementById('pilotPass').value;
     
