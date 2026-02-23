@@ -285,3 +285,84 @@ main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
     background: #FFFFFF !important;
     transform: scale(1.05) !important;
 }
+/* ========================================= */
+/* 1. ADIM: PIA YEŞİLİ ÜST MENÜ VE BUTONLAR  */
+/* ========================================= */
+
+/* Menü Arka Planı (Asil Yeşil) */
+.top-navbar {
+    background: var(--pva-green) !important;
+    border-bottom: 3px solid var(--pva-gold); /* Altına şık bir sarı çizgi çektik */
+}
+
+/* Menü Yazıları (Beyaz ve Hover olunca Altın Sarısı) */
+.nav-links > li > a {
+    color: #FFFFFF !important;
+}
+.nav-links > li > a:hover {
+    color: var(--pva-gold) !important;
+}
+
+/* Açılır Menü (Dropdown) İçeriklerini Okunabilir Tutmak İçin Beyaz Kutu */
+.dropdown-content {
+    border-top: 3px solid var(--pva-gold) !important;
+}
+.dropdown-content a {
+    color: var(--text-dark) !important;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1 !important;
+    color: var(--pva-green) !important;
+}
+
+/* --- MİLİMETRİK BUTON HİZALAMALARI --- */
+/* Apply Butonu */
+.nav-apply-btn {
+    border: 1px solid #FFFFFF !important;
+    color: #FFFFFF !important;
+    padding: 6px 15px !important;
+    border-radius: 4px;
+    height: fit-content;
+}
+.nav-apply-btn:hover {
+    background: #FFFFFF !important;
+    color: var(--pva-green) !important;
+}
+
+/* Pilot Login Butonu (Altın Sarısı) */
+.nav-pilot-btn {
+    border: 2px solid var(--pva-gold) !important;
+    color: var(--pva-gold) !important;
+    padding: 6px 15px !important;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.nav-pilot-btn:hover {
+    background: var(--pva-gold) !important;
+    color: #000000 !important;
+}
+
+/* Admin Butonu */
+.nav-login-btn {
+    background: #FFFFFF !important;
+    color: var(--pva-green) !important;
+    padding: 8px 18px !important;
+    border-radius: 4px;
+    font-weight: 800 !important;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.nav-login-btn:hover {
+    background: #e0e0e0 !important;
+}
+
+/* Mobil Menü Hamburger İkonu Rengi */
+.hamburger {
+    color: var(--pva-gold) !important;
+}
