@@ -50,8 +50,8 @@
                     </div>
                 </li>
                 <li><a href="#" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
-                <li><a href="#" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
-                <li><a href="#" onclick="openAdminModal('news')" class="nav-login-btn">LOGIN</a></li>
+                <li><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
+                <li><a href="javascript:void(0)" onclick="openAdminModal('news')" class="nav-login-btn">LOGIN</a></li>
             </ul>
 
             <div class="hamburger" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
@@ -75,6 +75,7 @@
         <a href="#" onclick="navigate('gallery')">Gallery</a>
         <a href="#" onclick="navigate('staff')">Staff</a>
         <a href="#" onclick="navigate('apply')">Apply Now</a>
+        <a href="javascript:void(0)" onclick="openPilotModal()" style="color:var(--pva-gold); font-weight:bold;"><i class="fas fa-key"></i> Pilot Login</a>
     </div>
 
     <main id="main-container">
@@ -88,6 +89,19 @@
                     <div class="hero-buttons">
                         <button class="btn-primary" onclick="navigate('apply')">APPLY NOW</button>
                         <button class="btn-outline" onclick="navigate('about')">OUR HUBS</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ceo-message-container">
+                <div class="ceo-message-box">
+                    <div class="ceo-quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <h2 style="color: var(--pva-green); margin-top: 0;">A Message from our CEO</h2>
+                    <p>"Welcome to Pakistan Virtual Airlines. Since our inception, our vision has been to unite aviation enthusiasts under a banner of professionalism, realism, and mutual respect. Whether you are a seasoned aviator or just taking your first flight in Infinite Flight, PVA offers an unparalleled environment to grow your skills and explore the globe.</p>
+                    <p>We take immense pride in representing the rich heritage of Pakistan's aviation on a global stage. I invite you to step into the cockpit, join our community, and experience what makes us truly 'Great People to Fly With'."</p>
+                    <div class="ceo-signature">
+                        <strong>Mughees Hassan</strong><br>
+                        <span>Chief Executive Officer, PVA</span>
                     </div>
                 </div>
             </div>
@@ -419,7 +433,7 @@
                 <span class="close-modal" onclick="closeAdminModal()">&times;</span>
                 
                 <div id="loginArea">
-                    <h3 style="color:var(--pva-green);">ADMIN CLEARANCE</h3>
+                    <h3 style="color:var(--pva-green);">SECURITY CLEARANCE</h3>
                     <input type="password" id="adminPass" class="admin-input" placeholder="Enter Password">
                     <input type="hidden" id="adminType"> 
                     <button class="btn-primary" onclick="checkAdminPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
