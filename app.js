@@ -40,21 +40,13 @@ function closeIntro() {
     }
 }
 
-// VERİ İŞLEMLERİ (Pilotları otomatik yüklemek için güncellendi)
+// VERİ İŞLEMLERİ (Otomatik eklemeler kaldırıldı, liste boş başlayacak)
 function getSafeData(key) {
     try { 
-        let data = JSON.parse(localStorage.getItem(key));
-        // Eğer pilot listesi tamamen boşsa, Yönetim Ekibini varsayılan olarak ekle
-        if (!data && key === 'pva_pilots') {
-            data = [
-                { id: 1, callsign: "PVA001", name: "Mughees Hassan", rank: "CEO", hours: "1500+" },
-                { id: 2, callsign: "PVA002", name: "Rohaan Aamir", rank: "COO", hours: "1200+" },
-                { id: 3, callsign: "PVA007", name: "Muhlis", rank: "Digital Manager", hours: "850+" }
-            ];
-            localStorage.setItem('pva_pilots', JSON.stringify(data));
-        }
-        return data || []; 
-    } catch(e) { return []; }
+        return JSON.parse(localStorage.getItem(key)) || []; 
+    } catch(e) { 
+        return []; 
+    }
 }
 
 // MODAL AÇ/KAPAT
