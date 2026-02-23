@@ -468,22 +468,33 @@
         </div>
 
         <div id="pilotModal" class="modal-overlay">
+            </div>
+
+        <div id="pilotRegisterModal" class="modal-overlay">
             <div class="modal-content" style="max-width: 350px;">
-                <span class="close-modal" onclick="closePilotModal()">&times;</span>
-                <h3 style="color:var(--pva-green); text-align:center; margin-bottom: 20px;"><i class="fas fa-plane"></i> PILOT LOGIN</h3>
-                <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:15px;">Please enter your pilot passcode to access the roster.</p>
-                <input type="password" id="pilotPass" class="admin-input" placeholder="Pilot Password">
-                <button class="btn-primary" onclick="checkPilotPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">VERIFY & LOGIN</button>
+                <span class="close-modal" onclick="closePilotRegisterModal()">&times;</span>
+                <h3 style="color:var(--pva-green); text-align:center; margin-bottom:15px;"><i class="fas fa-id-badge"></i> REGISTER PROFILE</h3>
+                <input type="text" id="pCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042)">
+                <input type="text" id="pName" class="admin-input" placeholder="Full Name">
+                <select id="pRank" class="admin-input" style="color: #555;">
+                    <option value="Cadet">Cadet (0-20 Hrs)</option>
+                    <option value="Second Officer">Second Officer (20-50 Hrs)</option>
+                    <option value="First Officer">First Officer (50-100 Hrs)</option>
+                    <option value="Senior FO">Senior FO (100-250 Hrs)</option>
+                    <option value="Captain">Captain (250-500 Hrs)</option>
+                    <option value="Senior Captain">Senior Captain (500-750 Hrs)</option>
+                    <option value="Commander">Commander (750+ Hrs)</option>
+                </select>
+                <input type="number" id="pHours" class="admin-input" placeholder="Total Flight Hours">
+                <button class="btn-primary" onclick="addPilot()" style="width:100%; margin-top:10px; background:var(--pva-green);">SAVE PROFILE</button>
             </div>
         </div>
 
         <div id="lightboxModal" class="lightbox-overlay" onclick="closeLightbox()">
-            <span class="close-lightbox">&times;</span>
-            <img class="lightbox-img" id="lightboxImg" src="">
-        </div>
+            </div>
 
     </main>
-
+    
     <footer class="clean-footer">
         <div class="footer-grid">
             <div class="footer-col" style="flex:2;">
