@@ -128,10 +128,20 @@ function addPilot() {
 }
 
 function deletePilot(id) {
-    if(confirm("Are you sure you want to remove this pilot from the roster?")) {
-        let data = getSafeData('pva_pilots').filter(p => p.id !== id);
-        localStorage.setItem('pva_pilots', JSON.stringify(data));
-        loadPilots();
+    // Silme tuşuna basıldığında Admin şifresini zorla sorar
+    let pass = prompt("SECURITY CLEARANCE REQUIRED:\nPlease enter the Admin Password to delete this pilot:");
+    
+    // Girilen şifre pva2026 (cHZhMjAyNg==) ise işleme izin ver
+    if (pass && btoa(pass) === "cHZhMjAyNg==") {
+        if(confirm("Password Verified! Are you sure you want to remove this pilot from the roster?")) {
+            let data = getSafeData('pva_pilots').filter(p => p.id !== id);
+            localStorage.setItem('pva_pilots', JSON.stringify(data));
+            loadPilots();
+            alert("Pilot successfully removed.");
+        }
+    } else {
+        // Şifre yanlışsa veya iptale basılırsa reddet
+        alert("Access Denied! Incorrect Admin Password. Deletion cancelled.");
     }
 }
 
@@ -264,10 +274,18 @@ function loadEvents() {
 }
 
 function delItem(key, id) {
-    if(confirm("Are you sure you want to delete this item?")) {
-        let data = getSafeData(key).filter(i => i.id !== id);
-        localStorage.setItem(key, JSON.stringify(data));
-        loadNews(); loadEvents(); loadHomePreviews();
+    // Silme tuşuna basıldığında Admin şifresini zorla sorar
+    let pass = prompt("SECURITY CLEARANCE REQUIRED:\nPlease enter the Admin Password to delete this item:");
+    
+    if (pass && btoa(pass) === "cHZhMjAyNg==") {
+        if(confirm("Password Verified! Are you sure you want to delete this item?")) {
+            let data = getSafeData(key).filter(i => i.id !== id);
+            localStorage.setItem(key, JSON.stringify(data));
+            loadNews(); loadEvents(); loadHomePreviews();
+            alert("Item successfully deleted.");
+        }
+    } else {
+        alert("Access Denied! Incorrect Admin Password. Deletion cancelled.");
     }
 }
 
