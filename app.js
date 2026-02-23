@@ -367,6 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const introVideo = document.getElementById('pva-intro-video');
     if (introVideo) {
         introVideo.onended = () => closeIntro();
-        setTimeout(() => closeIntro(), 10000); 
+        setTimeout(() => closeIntro(), 5000); 
     }
 });
