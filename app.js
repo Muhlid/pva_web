@@ -1,6 +1,8 @@
 let isAdminLoggedIn = false;
 let isPilotLoggedIn = false;
+let currentLoggedPilot = null; 
 
+// --- NAVİGASYON ---
 function navigate(sectionId) {
     document.querySelectorAll('main > section').forEach(sec => {
         sec.classList.remove('active-section');
@@ -30,30 +32,34 @@ function toggleMobileMenu() {
     document.getElementById('mobile-nav-overlay').classList.toggle('active');
 }
 
+// --- İNTRO KAPATMA (GÜÇLENDİRİLDİ) ---
 function closeIntro() {
     const intro = document.getElementById('intro-overlay');
     if (intro) {
-        intro.style.opacity = '0';
+        intro.style.opacity = '0'; // Saydamlaştır
+        intro.style.pointerEvents = 'none'; // Tıklamaları engellememesi için
         setTimeout(() => {
-            intro.style.visibility = 'hidden';
-            intro.style.display = 'none';
-        }, 1000);
+            intro.remove(); // Ekranı HTML'den tamamen silip yok eder. Kesin çözümdür.
+        }, 800);
     }
 }
 
-// Data Yönetimi (Boş başlar)
+// --- VERİTABANI KONTROLÜ ---
 function getSafeData(key) {
     try { 
         return JSON.parse(localStorage.getItem(key)) || []; 
     } catch(e) { return []; }
 }
 
-// Modal Kontrolleri
+// --- MODAL AÇ/KAPAT ---
 function openAdminModal(type) {
-    document.getElementById('mobile-nav').classList.remove('active');
-    document.getElementById('mobile-nav-overlay').classList.remove('active');
+    const mobNav = document.getElementById('mobile-nav');
+    const mobOverlay = document.getElementById('mobile-nav-overlay');
+    if(mobNav) mobNav.classList.remove('active');
+    if(mobOverlay) mobOverlay.classList.remove('active');
+    
     document.getElementById('adminModal').style.display = 'flex';
-    document.getElementById('adminType').value = type; // 'all', 'news', 'event'
+    document.getElementById('adminType').value = type;
     document.getElementById('loginArea').style.display = 'block';
     document.getElementById('addEventArea').style.display = 'none';
     document.getElementById('addNewsArea').style.display = 'none';
@@ -61,9 +67,6 @@ function openAdminModal(type) {
 }
 function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
 
-let currentLoggedPilot = null; // Giriş yapan pilotun bilgisini tutar
-
-// --- PİLOT MODAL EKRAN KONTROLLERİ ---
 function openPilotModal() {
     const mobNav = document.getElementById('mobile-nav');
     const mobOverlay = document.getElementById('mobile-nav-overlay');
@@ -89,48 +92,48 @@ function showPilotRegister() {
     document.getElementById('pilotRegisterArea').style.display = 'block';
 }
 
-// --- PİLOT KAYIT OLMA (REGISTER) ---
-function pilotRegister() {
-    const callsign = document.getElementById('regCallsign').value.trim().toUpperCase();
-    const name = document.getElementById('regName').value.trim();
-    const discord = document.getElementById('regDiscord').value.trim() || "-";
-    const rank = document.getElementById('regRank').value;
-    const hours = document.getElementById('regHours').value;
-    const pass = document.getElementById('regPass').value;
-
-    if(!callsign || !name || !hours || !pass) return alert("Please fill all required fields!");
-
-    const pilots = getSafeData('pva_pilots');
+function updateNavbarUI() {
+    const navLoginBtn = document.getElementById('navPilotLoginBtn');
+    const navProfile = document.getElementById('navPilotProfile');
+    const displayName = document.getElementById('displayPilotName');
     
-    // AYNI KİŞİ KONTROLÜ (Bu callsign zaten var mı?)
-    const exists = pilots.find(p => p.callsign === callsign);
-    if(exists) {
-        return alert("Registration Failed: This Callsign is already in use by another pilot!");
+    if(navLoginBtn && navProfile && displayName) {
+        if(isPilotLoggedIn && currentLoggedPilot) {
+            navLoginBtn.style.display = 'none';
+            navProfile.style.display = 'block';
+            displayName.innerText = currentLoggedPilot.callsign;
+        } else {
+            navLoginBtn.style.display = 'block';
+            navProfile.style.display = 'none';
+        }
     }
-
-    // Yeni Pilotu Oluştur ve Kaydet (Şifre kriptolanarak saklanır)
-    const newPilot = { id: Date.now(), callsign, name, discord, rank, hours, password: btoa(pass) };
-    pilots.push(newPilot);
-    localStorage.setItem('pva_pilots', JSON.stringify(pilots));
-    
-    alert("Welcome aboard! Registration successful.");
-    
-    // Kayıt olunca otomatik giriş yap
-    currentLoggedPilot = newPilot;
-    isPilotLoggedIn = true;
-    updateNavbarUI();
-    closePilotModal();
-    navigate('pilots');
 }
 
-// --- PİLOT GİRİŞ YAPMA (LOGIN) ---
+// --- ŞİFRE VE GİRİŞ KONTROLLERİ ---
+function checkAdminPass() {
+    const pass = document.getElementById('adminPass').value;
+    if(btoa(pass) === "cHZhMjAyNg==") { 
+        isAdminLoggedIn = true;
+        document.getElementById('loginArea').style.display = 'none';
+        
+        const type = document.getElementById('adminType').value;
+        if(type === 'event') {
+            document.getElementById('addEventArea').style.display = 'block';
+        } else if(type === 'news') {
+            document.getElementById('addNewsArea').style.display = 'block';
+        } else {
+            document.getElementById('addEventArea').style.display = 'block';
+            document.getElementById('addNewsArea').style.display = 'block';
+        }
+        loadNews(); loadEvents(); loadPilots(); 
+    } else { alert("Incorrect Admin Password!"); }
+}
+
 function pilotLogin() {
     const callsign = document.getElementById('loginCallsign').value.trim().toUpperCase();
     const pass = document.getElementById('loginPass').value;
     
     const pilots = getSafeData('pva_pilots');
-    
-    // Kayıtlı pilotlar içinde girilen Callsign ve Şifreyi bulmaya çalış
     const foundPilot = pilots.find(p => p.callsign === callsign && p.password === btoa(pass));
     
     if(foundPilot) {
@@ -144,7 +147,6 @@ function pilotLogin() {
     }
 }
 
-// --- PİLOT ÇIKIŞ YAPMA (LOGOUT) ---
 function pilotLogout() {
     currentLoggedPilot = null;
     isPilotLoggedIn = false;
@@ -152,74 +154,38 @@ function pilotLogout() {
     navigate('home');
 }
 
-// --- NAVBAR'I GÜNCELLEME (İSİM YAZDIRMA) ---
-function updateNavbarUI() {
-    if(isPilotLoggedIn && currentLoggedPilot) {
-        document.getElementById('navPilotLoginBtn').style.display = 'none';
-        document.getElementById('navPilotProfile').style.display = 'block';
-        document.getElementById('displayPilotName').innerText = currentLoggedPilot.callsign;
-    } else {
-        document.getElementById('navPilotLoginBtn').style.display = 'block';
-        document.getElementById('navPilotProfile').style.display = 'none';
-    }
-}
-// Şifre Sistemleri
-function checkAdminPass() {
-    const pass = document.getElementById('adminPass').value;
-    if(btoa(pass) === "cHZhMjAyNg==") { // pva2026
-        isAdminLoggedIn = true;
-        document.getElementById('loginArea').style.display = 'none';
-        
-        const type = document.getElementById('adminType').value;
-        // Gelen komuta göre sadece Haberi, sadece Eventi veya ikisini birden aç
-        if(type === 'event') {
-            document.getElementById('addEventArea').style.display = 'block';
-        } else if(type === 'news') {
-            document.getElementById('addNewsArea').style.display = 'block';
-        } else {
-            // Navbar'dan basıldıysa ('all') ikisini de gösterir
-            document.getElementById('addEventArea').style.display = 'block';
-            document.getElementById('addNewsArea').style.display = 'block';
-        }
-        loadNews(); loadEvents(); loadPilots(); 
-    } else { alert("Incorrect Admin Password!"); }
-}
+function pilotRegister() {
+    const callsign = document.getElementById('regCallsign').value.trim().toUpperCase();
+    const name = document.getElementById('regName').value.trim();
+    const discord = document.getElementById('regDiscord').value.trim() || "-";
+    const rank = document.getElementById('regRank').value;
+    const hours = document.getElementById('regHours').value;
+    const pass = document.getElementById('regPass').value;
 
-function checkPilotPass() {
-    const pass = document.getElementById('pilotPass').value;
-    if(btoa(pass) === "cHZhMTIz") {  // pva123
-        isPilotLoggedIn = true;
-        closePilotModal();
-        navigate('pilots'); 
-        loadPilots(); 
-    } else { alert("Access Denied! Incorrect Pilot Password."); }
-}
+    if(!callsign || !name || !hours || !pass) return alert("Please fill all required fields!");
 
-function addPilot() {
-    const callsign = document.getElementById('pCallsign').value;
-    const name = document.getElementById('pName').value;
-    const discord = document.getElementById('pDiscord').value || "-"; // Yeni Eklendi
-    const rank = document.getElementById('pRank').value;
-    const hours = document.getElementById('pHours').value;
-
-    // Discord ismini zorunlu yapmak istersen buraya !discord ekleyebilirsin
-    if(!callsign || !name || !hours) return alert("Callsign, IFC Name and Hours are required!");
-
-    const data = getSafeData('pva_pilots');
-    // Discord'u da paketin içine dahil ettik
-    data.push({ id: Date.now(), callsign, name, discord, rank, hours }); 
-    localStorage.setItem('pva_pilots', JSON.stringify(data));
+    const pilots = getSafeData('pva_pilots');
     
-    closePilotRegisterModal();
-    loadPilots();
-    alert("Profile Successfully Registered!");
+    const exists = pilots.find(p => p.callsign === callsign);
+    if(exists) {
+        return alert("Registration Failed: This Callsign is already in use by another pilot!");
+    }
+
+    const newPilot = { id: Date.now(), callsign, name, discord, rank, hours, password: btoa(pass) };
+    pilots.push(newPilot);
+    localStorage.setItem('pva_pilots', JSON.stringify(pilots));
+    
+    alert("Welcome aboard! Registration successful.");
+    
+    currentLoggedPilot = newPilot;
+    isPilotLoggedIn = true;
+    updateNavbarUI();
+    closePilotModal();
+    navigate('pilots');
 }
 
 function deletePilot(id) {
-    // Silme tuşuna basıldığında Admin şifresini zorla sorar
     let pass = prompt("SECURITY CLEARANCE REQUIRED:\nPlease enter the Admin Password to delete this pilot:");
-    
-    // Girilen şifre pva2026 (cHZhMjAyNg==) ise işleme izin ver
     if (pass && btoa(pass) === "cHZhMjAyNg==") {
         if(confirm("Password Verified! Are you sure you want to remove this pilot from the roster?")) {
             let data = getSafeData('pva_pilots').filter(p => p.id !== id);
@@ -228,25 +194,18 @@ function deletePilot(id) {
             alert("Pilot successfully removed.");
         }
     } else {
-        // Şifre yanlışsa veya iptale basılırsa reddet
         alert("Access Denied! Incorrect Admin Password. Deletion cancelled.");
     }
 }
 
 function loadPilots() {
     const tbody = document.getElementById('pilot-roster-body');
-    const addBtn = document.getElementById('addPilotBtn');
     if(!tbody) return;
-
-    if(addBtn) {
-        addBtn.style.display = (isPilotLoggedIn || isAdminLoggedIn) ? "inline-block" : "none";
-    }
 
     tbody.innerHTML = "";
     const pilots = getSafeData('pva_pilots');
 
     if(pilots.length === 0) {
-        // Sütun sayısı 4'ten 5'e çıktığı için colspan=5 yapıldı
         tbody.innerHTML = `<tr><td colspan="5" style="padding:15px; text-align:center; color:#888;">No pilots registered yet.</td></tr>`;
         return;
     }
@@ -254,7 +213,6 @@ function loadPilots() {
     pilots.forEach(p => {
         let delBtn = isAdminLoggedIn ? `<button onclick="deletePilot(${p.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; float:right;"><i class="fas fa-trash"></i></button>` : "";
         
-        // p.discord tabloya eklendi
         tbody.innerHTML += `
         <tr style="border-bottom:1px solid #eee;">
             <td style="padding:15px; font-weight:bold; color:var(--pva-green);">${p.callsign}</td>
@@ -265,7 +223,8 @@ function loadPilots() {
         </tr>`;
     });
 }
-// Haber ve Etkinlikler
+
+// --- HABER VE ETKİNLİK SİSTEMİ ---
 function addNews() {
     const title = document.getElementById('newsTitleInput').value;
     const content = document.getElementById('newsContentInput').value;
@@ -334,7 +293,6 @@ function loadHomePreviews() {
     }
 }
 
-// --- AKILLI HABER ARŞİVLEME SİSTEMİ ---
 function loadNews() {
     const activeCont = document.getElementById('local-news-container');
     const pastCont = document.getElementById('past-news-container');
@@ -344,8 +302,7 @@ function loadNews() {
     pastCont.innerHTML = "";
     
     const data = getSafeData('pva_news');
-    let activeCount = 0;
-    let pastCount = 0;
+    let activeCount = 0; let pastCount = 0;
 
     data.forEach((n, index) => {
         let btn = isAdminLoggedIn ? `<br><button onclick="delItem('pva_news', ${n.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; margin-top:10px; cursor:pointer;"><i class="fas fa-trash"></i> Delete</button>` : "";
@@ -362,21 +319,14 @@ function loadNews() {
             </div>
         </div>`;
 
-        // İlk 3 haber "Latest" kısmına, eskiler "Archive" kısmına
-        if(index < 3) {
-            activeCont.innerHTML += cardHTML;
-            activeCount++;
-        } else {
-            pastCont.innerHTML += cardHTML;
-            pastCount++;
-        }
+        if(index < 3) { activeCont.innerHTML += cardHTML; activeCount++; } 
+        else { pastCont.innerHTML += cardHTML; pastCount++; }
     });
 
     if(activeCount === 0) activeCont.innerHTML = "<p style='color:#888; grid-column: 1/-1;'>No latest news available.</p>";
     if(pastCount === 0) pastCont.innerHTML = "<p style='color:#888; grid-column: 1/-1;'>Archive is empty.</p>";
 }
 
-// --- AKILLI ETKİNLİK ZAMANLAYICI (OTOMATİK GEÇMİŞE ALIR) ---
 function loadEvents() {
     const activeCont = document.getElementById('events-list');
     const pastCont = document.getElementById('past-events-list');
@@ -386,13 +336,11 @@ function loadEvents() {
     pastCont.innerHTML = "";
     
     const data = getSafeData('pva_events');
-    const now = new Date(); // Şu anki gerçek zaman
+    const now = new Date();
     
-    let activeCount = 0;
-    let pastCount = 0;
+    let activeCount = 0; let pastCount = 0;
 
     data.forEach(e => {
-        // Etkinliğin saatini UTC olarak algıla
         const eventDate = new Date(`${e.date}T${e.time}:00Z`);
         const localStr = eventDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
         let btn = isAdminLoggedIn ? `<br><button onclick="delItem('pva_events', ${e.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; margin-top:10px; cursor:pointer;"><i class="fas fa-trash"></i> Delete</button>` : "";
@@ -410,14 +358,8 @@ function loadEvents() {
             </div>
         </div>`;
 
-        // Etkinlik henüz geçmediyse yukarı, süresi dolduysa geçmişe (aşağı) at
-        if(eventDate >= now) {
-            activeCont.innerHTML += cardHTML;
-            activeCount++;
-        } else {
-            pastCont.innerHTML += cardHTML;
-            pastCount++;
-        }
+        if(eventDate >= now) { activeCont.innerHTML += cardHTML; activeCount++; } 
+        else { pastCont.innerHTML += cardHTML; pastCount++; }
     });
 
     if(activeCount === 0) activeCont.innerHTML = "<p style='color:#888; grid-column: 1/-1;'>No upcoming events. Standby for briefing.</p>";
@@ -425,9 +367,7 @@ function loadEvents() {
 }
 
 function delItem(key, id) {
-    // Silme tuşuna basıldığında Admin şifresini zorla sorar
     let pass = prompt("SECURITY CLEARANCE REQUIRED:\nPlease enter the Admin Password to delete this item:");
-    
     if (pass && btoa(pass) === "cHZhMjAyNg==") {
         if(confirm("Password Verified! Are you sure you want to delete this item?")) {
             let data = getSafeData(key).filter(i => i.id !== id);
@@ -440,18 +380,21 @@ function delItem(key, id) {
     }
 }
 
-// Lightbox
+// --- LIGHTBOX KONTROLU ---
 function openLightbox(src) {
     document.getElementById('lightboxImg').src = src;
     document.getElementById('lightboxModal').style.display = 'flex';
 }
 function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
 
+// --- SAYFA YÜKLENDİĞİNDE ÇALIŞACAKLAR ---
 document.addEventListener('DOMContentLoaded', () => {
     loadHomePreviews();
-    const introVideo = document.getElementById('pva-intro-video');
-    if (introVideo) {
-        introVideo.onended = () => closeIntro();
-        setTimeout(() => closeIntro(), 5000); 
-    }
+    updateNavbarUI();
+    
+    // Otomatik kapatıcıyı 5 saniye olarak ayarladık
+    setTimeout(() => {
+        closeIntro();
+    }, 5000); 
 });
+        
