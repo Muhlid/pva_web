@@ -31,6 +31,7 @@ function toggleMobileMenu() {
     document.getElementById('mobile-nav').classList.toggle('active');
     document.getElementById('mobile-nav-overlay').classList.toggle('active');
 }
+
 // --- VERİTABANI KONTROLÜ ---
 function getSafeData(key) {
     try { 
@@ -87,10 +88,10 @@ function updateNavbarUI() {
     if(navLoginBtn && navProfile && displayName) {
         if(isPilotLoggedIn && currentLoggedPilot) {
             navLoginBtn.style.display = 'none';
-            navProfile.style.display = 'block';
+            navProfile.style.display = 'flex'; 
             displayName.innerText = currentLoggedPilot.callsign;
         } else {
-            navLoginBtn.style.display = 'block';
+            navLoginBtn.style.display = 'flex';
             navProfile.style.display = 'none';
         }
     }
@@ -211,7 +212,6 @@ function loadPilots() {
     });
 }
 
-// --- HABER VE ETKİNLİK SİSTEMİ ---
 function addNews() {
     const title = document.getElementById('newsTitleInput').value;
     const content = document.getElementById('newsContentInput').value;
@@ -367,15 +367,15 @@ function delItem(key, id) {
     }
 }
 
-// --- LIGHTBOX KONTROLU ---
 function openLightbox(src) {
     document.getElementById('lightboxImg').src = src;
     document.getElementById('lightboxModal').style.display = 'flex';
 }
 function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
 
-// --- SAYFA YÜKLENDİĞİNDE ÇALIŞACAKLAR ---
+// --- SAYFA YÜKLENDİĞİNDE ÇALIŞAN KODLAR ---
 document.addEventListener('DOMContentLoaded', () => {
     loadHomePreviews();
     updateNavbarUI();
-    
+});
+        
