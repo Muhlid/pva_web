@@ -28,30 +28,30 @@
                 <li class="dropdown">
                     <a href="javascript:void(0)">About us <i class="fas fa-angle-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#" onclick="navigate('about')">Our Hubs</a>
-                        <a href="#" onclick="navigate('staff')">Staff Team</a>
+                        <a href="javascript:void(0)" onclick="navigate('about')">Our Hubs</a>
+                        <a href="javascript:void(0)" onclick="navigate('staff')">Staff Team</a>
                     </div>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)">Operations <i class="fas fa-angle-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#" onclick="navigate('fleet')">Our Fleet</a>
-                        <a href="#" onclick="navigate('ranks')">Pilot Ranks</a>
-                        <a href="#" onclick="navigate('destinations')">Destinations</a>
-                        <a href="#" onclick="navigate('radar')">Live Radar</a>
+                        <a href="javascript:void(0)" onclick="navigate('fleet')">Our Fleet</a>
+                        <a href="javascript:void(0)" onclick="navigate('ranks')">Pilot Ranks</a>
+                        <a href="javascript:void(0)" onclick="navigate('destinations')">Destinations</a>
+                        <a href="javascript:void(0)" onclick="navigate('radar')">Live Radar</a>
                     </div>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)">Public <i class="fas fa-angle-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="#" onclick="navigate('events')">Events</a>
-                        <a href="#" onclick="navigate('news')">News</a>
-                        <a href="#" onclick="navigate('gallery')">Gallery</a>
+                        <a href="javascript:void(0)" onclick="navigate('events')">Events</a>
+                        <a href="javascript:void(0)" onclick="navigate('news')">News</a>
+                        <a href="javascript:void(0)" onclick="navigate('gallery')">Gallery</a>
                     </div>
                 </li>
-                <li><a href="#" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
+                <li><a href="javascript:void(0)" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
                 <li><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
-                <li><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn">ADMIN</a></li>
+                <li><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn">LOGIN</a></li>
             </ul>
 
             <div class="hamburger" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
@@ -64,19 +64,18 @@
             <span style="color:var(--pva-green);">MENU</span>
             <span class="close-mobile" onclick="toggleMobileMenu()">&times;</span>
         </div>
-        <a href="#" onclick="navigate('home')">Home</a>
-        <a href="#" onclick="navigate('about')">Hubs & About Us</a>
-        <a href="#" onclick="navigate('fleet')">Fleet</a>
-        <a href="#" onclick="navigate('ranks')">Ranks</a>
-        <a href="#" onclick="navigate('destinations')">Destinations</a>
-        <a href="#" onclick="navigate('events')">Events</a>
-        <a href="#" onclick="navigate('news')">News</a>
-        <a href="#" onclick="navigate('radar')">Live Radar</a>
-        <a href="#" onclick="navigate('gallery')">Gallery</a>
-        <a href="#" onclick="navigate('staff')">Staff</a>
-        <a href="#" onclick="navigate('apply')">Apply Now</a>
-        <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
-        <a href="javascript:void(0)" onclick="openPilotModal()" style="color:var(--pva-gold); font-weight:bold;"><i class="fas fa-plane"></i> Pilot Login</a>
+        <a href="javascript:void(0)" onclick="navigate('home')">Home</a>
+        <a href="javascript:void(0)" onclick="navigate('about')">Hubs & About Us</a>
+        <a href="javascript:void(0)" onclick="navigate('fleet')">Fleet</a>
+        <a href="javascript:void(0)" onclick="navigate('ranks')">Ranks</a>
+        <a href="javascript:void(0)" onclick="navigate('destinations')">Destinations</a>
+        <a href="javascript:void(0)" onclick="navigate('events')">Events</a>
+        <a href="javascript:void(0)" onclick="navigate('news')">News</a>
+        <a href="javascript:void(0)" onclick="navigate('radar')">Live Radar</a>
+        <a href="javascript:void(0)" onclick="navigate('gallery')">Gallery</a>
+        <a href="javascript:void(0)" onclick="navigate('staff')">Staff</a>
+        <a href="javascript:void(0)" onclick="navigate('apply')">Apply Now</a>
+        <a href="javascript:void(0)" onclick="openPilotModal()" style="color:var(--pva-gold); font-weight:bold;"><i class="fas fa-key"></i> Pilot Login</a>
         <a href="javascript:void(0)" onclick="openAdminModal('all')" style="color:var(--pva-green); font-weight:bold;"><i class="fas fa-lock"></i> Admin Login</a>
     </div>
 
@@ -175,26 +174,85 @@
             </div>
         </section>
 
+        <section id="destinations" class="hidden-section page-section">
+            <h1 class="page-title">Flight Network</h1>
+            <p style="text-align:center; color:#555; margin-bottom:40px;">Explore our vast domestic and international route network.</p>
+            <div class="dest-wrapper" style="text-align: left;">
+                <div class="dest-box">
+                    <h3 style="color: var(--pva-green); border-bottom: 2px solid #eee; padding-bottom: 10px;"><i class="fas fa-globe"></i> INTERNATIONAL</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top:20px;">
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>London</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(EGLL)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Dubai</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OMDB)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Toronto</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(CYYZ)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Baku</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(UBBB)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Kabul</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OAKB)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Dhaka</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(VGHS)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Beijing</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(ZBAA)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Copenhagen</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(EKCH)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Paris</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(LFPG)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Najaf</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(ORNI)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Milan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(LIMC)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Tokyo</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(RJAA)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Kuala Lumpur</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(WMKK)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Oslo</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(ENGM)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Muscat</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OOMS)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Doha</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OTHH)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Dammam</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OEDF)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Jeddah</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OEJN)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Medina</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OEMA)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Riyadh</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OERK)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Barcelona</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(LEBL)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Bangkok</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(VTBS)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Abu Dhabi</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OMAA)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Sharjah</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OMSJ)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Birmingham</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(EGBB)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Manchester</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(EGCC)</small></div>
+                    </div>
+                </div>
+                
+                <div class="dest-box" style="margin-top: 50px;">
+                    <h3 style="color: var(--pva-green); border-bottom: 2px solid #eee; padding-bottom: 10px;"><i class="fas fa-map-marker-alt"></i> DOMESTIC</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top:20px;">
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Skardu</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPSD)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Islamabad</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPIS)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Karachi</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPKC)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Lahore</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPLA)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Gilgit</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPGT)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Gwadar</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPGD)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Peshawar</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPPS)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Multan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPMT)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Quetta</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPQT)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Sialkot</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPST)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Faisalabad</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPFA)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Bahawalpur</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPBW)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Chitral</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPCH)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Dadu</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPDU)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Dalbandin</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPDB)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>D.G. Khan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPDG)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Kadanwari</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPKW)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Moenjodaro</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPMJ)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Panjgur</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPPG)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Rahim Yar Khan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPRK)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Sawan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPSW)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Sukkur</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPSK)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Turbat</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPTU)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Zamzama</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPZM)</small></div>
+                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center;"><span>Zhob</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPZB)</small></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="pilots" class="hidden-section page-section">
             <h1 class="page-title">PVA Roster</h1>
             <p style="text-align:center; color:#555; margin-bottom:20px;">Official roster of active Pakistan Virtual Airlines Pilots.</p>
-            
             <div style="text-align: right; max-width: 1000px; margin: 0 auto 15px;">
                 <button id="addPilotBtn" class="btn-primary" style="display:none; background:var(--pva-green);" onclick="openPilotRegisterModal()"><i class="fas fa-user-plus"></i> Register Profile</button>
             </div>
-
             <div class="table-responsive" style="max-width: 1000px; margin: 0 auto; background: white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); padding:20px;">
                 <table class="staff-table" style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background: var(--pva-green); color: white;">
-                            <th style="padding:15px; text-align:left;">Callsign</th>
-                            <th style="padding:15px; text-align:left;">Name</th>
-                            <th style="padding:15px; text-align:left;">Rank</th>
-                            <th style="padding:15px; text-align:left;">Flight Hours</th>
-                        </tr>
-                    </thead>
-                    <tbody id="pilot-roster-body">
-                        </tbody>
+                    <thead><tr style="background: var(--pva-green); color: white;"><th style="padding:15px; text-align:left;">Callsign</th><th style="padding:15px; text-align:left;">Name</th><th style="padding:15px; text-align:left;">Rank</th><th style="padding:15px; text-align:left;">Flight Hours</th></tr></thead>
+                    <tbody id="pilot-roster-body"></tbody>
                 </table>
             </div>
         </section>
@@ -203,9 +261,32 @@
             <h1 class="page-title">Staff Team</h1>
             <div class="staff-group" style="margin-bottom: 40px;">
                 <img src="https://i.ibb.co/BHGhKGp8/b5588c2d1d857f5d0513c62243182d30eefbf562-2-1640x258.jpg" alt="Executive Team" class="staff-banner" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+                <div class="table-responsive" style="overflow-x: auto;">
+                    <table class="staff-table" style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <thead><tr style="background: var(--pva-green); color: white;"><th style="padding:15px; text-align:left;">Name</th><th style="padding:15px; text-align:left;">Position</th><th style="padding:15px; text-align:left;">IFC</th><th style="padding:15px; text-align:left;">Callsign</th></tr></thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Mughees Hassan</td><td style="padding:15px;">CEO</td><td style="padding:15px;">@Mughees_Hassan</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA001</td></tr>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Rohaan Aamir</td><td style="padding:15px;">COO</td><td style="padding:15px;">@Rohaan_Aamir</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA002</td></tr>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Sarim Niazi</td><td style="padding:15px;">CMO</td><td style="padding:15px;">@Pilot-Sarim-niazi</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA003</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="staff-group">
                 <img src="https://i.ibb.co/1DyGhJ8/582a85bfee9b74254d0649e4f7bc5c24a7ac373c-2-1640x258.jpg" alt="Staff Team" class="staff-banner" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+                <div class="table-responsive" style="overflow-x: auto;">
+                    <table class="staff-table" style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                        <thead><tr style="background: var(--pva-green); color: white;"><th style="padding:15px; text-align:left;">Name</th><th style="padding:15px; text-align:left;">Position</th><th style="padding:15px; text-align:left;">IFC</th><th style="padding:15px; text-align:left;">Callsign</th></tr></thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">iiBaloch</td><td style="padding:15px;">Events Coordinator</td><td style="padding:15px;">@iibaloch</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA004</td></tr>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Sarim Niazi</td><td style="padding:15px;">Recruiter</td><td style="padding:15px;">@Pilot-Sarim-niazi</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">-</td></tr>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">NeonIC</td><td style="padding:15px;">Trainer</td><td style="padding:15px;">@NeonIC</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA005</td></tr>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Aviator Ishaan</td><td style="padding:15px;">Routes Manager</td><td style="padding:15px;">@Aviator.Ishaan_11</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA006</td></tr>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Muhlis</td><td style="padding:15px;">Digital Manager</td><td style="padding:15px;">@Muhlis</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA007</td></tr>
+                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">ShadowF30</td><td style="padding:15px;">Events Coordinator</td><td style="padding:15px;">@Mo174</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA008</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
@@ -217,6 +298,10 @@
                 <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg')"><img src="https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg"></div>
                 <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg')"><img src="https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg"></div>
                 <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg')"><img src="https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg"></div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg')"><img src="https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg"></div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/MDt3D4R1/Screenshot-20260114-151017.jpg')"><img src="https://i.ibb.co/MDt3D4R1/Screenshot-20260114-151017.jpg"></div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg')"><img src="https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg"></div>
+                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg')"><img src="https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg"></div>
             </div>
         </section>
 
@@ -225,7 +310,11 @@
             <div style="text-align: right; margin-bottom: 20px;">
                 <button class="btn-outline" style="color:var(--pva-green); border-color:var(--pva-green);" onclick="openAdminModal('news')"><i class="fas fa-lock"></i> Admin</button>
             </div>
+            
             <div id="local-news-container" class="cards-grid"></div>
+
+            <h2 style="color:var(--pva-green); margin-top: 60px; text-align: left; border-bottom: 2px solid #eee; padding-bottom: 10px;"><i class="fas fa-archive"></i> News Archive</h2>
+            <div id="past-news-container" class="cards-grid" style="opacity: 0.8;"></div>
         </section>
 
         <section id="events" class="hidden-section page-section">
@@ -233,7 +322,11 @@
             <div style="text-align: right; margin-bottom: 20px;">
                 <button class="btn-outline" style="color:var(--pva-green); border-color:var(--pva-green);" onclick="openAdminModal('event')"><i class="fas fa-lock"></i> Admin</button>
             </div>
+            
             <div id="events-list" class="cards-grid"></div>
+
+            <h2 style="color:var(--pva-green); margin-top: 60px; text-align: left; border-bottom: 2px solid #eee; padding-bottom: 10px;"><i class="fas fa-history"></i> Past Events</h2>
+            <div id="past-events-list" class="cards-grid" style="opacity: 0.7; filter: grayscale(60%);"></div>
         </section>
 
         <section id="radar" class="hidden-section page-section">
@@ -256,10 +349,10 @@
                 </h3>
                 <p style="font-size: 0.85rem; line-height: 1.6;">All logos and branding used by PVA are the sole property of Pakistan International airlines corporation limited. We are in no way affiliated with PIACL.</p>
             </div>
-            <div class="footer-col"><h4>ABOUT US</h4><a href="#" onclick="navigate('about')">Our Hubs</a><a href="#" onclick="navigate('staff')">Staff</a></div>
-            <div class="footer-col"><h4>OPERATIONS</h4><a href="#" onclick="navigate('ranks')">Ranks</a><a href="#" onclick="navigate('fleet')">Fleet</a></div>
-            <div class="footer-col"><h4>PUBLIC</h4><a href="#" onclick="navigate('events')">Events</a><a href="#" onclick="navigate('news')">News</a><a href="#" onclick="navigate('gallery')">Gallery</a></div>
-            <div class="footer-col"><h4>LINKS</h4><a href="https://www.instagram.com/pakistanvirtual.if" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://community.infiniteflight.com/" target="_blank">IFC Thread</a></div>
+            <div class="footer-col"><h4>ABOUT US</h4><a href="javascript:void(0)" onclick="navigate('about')">Our Hubs</a><a href="javascript:void(0)" onclick="navigate('staff')">Staff</a></div>
+            <div class="footer-col"><h4>OPERATIONS</h4><a href="javascript:void(0)" onclick="navigate('ranks')">Ranks</a><a href="javascript:void(0)" onclick="navigate('fleet')">Fleet</a></div>
+            <div class="footer-col"><h4>PUBLIC</h4><a href="javascript:void(0)" onclick="navigate('events')">Events</a><a href="javascript:void(0)" onclick="navigate('news')">News</a><a href="javascript:void(0)" onclick="navigate('gallery')">Gallery</a></div>
+            <div class="footer-col"><h4>LINKS</h4><a href="https://www.instagram.com/pakistanvirtual.if?igsh=MW9tcXBzYXp0MXlkYg==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://community.infiniteflight.com/t/pakistan-virtual-airlines-great-people-to-fly-with-official-thread-2025/1039058" target="_blank">IFC Thread</a></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2026 Pakistan Virtual Airlines.</p></div>
     </footer>
@@ -268,32 +361,32 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeAdminModal()">&times;</span>
             <div id="loginArea">
-                <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-lock"></i> ADMIN CLEARANCE</h3>
+                <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-shield-alt"></i> ADMIN CLEARANCE</h3>
                 <input type="password" id="adminPass" class="admin-input" placeholder="Enter Password">
-                <input type="hidden" id="adminType"> 
+                <input type="hidden" id="adminType" value="all"> 
                 <button class="btn-primary" onclick="checkAdminPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
             </div>
-            <div id="addEventArea" style="display:none; padding-bottom:20px; border-bottom:1px solid #eee; margin-bottom:20px;">
+            <div id="addEventArea" style="display:none; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
                 <h3 style="color:var(--pva-green);">PUBLISH EVENT</h3>
-                <input type="text" id="evServer" class="admin-input" placeholder="Server">
-                <input type="text" id="evRoute" class="admin-input" placeholder="Route">
+                <input type="text" id="evServer" class="admin-input" placeholder="Server (e.g. Expert Server)">
+                <input type="text" id="evRoute" class="admin-input" placeholder="Route (e.g. LHR-ISL)">
                 <input type="text" id="evAircraft" class="admin-input" placeholder="Aircraft/Livery">
-                <input type="text" id="evETE" class="admin-input" placeholder="ETE">
-                <input type="text" id="evMultiplier" class="admin-input" placeholder="Multiplier">
-                <input type="text" id="evImg" class="admin-input" placeholder="Image URL">
+                <input type="text" id="evETE" class="admin-input" placeholder="ETE (e.g. 07:30)">
+                <input type="text" id="evMultiplier" class="admin-input" placeholder="Multiplier (e.g. 1.5x)">
+                <input type="text" id="evImg" class="admin-input" placeholder="Image URL (Opsiyonel)">
                 <div style="display:flex; gap:10px;">
                     <input type="time" id="evTime" class="admin-input">
                     <input type="date" id="evDate" class="admin-input">
                 </div>
-                <button class="btn-primary" onclick="addEvent()" style="width:100%; background:var(--pva-green);">PUBLISH EVENT</button>
+                <button class="btn-primary" onclick="addEvent()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH EVENT</button>
             </div>
             <div id="addNewsArea" style="display:none;">
                 <h3 style="color:var(--pva-green);">PUBLISH NEWS</h3>
                 <input type="text" id="newsTitleInput" class="admin-input" placeholder="News Title">
                 <textarea id="newsContentInput" class="admin-input" rows="4" placeholder="Content..."></textarea>
-                <input type="text" id="newsImgInput" class="admin-input" placeholder="Image URL">
+                <input type="text" id="newsImgInput" class="admin-input" placeholder="Image URL (Opsiyonel)">
                 <input type="date" id="newsDateInput" class="admin-input">
-                <button class="btn-primary" onclick="addNews()" style="width:100%; background:var(--pva-green);">PUBLISH NEWS</button>
+                <button class="btn-primary" onclick="addNews()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH NEWS</button>
             </div>
         </div>
     </div>
@@ -302,7 +395,7 @@
         <div class="modal-content" style="max-width: 350px;">
             <span class="close-modal" onclick="closePilotModal()">&times;</span>
             <h3 style="color:var(--pva-green); text-align:center; margin-bottom: 20px;"><i class="fas fa-plane"></i> PILOT LOGIN</h3>
-            <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:15px;">Please enter your pilot passcode.</p>
+            <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:15px;">Please enter your pilot passcode to access the roster.</p>
             <input type="password" id="pilotPass" class="admin-input" placeholder="Pilot Password">
             <button class="btn-primary" onclick="checkPilotPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">VERIFY & LOGIN</button>
         </div>
