@@ -1,7 +1,6 @@
 let isAdminLoggedIn = false;
 let isPilotLoggedIn = false;
 
-// --- NAVİGASYON ---
 function navigate(sectionId) {
     document.querySelectorAll('main > section').forEach(sec => {
         sec.classList.remove('active-section');
@@ -42,17 +41,19 @@ function closeIntro() {
     }
 }
 
-// --- VERİTABANI (Local Storage) ---
+// Data Yönetimi (Boş başlar)
 function getSafeData(key) {
     try { 
         return JSON.parse(localStorage.getItem(key)) || []; 
     } catch(e) { return []; }
 }
 
-// --- MODAL AÇ / KAPAT İŞLEMLERİ ---
+// Modal Kontrolleri
 function openAdminModal(type) {
+    document.getElementById('mobile-nav').classList.remove('active');
+    document.getElementById('mobile-nav-overlay').classList.remove('active');
     document.getElementById('adminModal').style.display = 'flex';
-    document.getElementById('adminType').value = type;
+    document.getElementById('adminType').value = type; // 'all', 'news', 'event'
     document.getElementById('loginArea').style.display = 'block';
     document.getElementById('addEventArea').style.display = 'none';
     document.getElementById('addNewsArea').style.display = 'none';
@@ -61,48 +62,46 @@ function openAdminModal(type) {
 function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
 
 function openPilotModal() {
-    // Mobil menüyü güvenli şekilde kapat
-    const mobNav = document.getElementById('mobile-nav');
-    const mobOverlay = document.getElementById('mobile-nav-overlay');
-    if(mobNav) mobNav.classList.remove('active');
-    if(mobOverlay) mobOverlay.classList.remove('active');
-    
-    // Şifre ekranını aç
-    const pModal = document.getElementById('pilotModal');
-    if(pModal) {
-        pModal.style.display = 'flex';
-        document.getElementById('pilotPass').value = ''; 
-    } else {
-        alert("Pilot giriş ekranı bulunamadı. Lütfen index.html dosyasını kontrol edin.");
-    }
+    document.getElementById('mobile-nav').classList.remove('active');
+    document.getElementById('mobile-nav-overlay').classList.remove('active');
+    document.getElementById('pilotModal').style.display = 'flex';
+    document.getElementById('pilotPass').value = ''; 
 }
 function closePilotModal() { document.getElementById('pilotModal').style.display = 'none'; }
 
 function openPilotRegisterModal() { 
     document.getElementById('pilotRegisterModal').style.display = 'flex'; 
-    // Kutuları temizle
     document.getElementById('pCallsign').value = '';
     document.getElementById('pName').value = '';
     document.getElementById('pHours').value = '';
 }
 function closePilotRegisterModal() { document.getElementById('pilotRegisterModal').style.display = 'none'; }
 
-// --- ŞİFRE KONTROLLERİ ---
+// Şifre Sistemleri
 function checkAdminPass() {
     const pass = document.getElementById('adminPass').value;
-    if(btoa(pass) === "cHZhMjAyNg==") { // Şifre: pva2026
+    if(btoa(pass) === "cHZhMjAyNg==") { // pva2026
         isAdminLoggedIn = true;
         document.getElementById('loginArea').style.display = 'none';
+        
         const type = document.getElementById('adminType').value;
-        if(type === 'event') document.getElementById('addEventArea').style.display = 'block';
-        if(type === 'news') document.getElementById('addNewsArea').style.display = 'block';
+        // Gelen komuta göre sadece Haberi, sadece Eventi veya ikisini birden aç
+        if(type === 'event') {
+            document.getElementById('addEventArea').style.display = 'block';
+        } else if(type === 'news') {
+            document.getElementById('addNewsArea').style.display = 'block';
+        } else {
+            // Navbar'dan basıldıysa ('all') ikisini de gösterir
+            document.getElementById('addEventArea').style.display = 'block';
+            document.getElementById('addNewsArea').style.display = 'block';
+        }
         loadNews(); loadEvents(); loadPilots(); 
     } else { alert("Incorrect Admin Password!"); }
 }
 
 function checkPilotPass() {
     const pass = document.getElementById('pilotPass').value;
-    if(btoa(pass) === "cHZhMTIz") {  // Şifre: pva123
+    if(btoa(pass) === "cHZhMTIz") {  // pva123
         isPilotLoggedIn = true;
         closePilotModal();
         navigate('pilots'); 
@@ -110,7 +109,7 @@ function checkPilotPass() {
     } else { alert("Access Denied! Incorrect Pilot Password."); }
 }
 
-// --- PİLOT İŞLEMLERİ ---
+// Pilot Kayıt / Silme
 function addPilot() {
     const callsign = document.getElementById('pCallsign').value;
     const name = document.getElementById('pName').value;
@@ -141,7 +140,6 @@ function loadPilots() {
     const addBtn = document.getElementById('addPilotBtn');
     if(!tbody) return;
 
-    // Pilot profil ekleme butonunu sadece Admin veya Pilot giriş yapmışsa göster
     if(addBtn) {
         addBtn.style.display = (isPilotLoggedIn || isAdminLoggedIn) ? "inline-block" : "none";
     }
@@ -167,7 +165,7 @@ function loadPilots() {
     });
 }
 
-// --- HABER VE ETKİNLİK İŞLEMLERİ ---
+// Haber ve Etkinlikler
 function addNews() {
     const title = document.getElementById('newsTitleInput').value;
     const content = document.getElementById('newsContentInput').value;
@@ -273,18 +271,15 @@ function delItem(key, id) {
     }
 }
 
-// --- LİGHTBOX (GALERİ) ---
+// Lightbox
 function openLightbox(src) {
     document.getElementById('lightboxImg').src = src;
     document.getElementById('lightboxModal').style.display = 'flex';
 }
 function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
 
-// --- SAYFA BAŞLATMA ---
 document.addEventListener('DOMContentLoaded', () => {
     loadHomePreviews();
-    
-    // İntro video kapanma süresi
     const introVideo = document.getElementById('pva-intro-video');
     if (introVideo) {
         introVideo.onended = () => closeIntro();
