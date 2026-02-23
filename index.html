@@ -51,7 +51,7 @@
                 </li>
                 <li><a href="#" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
                 <li><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
-                <li><a href="javascript:void(0)" onclick="openAdminModal('news')" class="nav-login-btn">LOGIN</a></li>
+                <li><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn">ADMIN</a></li>
             </ul>
 
             <div class="hamburger" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
@@ -75,13 +75,14 @@
         <a href="#" onclick="navigate('gallery')">Gallery</a>
         <a href="#" onclick="navigate('staff')">Staff</a>
         <a href="#" onclick="navigate('apply')">Apply Now</a>
-        <a href="javascript:void(0)" onclick="openPilotModal()" style="color:var(--pva-gold); font-weight:bold;"><i class="fas fa-key"></i> Pilot Login</a>
+        <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
+        <a href="javascript:void(0)" onclick="openPilotModal()" style="color:var(--pva-gold); font-weight:bold;"><i class="fas fa-plane"></i> Pilot Login</a>
+        <a href="javascript:void(0)" onclick="openAdminModal('all')" style="color:var(--pva-green); font-weight:bold;"><i class="fas fa-lock"></i> Admin Login</a>
     </div>
 
     <main id="main-container">
 
         <section id="home" class="active-section">
-            
             <div class="hero-section">
                 <div class="hero-content">
                     <h1>Dream Beyond, Fly Beyond</h1>
@@ -115,93 +116,32 @@
                 <div class="process-pva-box">
                     <h2>Application Process</h2>
                     <div class="process-steps">
-                        <div class="step">
-                            <div class="step-dot"></div>
-                            <div class="step-text">
-                                <h4>STEP 1</h4>
-                                <h3>Application Received</h3>
-                                <p>Review within 48hrs</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-dot"></div>
-                            <div class="step-text">
-                                <h4>STEP 2</h4>
-                                <h3>Evaluation</h3>
-                                <p>Checking IF stats & knowledge</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-dot" style="background:var(--pva-gold);"></div>
-                            <div class="step-text">
-                                <h4>STEP 3</h4>
-                                <h3>Welcome Aboard!</h3>
-                                <p>Start your career as a Cadet</p>
-                            </div>
-                        </div>
+                        <div class="step"><div class="step-dot"></div><div class="step-text"><h4>STEP 1</h4><h3>Application Received</h3><p>Review within 48hrs</p></div></div>
+                        <div class="step"><div class="step-dot"></div><div class="step-text"><h4>STEP 2</h4><h3>Evaluation</h3><p>Checking IF stats & knowledge</p></div></div>
+                        <div class="step"><div class="step-dot" style="background:var(--pva-gold);"></div><div class="step-text"><h4>STEP 3</h4><h3>Welcome Aboard!</h3><p>Start your career as a Cadet</p></div></div>
                     </div>
                 </div>
             </div>
 
             <div class="updates-container">
-                <div class="update-section">
-                    <h2>Upcoming Events</h2>
-                    <p class="subtitle">Stay up to date with the latest events!</p>
-                    <div id="new-home-event" class="cards-grid"></div>
-                </div>
-
-                <div class="update-section">
-                    <h2>Latest News</h2>
-                    <p class="subtitle">Read our latest announcements and updates.</p>
-                    <div id="new-home-news" class="cards-grid"></div>
-                </div>
+                <div class="update-section"><h2>Upcoming Events</h2><p class="subtitle">Stay up to date with the latest events!</p><div id="new-home-event" class="cards-grid"></div></div>
+                <div class="update-section"><h2>Latest News</h2><p class="subtitle">Read our latest announcements and updates.</p><div id="new-home-news" class="cards-grid"></div></div>
             </div>
 
             <div class="live-map-preview" style="margin-top: 50px;">
                 <h2 style="color:var(--pva-green); font-size:2rem; margin-bottom:5px;">Live Map</h2>
                 <p class="subtitle">Find our pilots flying around the globe!</p>
-                <div class="solid-iframe-box" style="height: 500px; margin-top: 20px;">
-                    <iframe src="https://pva-global--muhliscan.replit.app/" width="100%" height="100%" style="border:none;"></iframe>
-                </div>
+                <div class="solid-iframe-box" style="height: 500px; margin-top: 20px;"><iframe src="https://pva-global--muhliscan.replit.app/" width="100%" height="100%" style="border:none;"></iframe></div>
             </div>
-
         </section>
 
         <section id="about" class="hidden-section page-section">
             <h1 class="page-title">Our Hubs</h1>
             <p style="text-align:center; max-width:800px; margin:0 auto 40px; color:#555;">Pakistan International Airlines operates a network of hubs across Pakistan, with key airports serving as connections to domestic and international destinations.</p>
-            
             <div class="hubs-container">
-                <div class="clean-card">
-                    <img src="https://i.ibb.co/7dHwSwzG/1770746782568.png" alt="Islamabad Hub">
-                    <div class="card-body">
-                        <h3>Islamabad International Airport</h3>
-                        <p class="card-meta"><strong>ICAO:</strong> OPIS | <strong>Class:</strong> Bravo | <strong>Elevation:</strong> 1,761'</p>
-                        <p>ISB serves as a major hub, offering strategic location for domestic and international connections. Gateway to the breathtaking north (Skardu, Gilgit).</p>
-                        <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
-                        <p><strong>Runways:</strong> 10L/28R (11,991') & 10R/28L</p>
-                    </div>
-                </div>
-                <div class="clean-card">
-                    <img src="https://i.ibb.co/DHjGX831/1770653560734.png" alt="Karachi Hub">
-                    <div class="card-body">
-                        <h3>Jinnah International Airport</h3>
-                        <p class="card-meta"><strong>ICAO:</strong> OPKC | <strong>Class:</strong> Bravo | <strong>Elevation:</strong> 100'</p>
-                        <p>The southern hub based in Sindh Province. KHI enables PVA to operate a comprehensive network of flights showcasing Karachi's significance.</p>
-                        <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
-                        <p><strong>Runways:</strong> 07L/25R (10,491') & 07R/25L</p>
-                    </div>
-                </div>
-                <div class="clean-card">
-                    <img src="https://i.ibb.co/KpryJzbs/1770653534903.png" alt="Lahore Hub">
-                    <div class="card-body">
-                        <h3>Allama Iqbal International Airport</h3>
-                        <p class="card-meta"><strong>ICAO:</strong> OPLA | <strong>Class:</strong> Bravo | <strong>Elevation:</strong> 712'</p>
-                        <p>Situated in Punjab province, offering great traffic by serving the populous region. PVA operates an expansive network from Lahore.</p>
-                        <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
-                        <p><strong>Runways:</strong> 18L/36R (11,013') & 18R/36L</p>
-                    </div>
-                </div>
+                <div class="clean-card"><img src="https://i.ibb.co/7dHwSwzG/1770746782568.png" alt="Islamabad Hub"><div class="card-body"><h3>Islamabad International Airport</h3><p class="card-meta"><strong>ICAO:</strong> OPIS | <strong>Class:</strong> Bravo | <strong>Elevation:</strong> 1,761'</p><p>ISB serves as a major hub, offering strategic location for domestic and international connections.</p><hr style="border:0; border-top:1px solid #eee; margin:15px 0;"><p><strong>Runways:</strong> 10L/28R (11,991') & 10R/28L</p></div></div>
+                <div class="clean-card"><img src="https://i.ibb.co/DHjGX831/1770653560734.png" alt="Karachi Hub"><div class="card-body"><h3>Jinnah International Airport</h3><p class="card-meta"><strong>ICAO:</strong> OPKC | <strong>Class:</strong> Bravo | <strong>Elevation:</strong> 100'</p><p>The southern hub based in Sindh Province. KHI enables PVA to operate a comprehensive network of flights.</p><hr style="border:0; border-top:1px solid #eee; margin:15px 0;"><p><strong>Runways:</strong> 07L/25R (10,491') & 07R/25L</p></div></div>
+                <div class="clean-card"><img src="https://i.ibb.co/KpryJzbs/1770653534903.png" alt="Lahore Hub"><div class="card-body"><h3>Allama Iqbal International Airport</h3><p class="card-meta"><strong>ICAO:</strong> OPLA | <strong>Class:</strong> Bravo | <strong>Elevation:</strong> 712'</p><p>Situated in Punjab province, offering great traffic by serving the populous region.</p><hr style="border:0; border-top:1px solid #eee; margin:15px 0;"><p><strong>Runways:</strong> 18L/36R (11,013') & 18R/36L</p></div></div>
             </div>
         </section>
 
@@ -209,39 +149,17 @@
             <h1 class="page-title">Pilot Ranks</h1>
             <p style="text-align:center; color:#555; margin-bottom:40px;">Climb the ladder of excellence and unlock new perks.</p>
             <div class="ranks-grid">
-                <div class="clean-card rank-card"><img src="https://i.ibb.co/7xFdpQ4y/cadet-rank-1745681375.png">
-                    <div class="card-body"><h3>Cadet</h3><p style="color:var(--pva-green); font-weight:bold;">0 - 20 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>2 hours flights</li><li>Dash 8-Q400</li><li>All Dash 8-Q400 routes (Pakistan) except Chitral & Gilgit</li></ul></div></div>
-                <div class="clean-card rank-card"><img src="https://i.ibb.co/WWmvS0Dg/second-officer-1745681332.png">
-                    <div class="card-body"><h3>Second Officer</h3><p style="color:var(--pva-green); font-weight:bold;">20 - 50 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>A320</li><li>4 hours flights</li><li>Routes of the week short haul</li><li>All domestic routes except Skardu</li></ul></div></div>
-                <div class="clean-card rank-card"><img src="https://i.ibb.co/chF8P9K4/First-Officer-1745681400.png">
-                    <div class="card-body"><h3>First Officer</h3><p style="color:var(--pva-green); font-weight:bold;">50 - 100 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>Codeshare Routes (< 4 hours)</li><li>Skardu Routes</li><li>All Dash 8-Q400 Routes</li></ul></div></div>
-                <div class="clean-card rank-card"><img src="https://i.ibb.co/M53SKHQx/Snr-first-officer-1745681430.png">
-                    <div class="card-body"><h3>Senior FO</h3><p style="color:var(--pva-green); font-weight:bold;">100 - 250 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>B777-200ER, 200LR & B747-200</li><li>8 Hours Flights</li><li>Codeshare Routes (< 8 Hours)</li><li>All routes except Toronto</li></ul></div></div>
-                <div class="clean-card rank-card"><img src="https://i.ibb.co/NvbgHML/Captain-1745681464.png">
-                    <div class="card-body"><h3>Captain</h3><p style="color:var(--pva-green); font-weight:bold;">250 - 500 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>All 777s & 747-200</li><li>All Routes of the week</li><li>Codeshare routes (> 8 Hours)</li><li>All routes</li></ul></div></div>
-                <div class="clean-card rank-card"><img src="https://i.ibb.co/htvbpBc/snr-capt-1745681489.png">
-                    <div class="card-body"><h3>Senior Captain</h3><p style="color:var(--pva-green); font-weight:bold;">500 - 750 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>1.5x multiplier for regular flights</li></ul></div></div>
-                <div class="clean-card rank-card"><img src="https://i.ibb.co/1YwzMJbf/Commander-1745681507.png">
-                    <div class="card-body"><h3>Commander</h3><p style="color:var(--pva-green); font-weight:bold;">+750 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>2x multiplier for regular flights</li><li>VIP flights</li></ul></div></div>
-                <div class="clean-card rank-card" style="border-top:3px solid var(--pva-gold);"><img src="https://i.ibb.co/KpSpSBP3/2025-12-11-23-16-04-1765476997.jpg">
-                    <div class="card-body"><h3>Emerald</h3><p style="color:var(--pva-gold); font-weight:bold;">+1000 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>+1 Route of your choice</li><li>Priority Event departure</li></ul></div></div>
-                <div class="clean-card rank-card" style="border-top:3px solid var(--pva-gold);"><img src="https://i.ibb.co/6ctC2q6j/MG-0784-1765477494.jpg">
-                    <div class="card-body"><h3>Diamond</h3><p style="color:var(--pva-gold); font-weight:bold;">+1500 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>Ability to host group flights</li><li>Ultra long haul flights</li><li>Special call sign (20-30)</li></ul></div></div>
-                <div class="clean-card rank-card" style="border-top:3px solid var(--pva-gold);"><img src="https://i.ibb.co/99mB2C1y/MG-0785-1765477494.jpg">
-                    <div class="card-body"><h3>Sapphire</h3><p style="color:var(--pva-gold); font-weight:bold;">+2500 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>Access to Staff lounge</li><li>1.5x multiplier on all flights</li></ul></div></div>
-                <div class="clean-card rank-card" style="border-top:3px solid var(--pva-gold);"><img src="https://i.ibb.co/C3n8ktNS/MG-0785-1765477773.jpg">
-                    <div class="card-body"><h3>Elite Falcon</h3><p style="color:var(--pva-gold); font-weight:bold;">+750 Hours</p>
-                    <ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>All premium perks</li><li>Permanent server access</li><li>2x multiplier on all flights</li><li>Special Falcon name tag</li></ul></div></div>
+                <div class="clean-card rank-card"><img src="https://i.ibb.co/7xFdpQ4y/cadet-rank-1745681375.png"><div class="card-body"><h3>Cadet</h3><p style="color:var(--pva-green); font-weight:bold;">0 - 20 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>2 hours flights</li><li>Dash 8-Q400</li><li>All Dash 8-Q400 routes (Pakistan) except Chitral & Gilgit</li></ul></div></div>
+                <div class="clean-card rank-card"><img src="https://i.ibb.co/WWmvS0Dg/second-officer-1745681332.png"><div class="card-body"><h3>Second Officer</h3><p style="color:var(--pva-green); font-weight:bold;">20 - 50 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>A320</li><li>4 hours flights</li><li>Routes of the week short haul</li><li>All domestic routes except Skardu</li></ul></div></div>
+                <div class="clean-card rank-card"><img src="https://i.ibb.co/chF8P9K4/First-Officer-1745681400.png"><div class="card-body"><h3>First Officer</h3><p style="color:var(--pva-green); font-weight:bold;">50 - 100 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>Codeshare Routes (< 4 hours)</li><li>Skardu Routes</li><li>All Dash 8-Q400 Routes</li></ul></div></div>
+                <div class="clean-card rank-card"><img src="https://i.ibb.co/M53SKHQx/Snr-first-officer-1745681430.png"><div class="card-body"><h3>Senior FO</h3><p style="color:var(--pva-green); font-weight:bold;">100 - 250 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>B777-200ER, 200LR & B747-200</li><li>8 Hours Flights</li><li>Codeshare Routes (< 8 Hours)</li><li>All routes except Toronto</li></ul></div></div>
+                <div class="clean-card rank-card"><img src="https://i.ibb.co/NvbgHML/Captain-1745681464.png"><div class="card-body"><h3>Captain</h3><p style="color:var(--pva-green); font-weight:bold;">250 - 500 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>All 777s & 747-200</li><li>All Routes of the week</li><li>Codeshare routes (> 8 Hours)</li><li>All routes</li></ul></div></div>
+                <div class="clean-card rank-card"><img src="https://i.ibb.co/htvbpBc/snr-capt-1745681489.png"><div class="card-body"><h3>Senior Captain</h3><p style="color:var(--pva-green); font-weight:bold;">500 - 750 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>1.5x multiplier for regular flights</li></ul></div></div>
+                <div class="clean-card rank-card"><img src="https://i.ibb.co/1YwzMJbf/Commander-1745681507.png"><div class="card-body"><h3>Commander</h3><p style="color:var(--pva-green); font-weight:bold;">+750 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>2x multiplier for regular flights</li><li>VIP flights</li></ul></div></div>
+                <div class="clean-card rank-card" style="border-top:3px solid var(--pva-gold);"><img src="https://i.ibb.co/KpSpSBP3/2025-12-11-23-16-04-1765476997.jpg"><div class="card-body"><h3>Emerald</h3><p style="color:var(--pva-gold); font-weight:bold;">+1000 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>+1 Route of your choice</li><li>Priority Event departure</li></ul></div></div>
+                <div class="clean-card rank-card" style="border-top:3px solid var(--pva-gold);"><img src="https://i.ibb.co/6ctC2q6j/MG-0784-1765477494.jpg"><div class="card-body"><h3>Diamond</h3><p style="color:var(--pva-gold); font-weight:bold;">+1500 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>Ability to host group flights</li><li>Ultra long haul flights</li><li>Special call sign (20-30)</li></ul></div></div>
+                <div class="clean-card rank-card" style="border-top:3px solid var(--pva-gold);"><img src="https://i.ibb.co/99mB2C1y/MG-0785-1765477494.jpg"><div class="card-body"><h3>Sapphire</h3><p style="color:var(--pva-gold); font-weight:bold;">+2500 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>Access to Staff lounge</li><li>1.5x multiplier on all flights</li></ul></div></div>
+                <div class="clean-card rank-card" style="border-top:3px solid var(--pva-gold);"><img src="https://i.ibb.co/C3n8ktNS/MG-0785-1765477773.jpg"><div class="card-body"><h3>Elite Falcon</h3><p style="color:var(--pva-gold); font-weight:bold;">+750 Hours</p><ul style="text-align:left; font-size:0.85rem; color:#666; padding-left:15px;"><li>All premium perks</li><li>Permanent server access</li><li>2x multiplier on all flights</li><li>Special Falcon name tag</li></ul></div></div>
             </div>
         </section>
 
@@ -257,76 +175,7 @@
             </div>
         </section>
 
-        <section id="destinations" class="hidden-section page-section">
-            <h1 class="page-title">Flight Network</h1>
-            <p style="text-align:center; color:#555; margin-bottom:40px;">Explore our vast domestic and international route network.</p>
-            <div class="dest-wrapper" style="text-align: left;">
-                <div class="dest-box">
-                    <h3 style="color: var(--pva-green); border-bottom: 2px solid #eee; padding-bottom: 10px;"><i class="fas fa-globe"></i> INTERNATIONAL</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top:20px;">
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>London</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(EGLL)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Dubai</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OMDB)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Toronto</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(CYYZ)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Baku</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(UBBB)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Kabul</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OAKB)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Dhaka</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(VGHS)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Beijing</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(ZBAA)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Copenhagen</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(EKCH)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Paris</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(LFPG)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Najaf</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(ORNI)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Milan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(LIMC)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Tokyo</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(RJAA)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Kuala Lumpur</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(WMKK)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Oslo</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(ENGM)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Muscat</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OOMS)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Doha</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OTHH)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Dammam</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OEDF)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Jeddah</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OEJN)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Medina</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OEMA)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Riyadh</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OERK)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Barcelona</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(LEBL)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Bangkok</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(VTBS)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Abu Dhabi</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OMAA)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Sharjah</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OMSJ)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Birmingham</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(EGBB)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Manchester</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(EGCC)</small></div>
-                    </div>
-                </div>
-                
-                <div class="dest-box" style="margin-top: 50px;">
-                    <h3 style="color: var(--pva-green); border-bottom: 2px solid #eee; padding-bottom: 10px;"><i class="fas fa-map-marker-alt"></i> DOMESTIC</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top:20px;">
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Skardu</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPSD)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Islamabad</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPIS)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Karachi</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPKC)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Lahore</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPLA)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Gilgit</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPGT)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Gwadar</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPGD)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Peshawar</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPPS)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Multan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPMT)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Quetta</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPQT)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Sialkot</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPST)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Faisalabad</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPFA)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Bahawalpur</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPBW)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Chitral</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPCH)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Dadu</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPDU)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Dalbandin</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPDB)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>D.G. Khan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPDG)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Kadanwari</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPKW)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Moenjodaro</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPMJ)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Panjgur</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPPG)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Rahim Yar Khan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPRK)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Sawan</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPSW)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Sukkur</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPSK)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Turbat</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPTU)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Zamzama</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPZM)</small></div>
-                        <div style="background:white; border:1px solid #ddd; padding:10px; border-radius:5px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);"><span>Zhob</span><small style="display:block; color:var(--pva-green); font-weight:bold;">(OPZB)</small></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-       <section id="pilots" class="hidden-section page-section">
+        <section id="pilots" class="hidden-section page-section">
             <h1 class="page-title">PVA Roster</h1>
             <p style="text-align:center; color:#555; margin-bottom:20px;">Official roster of active Pakistan Virtual Airlines Pilots.</p>
             
@@ -354,32 +203,9 @@
             <h1 class="page-title">Staff Team</h1>
             <div class="staff-group" style="margin-bottom: 40px;">
                 <img src="https://i.ibb.co/BHGhKGp8/b5588c2d1d857f5d0513c62243182d30eefbf562-2-1640x258.jpg" alt="Executive Team" class="staff-banner" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
-                <div class="table-responsive" style="overflow-x: auto;">
-                    <table class="staff-table" style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <thead><tr style="background: var(--pva-green); color: white;"><th style="padding:15px; text-align:left;">Name</th><th style="padding:15px; text-align:left;">Position</th><th style="padding:15px; text-align:left;">IFC</th><th style="padding:15px; text-align:left;">Callsign</th></tr></thead>
-                        <tbody>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Mughees Hassan</td><td style="padding:15px;">CEO</td><td style="padding:15px;">@Mughees_Hassan</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA001</td></tr>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Rohaan Aamir</td><td style="padding:15px;">COO</td><td style="padding:15px;">@Rohaan_Aamir</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA002</td></tr>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Sarim Niazi</td><td style="padding:15px;">CMO</td><td style="padding:15px;">@Pilot-Sarim-niazi</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA003</td></tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
             <div class="staff-group">
                 <img src="https://i.ibb.co/1DyGhJ8/582a85bfee9b74254d0649e4f7bc5c24a7ac373c-2-1640x258.jpg" alt="Staff Team" class="staff-banner" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
-                <div class="table-responsive" style="overflow-x: auto;">
-                    <table class="staff-table" style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <thead><tr style="background: var(--pva-green); color: white;"><th style="padding:15px; text-align:left;">Name</th><th style="padding:15px; text-align:left;">Position</th><th style="padding:15px; text-align:left;">IFC</th><th style="padding:15px; text-align:left;">Callsign</th></tr></thead>
-                        <tbody>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">iiBaloch</td><td style="padding:15px;">Events Coordinator</td><td style="padding:15px;">@iibaloch</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA004</td></tr>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Sarim Niazi</td><td style="padding:15px;">Recruiter</td><td style="padding:15px;">@Pilot-Sarim-niazi</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">-</td></tr>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">NeonIC</td><td style="padding:15px;">Trainer</td><td style="padding:15px;">@NeonIC</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA005</td></tr>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Aviator Ishaan</td><td style="padding:15px;">Routes Manager</td><td style="padding:15px;">@Aviator.Ishaan_11</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA006</td></tr>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">Muhlis</td><td style="padding:15px;">Digital Manager</td><td style="padding:15px;">@Muhlis</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA007</td></tr>
-                            <tr style="border-bottom:1px solid #eee;"><td style="padding:15px;">ShadowF30</td><td style="padding:15px;">Events Coordinator</td><td style="padding:15px;">@Mo174</td><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA008</td></tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </section>
 
@@ -391,10 +217,6 @@
                 <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg')"><img src="https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg"></div>
                 <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg')"><img src="https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg"></div>
                 <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg')"><img src="https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg')"><img src="https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/MDt3D4R1/Screenshot-20260114-151017.jpg')"><img src="https://i.ibb.co/MDt3D4R1/Screenshot-20260114-151017.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg')"><img src="https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg')"><img src="https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg"></div>
             </div>
         </section>
 
@@ -416,85 +238,16 @@
 
         <section id="radar" class="hidden-section page-section">
             <h1 class="page-title">Live Radar</h1>
-            <div class="solid-iframe-box" style="height: 80vh;">
-                <iframe src="https://pva-global--muhliscan.replit.app/" width="100%" height="100%" style="border:none;"></iframe>
-            </div>
+            <div class="solid-iframe-box" style="height: 80vh;"><iframe src="https://pva-global--muhliscan.replit.app/" width="100%" height="100%" style="border:none;"></iframe></div>
         </section>
 
         <section id="apply" class="hidden-section page-section">
             <h1 class="page-title">Join The Crew</h1>
-            <div class="solid-iframe-box">
-                <iframe src="https://tally.so/r/81x0OO?transparentBackground=1" width="100%" height="900px" frameborder="0"></iframe>
-            </div>
+            <div class="solid-iframe-box"><iframe src="https://tally.so/r/81x0OO?transparentBackground=1" width="100%" height="900px" frameborder="0"></iframe></div>
         </section>
 
-        <div id="adminModal" class="modal-overlay">
-            <div class="modal-content">
-                <span class="close-modal" onclick="closeAdminModal()">&times;</span>
-                
-                <div id="loginArea">
-                    <h3 style="color:var(--pva-green);">SECURITY CLEARANCE</h3>
-                    <input type="password" id="adminPass" class="admin-input" placeholder="Enter Password">
-                    <input type="hidden" id="adminType"> 
-                    <button class="btn-primary" onclick="checkAdminPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
-                </div>
-
-                <div id="addEventArea" style="display:none;">
-                    <h3 style="color:var(--pva-green);">PUBLISH EVENT</h3>
-                    <input type="text" id="evServer" class="admin-input" placeholder="Server (e.g. Expert Server)">
-                    <input type="text" id="evRoute" class="admin-input" placeholder="Route (e.g. LHR-ISL)">
-                    <input type="text" id="evAircraft" class="admin-input" placeholder="Aircraft/Livery">
-                    <input type="text" id="evETE" class="admin-input" placeholder="ETE (e.g. 07:30)">
-                    <input type="text" id="evMultiplier" class="admin-input" placeholder="Multiplier (e.g. 1.5x)">
-                    <input type="text" id="evImg" class="admin-input" placeholder="Image URL (Opsiyonel)">
-                    
-                    <label style="color:#555; font-size:0.8rem;">Time (UTC):</label>
-                    <div style="display:flex; gap:10px;">
-                        <input type="time" id="evTime" class="admin-input">
-                        <input type="date" id="evDate" class="admin-input">
-                    </div>
-                    <button class="btn-primary" onclick="addEvent()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH EVENT</button>
-                </div>
-
-                <div id="addNewsArea" style="display:none;">
-                    <h3 style="color:var(--pva-green);">PUBLISH NEWS</h3>
-                    <input type="text" id="newsTitleInput" class="admin-input" placeholder="News Title">
-                    <textarea id="newsContentInput" class="admin-input" rows="4" placeholder="Content..."></textarea>
-                    <input type="text" id="newsImgInput" class="admin-input" placeholder="Image URL (Opsiyonel)">
-                    <input type="date" id="newsDateInput" class="admin-input">
-                    <button class="btn-primary" onclick="addNews()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH NEWS</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="pilotModal" class="modal-overlay">
-            </div>
-
-        <div id="pilotRegisterModal" class="modal-overlay">
-            <div class="modal-content" style="max-width: 350px;">
-                <span class="close-modal" onclick="closePilotRegisterModal()">&times;</span>
-                <h3 style="color:var(--pva-green); text-align:center; margin-bottom:15px;"><i class="fas fa-id-badge"></i> REGISTER PROFILE</h3>
-                <input type="text" id="pCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042)">
-                <input type="text" id="pName" class="admin-input" placeholder="Full Name">
-                <select id="pRank" class="admin-input" style="color: #555;">
-                    <option value="Cadet">Cadet (0-20 Hrs)</option>
-                    <option value="Second Officer">Second Officer (20-50 Hrs)</option>
-                    <option value="First Officer">First Officer (50-100 Hrs)</option>
-                    <option value="Senior FO">Senior FO (100-250 Hrs)</option>
-                    <option value="Captain">Captain (250-500 Hrs)</option>
-                    <option value="Senior Captain">Senior Captain (500-750 Hrs)</option>
-                    <option value="Commander">Commander (750+ Hrs)</option>
-                </select>
-                <input type="number" id="pHours" class="admin-input" placeholder="Total Flight Hours">
-                <button class="btn-primary" onclick="addPilot()" style="width:100%; margin-top:10px; background:var(--pva-green);">SAVE PROFILE</button>
-            </div>
-        </div>
-
-        <div id="lightboxModal" class="lightbox-overlay" onclick="closeLightbox()">
-            </div>
-
     </main>
-    
+
     <footer class="clean-footer">
         <div class="footer-grid">
             <div class="footer-col" style="flex:2;">
@@ -503,33 +256,82 @@
                 </h3>
                 <p style="font-size: 0.85rem; line-height: 1.6;">All logos and branding used by PVA are the sole property of Pakistan International airlines corporation limited. We are in no way affiliated with PIACL.</p>
             </div>
-            <div class="footer-col">
-                <h4>ABOUT US</h4>
-                <a href="#" onclick="navigate('about')">Our Hubs</a>
-                <a href="#" onclick="navigate('staff')">Staff</a>
-            </div>
-            <div class="footer-col">
-                <h4>OPERATIONS</h4>
-                <a href="#" onclick="navigate('ranks')">Ranks</a>
-                <a href="#" onclick="navigate('fleet')">Fleet</a>
-                <a href="#" onclick="navigate('destinations')">Routes</a>
-            </div>
-            <div class="footer-col">
-                <h4>PUBLIC</h4>
-                <a href="#" onclick="navigate('events')">Events</a>
-                <a href="#" onclick="navigate('news')">News</a>
-                <a href="#" onclick="navigate('gallery')">Gallery</a>
-            </div>
-            <div class="footer-col">
-                <h4>LINKS</h4>
-                <a href="https://www.instagram.com/pakistanvirtual.if?igsh=MW9tcXBzYXp0MXlkYg==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="https://community.infiniteflight.com/t/pakistan-virtual-airlines-great-people-to-fly-with-official-thread-2025/1039058" target="_blank">IFC Thread</a>
-            </div>
+            <div class="footer-col"><h4>ABOUT US</h4><a href="#" onclick="navigate('about')">Our Hubs</a><a href="#" onclick="navigate('staff')">Staff</a></div>
+            <div class="footer-col"><h4>OPERATIONS</h4><a href="#" onclick="navigate('ranks')">Ranks</a><a href="#" onclick="navigate('fleet')">Fleet</a></div>
+            <div class="footer-col"><h4>PUBLIC</h4><a href="#" onclick="navigate('events')">Events</a><a href="#" onclick="navigate('news')">News</a><a href="#" onclick="navigate('gallery')">Gallery</a></div>
+            <div class="footer-col"><h4>LINKS</h4><a href="https://www.instagram.com/pakistanvirtual.if" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://community.infiniteflight.com/" target="_blank">IFC Thread</a></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Pakistan Virtual Airlines.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Pakistan Virtual Airlines.</p></div>
     </footer>
+
+    <div id="adminModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAdminModal()">&times;</span>
+            <div id="loginArea">
+                <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-lock"></i> ADMIN CLEARANCE</h3>
+                <input type="password" id="adminPass" class="admin-input" placeholder="Enter Password">
+                <input type="hidden" id="adminType"> 
+                <button class="btn-primary" onclick="checkAdminPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
+            </div>
+            <div id="addEventArea" style="display:none; padding-bottom:20px; border-bottom:1px solid #eee; margin-bottom:20px;">
+                <h3 style="color:var(--pva-green);">PUBLISH EVENT</h3>
+                <input type="text" id="evServer" class="admin-input" placeholder="Server">
+                <input type="text" id="evRoute" class="admin-input" placeholder="Route">
+                <input type="text" id="evAircraft" class="admin-input" placeholder="Aircraft/Livery">
+                <input type="text" id="evETE" class="admin-input" placeholder="ETE">
+                <input type="text" id="evMultiplier" class="admin-input" placeholder="Multiplier">
+                <input type="text" id="evImg" class="admin-input" placeholder="Image URL">
+                <div style="display:flex; gap:10px;">
+                    <input type="time" id="evTime" class="admin-input">
+                    <input type="date" id="evDate" class="admin-input">
+                </div>
+                <button class="btn-primary" onclick="addEvent()" style="width:100%; background:var(--pva-green);">PUBLISH EVENT</button>
+            </div>
+            <div id="addNewsArea" style="display:none;">
+                <h3 style="color:var(--pva-green);">PUBLISH NEWS</h3>
+                <input type="text" id="newsTitleInput" class="admin-input" placeholder="News Title">
+                <textarea id="newsContentInput" class="admin-input" rows="4" placeholder="Content..."></textarea>
+                <input type="text" id="newsImgInput" class="admin-input" placeholder="Image URL">
+                <input type="date" id="newsDateInput" class="admin-input">
+                <button class="btn-primary" onclick="addNews()" style="width:100%; background:var(--pva-green);">PUBLISH NEWS</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pilotModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 350px;">
+            <span class="close-modal" onclick="closePilotModal()">&times;</span>
+            <h3 style="color:var(--pva-green); text-align:center; margin-bottom: 20px;"><i class="fas fa-plane"></i> PILOT LOGIN</h3>
+            <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:15px;">Please enter your pilot passcode.</p>
+            <input type="password" id="pilotPass" class="admin-input" placeholder="Pilot Password">
+            <button class="btn-primary" onclick="checkPilotPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">VERIFY & LOGIN</button>
+        </div>
+    </div>
+
+    <div id="pilotRegisterModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 350px;">
+            <span class="close-modal" onclick="closePilotRegisterModal()">&times;</span>
+            <h3 style="color:var(--pva-green); text-align:center; margin-bottom:15px;"><i class="fas fa-id-badge"></i> REGISTER PROFILE</h3>
+            <input type="text" id="pCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042)">
+            <input type="text" id="pName" class="admin-input" placeholder="Full Name">
+            <select id="pRank" class="admin-input" style="color: #555;">
+                <option value="Cadet">Cadet (0-20 Hrs)</option>
+                <option value="Second Officer">Second Officer (20-50 Hrs)</option>
+                <option value="First Officer">First Officer (50-100 Hrs)</option>
+                <option value="Senior FO">Senior FO (100-250 Hrs)</option>
+                <option value="Captain">Captain (250-500 Hrs)</option>
+                <option value="Senior Captain">Senior Captain (500-750 Hrs)</option>
+                <option value="Commander">Commander (750+ Hrs)</option>
+            </select>
+            <input type="number" id="pHours" class="admin-input" placeholder="Total Flight Hours">
+            <button class="btn-primary" onclick="addPilot()" style="width:100%; margin-top:10px; background:var(--pva-green);">SAVE PROFILE</button>
+        </div>
+    </div>
+
+    <div id="lightboxModal" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="">
+    </div>
 
     <script src="app.js"></script>
 </body>
