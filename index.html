@@ -250,9 +250,17 @@
                 <button id="addPilotBtn" class="btn-primary" style="display:none; background:var(--pva-green);" onclick="openPilotRegisterModal()"><i class="fas fa-user-plus"></i> Register Profile</button>
             </div>
             <div class="table-responsive" style="max-width: 1000px; margin: 0 auto; background: white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); padding:20px;">
-                <table class="staff-table" style="width: 100%; border-collapse: collapse;">
-                    <thead><tr style="background: var(--pva-green); color: white;"><th style="padding:15px; text-align:left;">Callsign</th><th style="padding:15px; text-align:left;">Name</th><th style="padding:15px; text-align:left;">Rank</th><th style="padding:15px; text-align:left;">Flight Hours</th></tr></thead>
-                    <tbody id="pilot-roster-body"></tbody>
+               <table class="staff-table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: var(--pva-green); color: white;">
+                            <th style="padding:15px; text-align:left;">Callsign</th>
+                            <th style="padding:15px; text-align:left;">IFC Name</th>
+                            <th style="padding:15px; text-align:left;">Discord</th> <th style="padding:15px; text-align:left;">Rank</th>
+                            <th style="padding:15px; text-align:left;">Flight Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pilot-roster-body">
+                        </tbody>
                 </table>
             </div>
         </section>
@@ -407,7 +415,7 @@
             <h3 style="color:var(--pva-green); text-align:center; margin-bottom:15px;"><i class="fas fa-id-badge"></i> REGISTER PROFILE</h3>
             <input type="text" id="pCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042)">
             <input type="text" id="pName" class="admin-input" placeholder="IFC Name">
-             <input type="text" id="pName" class="admin-input" placeholder="Discord Name">
+            <input type="text" id="pDiscord" class="admin-input" placeholder="Discord Name"> 
             <select id="pRank" class="admin-input" style="color: #555;">
                 <option value="Cadet">Cadet (0-20 Hrs)</option>
                 <option value="Second Officer">Second Officer (20-50 Hrs)</option>
