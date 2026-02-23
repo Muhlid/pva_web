@@ -415,3 +415,38 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavbarUI();
 });
                 
+// --- GLOBAL RADAR SİSTEMİ ---
+async function loadLiveRadar() {
+    const radarCont = document.getElementById('live-radar-display');
+    const adminTool = document.getElementById('admin-radar-tool');
+    if(!radarCont) return;
+
+    // Adminse güncelleme aracını göster
+    if(isAdminLoggedIn && adminTool) adminTool.style.display = 'block';
+
+    // Buluttan en son radar resmini çek
+    const doc = await db.collection('pva_settings').doc('live_radar').get();
+    
+    if(doc.exists && doc.data().url) {
+        radarCont.innerHTML = `<img src="${doc.data().url}" style="max-width:100%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.2);" onerror="this.src='https://i.ibb.co/mVTDxrzD/image-1.png';">`;
+    } else {
+        radarCont.innerHTML = `<img src="https://i.ibb.co/mVTDxrzD/image-1.png" style="width:200px; opacity:0.5;"><p style="color:#888; margin-top:15px;">Radar currently offline. Standby for Staff update.</p>`;
+    }
+}
+
+async function updateGlobalRadar() {
+    const newUrl = document.getElementById('radarUrlInput').value.trim();
+    if(!newUrl) return alert("Please enter a valid Image URL!");
+
+    await db.collection('pva_settings').doc('live_radar').set({
+        url: newUrl,
+        updatedBy: currentLoggedPilot ? currentLoggedPilot.callsign : "Admin",
+        timestamp: Date.now()
+    });
+
+    alert("Radar updated globally for all users!");
+    loadLiveRadar();
+}
+
+// Navigasyon fonksiyonuna radarı da ekleyelim (navigate fonksiyonun içini güncelle)
+// if(sectionId === 'radar') loadLiveRadar();  <-- Bunu navigate içine ekle
