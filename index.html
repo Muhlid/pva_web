@@ -10,10 +10,8 @@
 </head>
 <body>
 
-     <div id="intro-overlay" style="position: fixed; inset: 0; width: 100%; height: 100%; background: #000000; z-index: 999999; display: flex; justify-content: center; align-items: center; margin: 0; padding: 0; transition: opacity 0.8s ease;">
-        
+    <div id="intro-overlay" style="position: fixed; inset: 0; width: 100%; height: 100%; background: #000000; z-index: 999999; display: flex; justify-content: center; align-items: center; margin: 0; padding: 0; transition: opacity 0.8s ease;">
         <img src="https://res.cloudinary.com/dqxbeu9tc/image/upload/v1771847553/pva_ji1krc.gif" alt="PVA Intro" style="max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none;">
-        
         <button onclick="forceCloseIntro()" style="position: absolute; bottom: 40px; right: 30px; background: #D4AF37; color: #000000; border: none; padding: 12px 25px; font-family: 'Montserrat', sans-serif; font-weight: 800; border-radius: 30px; cursor: pointer; font-size: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000000; display: flex; align-items: center; gap: 8px;">
             Skip Intro <i class="fas fa-angle-double-right"></i>
         </button>
@@ -24,10 +22,9 @@
             const intro = document.getElementById('intro-overlay');
             if (intro) {
                 intro.style.opacity = '0';
-                setTimeout(() => intro.remove(), 800); // 0.8 saniye sonra HTML'den tamamen siler
+                setTimeout(() => intro.remove(), 800); 
             }
         }
-        // Sayfa açıldıktan tam 5 saniye sonra butona basmasan bile otomatik kapatır
         setTimeout(forceCloseIntro, 5000);
     </script>
     
@@ -63,8 +60,8 @@
                         <a href="javascript:void(0)" onclick="navigate('gallery')">Gallery</a>
                     </div>
                 </li>
+                
                 <li><a href="javascript:void(0)" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
-                                <li><a href="javascript:void(0)" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
                 
                 <li id="navPilotLoginBtn"><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-apply-btn" style="border-color:var(--pva-green); color:var(--pva-green);">PILOT LOGIN</a></li>
                 
@@ -76,8 +73,6 @@
                     </div>
                 </li>
 
-                <li><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn">LOGIN</a></li>
-                
                 <li><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn">LOGIN</a></li>
             </ul>
 
@@ -201,7 +196,7 @@
             </div>
         </section>
 
-        <section id="destinations" class="hidden-section page-section">
+         <section id="destinations" class="hidden-section page-section">
             <h1 class="page-title">Flight Network</h1>
             <p style="text-align:center; color:#555; margin-bottom:40px;">Explore our vast domestic and international route network.</p>
             <div class="dest-wrapper" style="text-align: left;">
@@ -268,7 +263,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+                </section>
 
         <section id="pilots" class="hidden-section page-section">
             <h1 class="page-title">PVA Roster</h1>
@@ -324,7 +319,7 @@
                 </div>
             </div>
         </section>
-
+        
         <section id="gallery" class="hidden-section page-section">
             <h1 class="page-title">Flight Gallery</h1>
             <p style="text-align:center; color:#555; margin-bottom:40px;">Moments captured by our talented pilots above the skies.</p>
@@ -426,7 +421,7 @@
         </div>
     </div>
 
-        <div id="pilotModal" class="modal-overlay">
+    <div id="pilotModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 380px;">
             <span class="close-modal" onclick="closePilotModal()">&times;</span>
             
@@ -443,7 +438,7 @@
                 <button class="btn-primary" onclick="pilotLogin()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
                 <button class="btn-outline" onclick="resetPilotModal()" style="width:100%; margin-top:10px; border:none; color:#888;">Back</button>
             </div>
-
+            
             <div id="pilotRegisterArea" style="display:none;">
                 <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-plus"></i> NEW ENROLLMENT</h3>
                 <input type="text" id="regCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042) *UNIQUE*">
@@ -461,8 +456,13 @@
                 <button class="btn-outline" onclick="resetPilotModal()" style="width:100%; margin-top:10px; border:none; color:#888;">Back</button>
             </div>
         </div>
-        </div
+    </div>
+
+    <div id="lightboxModal" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="">
+    </div>
 
     <script src="app.js"></script>
 </body>
-</html>
+</html>                                                                                                                                                          </html>
