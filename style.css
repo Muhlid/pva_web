@@ -396,15 +396,19 @@ main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
     border-color: var(--pva-green);
 }
 
+/* STAFF RESİMLERİ İÇİN KESİN DAİRE KODU */
 .staff-avatar {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 130px !important;   /* Genişlik sabit */
+    height: 130px !important;  /* Yükseklik sabit */
+    border-radius: 50% !important; /* Tam daire yap */
+    object-fit: cover !important;  /* Resmi dairenin içine kırpmadan sığdır */
     border: 4px solid var(--pva-gold);
     margin-bottom: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    background-color: #eee; /* Resim yüklenene kadar gri kalır */
+    background-color: var(--pva-green); /* Resim yüklenirken arkası yeşil görünsün */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
 }
 
 .staff-card h3 {
