@@ -17,29 +17,35 @@ let isAdminLoggedIn = false;
 let isPilotLoggedIn = false;
 let currentLoggedPilot = null; 
 
-// --- NAVİGASYON ---
+// --- NAVİGASYON MOTORU (GÜNCEL SÜRÜM) ---
 function navigate(sectionId) {
+    // 1. Tüm sayfaları gizle
     document.querySelectorAll('main > section').forEach(sec => {
         sec.classList.remove('active-section');
         sec.classList.add('hidden-section');
     });
     
+    // 2. Hedef sayfayı bul ve aktif et
     const target = document.getElementById(sectionId);
     if(target) {
         target.classList.remove('hidden-section');
         target.classList.add('active-section');
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0); // Sayfayı en üste kaydır
     }
     
+    // 3. Mobil menü açıksa kapat
     const mobNav = document.getElementById('mobile-nav');
     const mobOverlay = document.getElementById('mobile-nav-overlay');
     if(mobNav) mobNav.classList.remove('active');
     if(mobOverlay) mobOverlay.classList.remove('active');
     
+    // 4. SAYFA TETİKLEYİCİLERİ (Global Veri Senkronizasyonu)
+    // Her sayfa açıldığında buluttan en güncel veriyi çeker
     if(sectionId === 'news') loadNews();
     if(sectionId === 'events') loadEvents();
     if(sectionId === 'home') loadHomePreviews();
     if(sectionId === 'pilots') loadPilots(); 
+    if(sectionId === 'radar') loadLiveRadar(); // Radar artık burada tetikleniyor!
 }
 
 function toggleMobileMenu() {
@@ -415,38 +421,61 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavbarUI();
 });
                 
-// --- GLOBAL RADAR SİSTEMİ ---
+// --- GLOBAL RADAR SİSTEMİ (KESİN GÖRÜNÜRLÜK GÜNCELLEMESİ) ---
 async function loadLiveRadar() {
     const radarCont = document.getElementById('live-radar-display');
     const adminTool = document.getElementById('admin-radar-tool');
+    
     if(!radarCont) return;
 
-    // Adminse güncelleme aracını göster
-    if(isAdminLoggedIn && adminTool) adminTool.style.display = 'block';
+    // Admin kontrolü: Giriş yapılmışsa paneli her zaman zorla göster
+    if (isAdminLoggedIn) {
+        if (adminTool) adminTool.style.display = 'block';
+    } else {
+        if (adminTool) adminTool.style.display = 'none';
+    }
 
     // Buluttan en son radar resmini çek
-    const doc = await db.collection('pva_settings').doc('live_radar').get();
-    
-    if(doc.exists && doc.data().url) {
-        radarCont.innerHTML = `<img src="${doc.data().url}" style="max-width:100%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.2);" onerror="this.src='https://i.ibb.co/mVTDxrzD/image-1.png';">`;
-    } else {
-        radarCont.innerHTML = `<img src="https://i.ibb.co/mVTDxrzD/image-1.png" style="width:200px; opacity:0.5;"><p style="color:#888; margin-top:15px;">Radar currently offline. Standby for Staff update.</p>`;
+    try {
+        const doc = await db.collection('pva_settings').doc('live_radar').get();
+        
+        if(doc.exists && doc.data().url) {
+            radarCont.innerHTML = `
+                <img src="${doc.data().url}" 
+                     style="max-width:100%; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.2);" 
+                     onerror="this.onerror=null; this.src='https://i.ibb.co/mVTDxrzD/image-1.png';">
+            `;
+        } else {
+            radarCont.innerHTML = `
+                <img src="https://i.ibb.co/mVTDxrzD/image-1.png" style="width:200px; opacity:0.5;">
+                <p style="color:#888; margin-top:15px;">Radar currently offline. Standby for Staff update.</p>
+            `;
+        }
+    } catch (error) {
+        console.error("Radar sync error:", error);
+        radarCont.innerHTML = "<p style='color:red;'>Connection error with Global Radar Center.</p>";
     }
 }
 
+// --- RADAR GÜNCELLEME (BULUT YAZICI) ---
 async function updateGlobalRadar() {
-    const newUrl = document.getElementById('radarUrlInput').value.trim();
+    const radarInput = document.getElementById('radarUrlInput');
+    if (!radarInput) return;
+    
+    const newUrl = radarInput.value.trim();
     if(!newUrl) return alert("Please enter a valid Image URL!");
 
-    await db.collection('pva_settings').doc('live_radar').set({
-        url: newUrl,
-        updatedBy: currentLoggedPilot ? currentLoggedPilot.callsign : "Admin",
-        timestamp: Date.now()
-    });
+    try {
+        await db.collection('pva_settings').doc('live_radar').set({
+            url: newUrl,
+            updatedBy: currentLoggedPilot ? currentLoggedPilot.callsign : "Admin",
+            timestamp: Date.now()
+        });
 
-    alert("Radar updated globally for all users!");
-    loadLiveRadar();
+        alert("Radar updated globally for all users!");
+        radarInput.value = ""; // Kutuyu temizle
+        loadLiveRadar(); // Ekranı yenile
+    } catch (error) {
+        alert("Error updating radar: " + error.message);
+    }
 }
-
-// Navigasyon fonksiyonuna radarı da ekleyelim (navigate fonksiyonun içini güncelle)
-// if(sectionId === 'radar') loadLiveRadar();  <-- Bunu navigate içine ekle
