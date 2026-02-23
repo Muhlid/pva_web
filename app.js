@@ -173,7 +173,7 @@ function checkAdminPass() {
         document.getElementById('loginArea').style.display = 'none';
         document.getElementById('adminControlPanel').style.display = 'block';
         switchAdminTab('pending');
-        loadNews(); // Admin girince silme butonlarını görünür yapmak için listeleri yenile
+        loadNews(); 
         loadEvents();
         loadPilots();
     } else { 
@@ -281,13 +281,12 @@ function deletePilot(id) {
     } else { alert("Access Denied! Deletion cancelled."); }
 }
 
-// --- YENİLENMİŞ HABER VE ETKİNLİK EKLEME (KIRIK RESİM ÇÖZÜMÜ İLE) ---
+// --- HABER VE ETKİNLİK EKLEME ---
 function addNews() {
-    const title = document.getElementById('newsTitleInput').value;
-    const content = document.getElementById('newsContentInput').value;
+    const title = document.getElementById('newsTitleInput').value.trim();
+    const content = document.getElementById('newsContentInput').value.trim();
     const date = document.getElementById('newsDateInput').value;
-    // Resim girilmezse altın sarısı logoyu koyar
-    const img = document.getElementById('newsImgInput').value || 'https://i.ibb.co/mVTDxrzD/image-1.png';
+    const img = document.getElementById('newsImgInput').value.trim() || 'https://i.ibb.co/mVTDxrzD/image-1.png';
 
     if(!title || !content) return alert("Title and Content required!");
 
@@ -303,13 +302,12 @@ function addNews() {
 }
 
 function addEvent() {
-    const server = document.getElementById('evServer').value || "Expert";
-    const route = document.getElementById('evRoute').value;
-    const aircraft = document.getElementById('evAircraft').value || "Any";
+    const server = document.getElementById('evServer').value.trim() || "Expert";
+    const route = document.getElementById('evRoute').value.trim();
+    const aircraft = document.getElementById('evAircraft').value.trim() || "Any";
     const time = document.getElementById('evTime').value;
     const date = document.getElementById('evDate').value;
-    // Resim girilmezse altın sarısı logoyu koyar
-    const img = document.getElementById('evImg').value || 'https://i.ibb.co/mVTDxrzD/image-1.png';
+    const img = document.getElementById('evImg').value.trim() || 'https://i.ibb.co/mVTDxrzD/image-1.png';
 
     if(!route || !date || !time) return alert("Route, Date and Time required!");
 
@@ -323,21 +321,21 @@ function addEvent() {
     loadEvents(); loadHomePreviews();
 }
 
-// --- SAYFA YÜKLENİCİLER (PREVIEWS, HABERLER VE ETKİNLİKLER) ---
+// --- SAYFA YÜKLENİCİLER (KIRIK RESİM KALKANI ONERROR EKLENDİ) ---
 function loadHomePreviews() { 
     const newsData = getSafeData('pva_news'); const eventData = getSafeData('pva_events');
     const np = document.getElementById('new-home-news'); const ep = document.getElementById('new-home-event');
     if(np) { 
         np.innerHTML = ""; 
         newsData.slice(0, 3).forEach(n => { 
-            np.innerHTML += `<div class="clean-card"><img src="${n.img}"><div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${n.title}</h3><p style="color:#666;">${n.content.substring(0, 70)}...</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Published on ${n.date}</span></div></div>`; 
+            np.innerHTML += `<div class="clean-card"><img src="${n.img}" onerror="this.onerror=null; this.src='https://i.ibb.co/mVTDxrzD/image-1.png';"><div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${n.title}</h3><p style="color:#666;">${n.content.substring(0, 70)}...</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Published on ${n.date}</span></div></div>`; 
         }); 
     }
     if(ep) { 
         ep.innerHTML = ""; 
         eventData.slice(0, 3).forEach(e => { 
             const localStr = new Date(`${e.date}T${e.time}:00Z`).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false}); 
-            ep.innerHTML += `<div class="clean-card"><img src="${e.img}"><div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${e.route}</h3><p style="color:#666;">Aircraft: ${e.aircraft}<br>Server: ${e.server}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Starts on ${e.date} at ${e.time}Z (${localStr} Local)</span></div></div>`; 
+            ep.innerHTML += `<div class="clean-card"><img src="${e.img}" onerror="this.onerror=null; this.src='https://i.ibb.co/mVTDxrzD/image-1.png';"><div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${e.route}</h3><p style="color:#666;">Aircraft: ${e.aircraft}<br>Server: ${e.server}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;">Starts on ${e.date} at ${e.time}Z (${localStr} Local)</span></div></div>`; 
         }); 
     }
 }
@@ -350,7 +348,7 @@ function loadNews() {
     
     data.forEach((n, index) => {
         let btn = isAdminLoggedIn ? `<br><button onclick="delItem('pva_news', ${n.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; margin-top:10px; cursor:pointer;"><i class="fas fa-trash"></i> Delete</button>` : "";
-        const cardHTML = `<div class="clean-card"><img src="${n.img}"><div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${n.title}</h3><p style="color:#666; font-size:0.9rem;">${n.content}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;"><i class="far fa-calendar"></i> Published on ${n.date} ${btn}</span></div></div>`;
+        const cardHTML = `<div class="clean-card"><img src="${n.img}" onerror="this.onerror=null; this.src='https://i.ibb.co/mVTDxrzD/image-1.png';"><div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${n.title}</h3><p style="color:#666; font-size:0.9rem;">${n.content}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;"><i class="far fa-calendar"></i> Published on ${n.date} ${btn}</span></div></div>`;
         if(index < 3) { activeCont.innerHTML += cardHTML; activeCount++; } else { pastCont.innerHTML += cardHTML; pastCount++; }
     });
 }
@@ -364,7 +362,7 @@ function loadEvents() {
     data.forEach(e => {
         const eventDate = new Date(`${e.date}T${e.time}:00Z`); const localStr = eventDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: false});
         let btn = isAdminLoggedIn ? `<br><button onclick="delItem('pva_events', ${e.id})" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; margin-top:10px; cursor:pointer;"><i class="fas fa-trash"></i> Delete</button>` : "";
-        const cardHTML = `<div class="clean-card"><img src="${e.img}"><div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${e.route}</h3><p style="color:#666; font-size:0.9rem;">Aircraft: ${e.aircraft}<br>Server: ${e.server}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;"><i class="far fa-clock"></i> ${e.time}Z (${localStr} Local) <br><i class="far fa-calendar"></i> ${e.date} ${btn}</span></div></div>`;
+        const cardHTML = `<div class="clean-card"><img src="${e.img}" onerror="this.onerror=null; this.src='https://i.ibb.co/mVTDxrzD/image-1.png';"><div class="card-body"><h3 style="color:var(--pva-green); margin-top:0;">${e.route}</h3><p style="color:#666; font-size:0.9rem;">Aircraft: ${e.aircraft}<br>Server: ${e.server}</p><span class="card-meta" style="color:#888; font-size:0.85rem; border-top:1px solid #eee; display:block; padding-top:10px; margin-top:15px;"><i class="far fa-clock"></i> ${e.time}Z (${localStr} Local) <br><i class="far fa-calendar"></i> ${e.date} ${btn}</span></div></div>`;
         if(eventDate >= now) { activeCont.innerHTML += cardHTML; activeCount++; } else { pastCont.innerHTML += cardHTML; pastCount++; }
     });
 }
@@ -392,4 +390,4 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHomePreviews();
     updateNavbarUI();
 });
-            
+       
