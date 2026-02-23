@@ -326,10 +326,14 @@
             </div>
         </section>
 
-        <section id="pilots" class="hidden-section page-section">
+       <section id="pilots" class="hidden-section page-section">
             <h1 class="page-title">PVA Roster</h1>
-            <p style="text-align:center; color:#555; margin-bottom:40px;">Official roster of active Pakistan Virtual Airlines Pilots.</p>
+            <p style="text-align:center; color:#555; margin-bottom:20px;">Official roster of active Pakistan Virtual Airlines Pilots.</p>
             
+            <div style="text-align: right; max-width: 1000px; margin: 0 auto 15px;">
+                <button id="addPilotBtn" class="btn-primary" style="display:none; background:var(--pva-green);" onclick="openPilotRegisterModal()"><i class="fas fa-user-plus"></i> Register Profile</button>
+            </div>
+
             <div class="table-responsive" style="max-width: 1000px; margin: 0 auto; background: white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); padding:20px;">
                 <table class="staff-table" style="width: 100%; border-collapse: collapse;">
                     <thead>
@@ -341,11 +345,7 @@
                         </tr>
                     </thead>
                     <tbody id="pilot-roster-body">
-                        <tr style="border-bottom:1px solid #eee;"><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA001</td><td style="padding:15px;">Mughees Hassan</td><td style="padding:15px;">CEO</td><td style="padding:15px;">1500+</td></tr>
-                        <tr style="border-bottom:1px solid #eee;"><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA002</td><td style="padding:15px;">Rohaan Aamir</td><td style="padding:15px;">COO</td><td style="padding:15px;">1200+</td></tr>
-                        <tr style="border-bottom:1px solid #eee;"><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA007</td><td style="padding:15px;">Muhlis</td><td style="padding:15px;">Digital Manager</td><td style="padding:15px;">850+</td></tr>
-                        <tr style="border-bottom:1px solid #eee;"><td style="padding:15px; font-weight:bold; color:var(--pva-green);">PVA042</td><td style="padding:15px;">John Doe</td><td style="padding:15px;">First Officer</td><td style="padding:15px;">75</td></tr>
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
         </section>
