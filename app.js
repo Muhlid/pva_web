@@ -193,3 +193,24 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => closeIntro(), 10000); // Guvenlik icin 10 sn
     }
 });
+// --- PİLOT GİRİŞ KONTROLLERİ ---
+function openPilotModal() {
+    document.getElementById('pilotModal').style.display = 'flex';
+    document.getElementById('pilotPass').value = ''; 
+}
+
+function closePilotModal() {
+    document.getElementById('pilotModal').style.display = 'none';
+}
+
+function checkPilotPass() {
+    const pass = document.getElementById('pilotPass').value;
+    
+    // Pilot Giriş Şifresi
+    if(pass === "pva123") { 
+        closePilotModal();
+        navigate('pilots'); // Doğru şifre girilince Roster sayfasına atar
+    } else {
+        alert("Access Denied! Incorrect Pilot Password.");
+    }
+}
