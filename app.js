@@ -69,7 +69,7 @@ window.closeAdminModal = function() {
 
 // --- PİLOT MODAL KONTROLLERİ (GLOBAL ZORUNLU SÜRÜM) ---
 window.openPilotModal = function() {
-    console.log("Pilot Butonu Tetiklendi!"); // F12 kontrolü için
+    console.log("Pilot Butonu Tetiklendi!"); 
     window.closeAdminModal();
     
     const pilotModal = document.getElementById('pilotModal');
@@ -194,6 +194,7 @@ window.pilotLogin = async function() {
             isPilotLoggedIn = true;
             
             updateNavbarUI(); 
+            window.updatePilotStats(currentLoggedPilot); // KARNE GÜNCELLEME TETİKLENİYOR
             window.closePilotModal(); 
             window.navigate('pilots'); 
             return;
@@ -220,7 +221,67 @@ window.pilotLogout = function() {
     currentLoggedPilot = null;
     isPilotLoggedIn = false;
     updateNavbarUI();
+    const statsCard = document.getElementById('pilotStatsCard');
+    if (statsCard) statsCard.style.display = 'none'; // Çıkış yapınca karneyi gizle
     window.navigate('home'); 
+};
+
+// --- PİLOT KARNESİ (STATS) HESAPLAMA MOTORU ---
+window.updatePilotStats = function(pilotData) {
+    if(!pilotData) return;
+
+    const statsCard = document.getElementById('pilotStatsCard');
+    if(!statsCard) return; // HTML'de kart yoksa hata vermesin
+
+    const currentHours = parseFloat(pilotData.hours) || 0;
+    
+    // Rütbe Gereksinimleri (Saatlere Göre Sıralı)
+    const rankTiers = [
+        { name: "Cadet", min: 0 },
+        { name: "Second Officer", min: 20 },
+        { name: "First Officer", min: 50 },
+        { name: "Senior FO", min: 100 },
+        { name: "Captain", min: 250 },
+        { name: "Senior Captain", min: 500 },
+        { name: "Commander", min: 750 },
+        { name: "Emerald", min: 1000 },
+        { name: "Diamond", min: 1500 },
+        { name: "Sapphire", min: 2500 }
+    ];
+
+    // Bir sonraki rütbeyi ve mevcut seviyeyi bul
+    let nextRank = rankTiers.find(tier => tier.min > currentHours);
+    let currentRank = pilotData.rank || "Cadet";
+
+    // Metinleri Güncelle
+    const statRankEl = document.getElementById('statRank');
+    const statHoursEl = document.getElementById('statHours');
+    if(statRankEl) statRankEl.innerText = currentRank;
+    if(statHoursEl) statHoursEl.innerText = currentHours.toFixed(1) + "h";
+    
+    const nextRankLabel = document.getElementById('nextRankLabel');
+    const hoursRemaining = document.getElementById('hoursRemaining');
+    const statsProgressBar = document.getElementById('statsProgressBar');
+
+    if (nextRank) {
+        // İlerleme yüzdesini hesapla
+        let prevTier = rankTiers.slice().reverse().find(tier => tier.min <= currentHours) || rankTiers[0];
+        let range = nextRank.min - prevTier.min;
+        let earnedInTier = currentHours - prevTier.min;
+        let progress = (earnedInTier / range) * 100;
+        let remaining = nextRank.min - currentHours;
+
+        if(nextRankLabel) nextRankLabel.innerText = "Next Rank: " + nextRank.name;
+        if(hoursRemaining) hoursRemaining.innerText = remaining.toFixed(1) + "h left";
+        if(statsProgressBar) statsProgressBar.style.width = Math.min(progress, 100) + "%";
+    } else {
+        // En son rütbeye ulaşıldıysa
+        if(nextRankLabel) nextRankLabel.innerText = "Ultimate Rank Reached!";
+        if(hoursRemaining) hoursRemaining.innerText = "Max Level";
+        if(statsProgressBar) statsProgressBar.style.width = "100%";
+    }
+
+    statsCard.style.display = 'block'; // Kartı görünür yap
 };
 
 // --- ADMIN SİSTEMİ ---
