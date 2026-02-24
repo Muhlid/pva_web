@@ -260,3 +260,60 @@ main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
     color: #fff !important;
     border: 1px solid #555 !important;
 }
+/* ========================================= */
+/* --- ELİT RÜTBE (PRESTİJ) NEON PARILTILARI --- */
+/* ========================================= */
+
+/* Kartların yukarı doğru yumuşak ve estetik kalkması için */
+.rank-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* 🟢 EMERALD (Zümrüt Yeşili) */
+.rank-emerald {
+    border: 2px solid rgba(80, 200, 120, 0.4) !important;
+    box-shadow: 0 0 10px rgba(80, 200, 120, 0.1) !important;
+}
+.rank-emerald:hover {
+    transform: translateY(-12px) scale(1.03) !important;
+    border-color: #50C878 !important;
+    box-shadow: 0 0 30px rgba(80, 200, 120, 0.7), 0 0 15px rgba(80, 200, 120, 0.5) inset !important;
+    z-index: 10;
+}
+
+/* 💎 DIAMOND (Elmas Mavisi/Beyazı) */
+.rank-diamond {
+    border: 2px solid rgba(0, 229, 255, 0.4) !important;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.1) !important;
+}
+.rank-diamond:hover {
+    transform: translateY(-12px) scale(1.03) !important;
+    border-color: #00e5ff !important;
+    box-shadow: 0 0 35px rgba(0, 229, 255, 0.8), 0 0 15px rgba(0, 229, 255, 0.6) inset !important;
+    z-index: 10;
+}
+
+/* 🔵 SAPPHIRE (Safir Mavisi) */
+.rank-sapphire {
+    border: 2px solid rgba(15, 82, 186, 0.4) !important;
+    box-shadow: 0 0 10px rgba(15, 82, 186, 0.1) !important;
+}
+.rank-sapphire:hover {
+    transform: translateY(-12px) scale(1.03) !important;
+    border-color: #0F52BA !important;
+    box-shadow: 0 0 35px rgba(15, 82, 186, 0.8), 0 0 15px rgba(15, 82, 186, 0.6) inset !important;
+    z-index: 10;
+}
+
+/* 👑 ELITE FALCON (Saf Altın - En Üst Seviye) */
+.rank-falcon {
+    border: 2px solid rgba(212, 175, 55, 0.5) !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2) !important;
+    background: linear-gradient(145deg, #ffffff, #fffdf2) !important; /* Arka plana çok hafif altın dokusu */
+}
+.rank-falcon:hover {
+    transform: translateY(-12px) scale(1.05) !important; /* Diğerlerinden biraz daha fazla büyür */
+    border-color: var(--pva-gold) !important;
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.9), 0 0 20px rgba(212, 175, 55, 0.6) inset !important;
+    z-index: 10;
+}
