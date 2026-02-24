@@ -490,17 +490,18 @@
         
         <section id="gallery" class="hidden-section page-section">
             <h1 class="page-title">Flight Gallery</h1>
-            <p style="text-align:center; color:#555; margin-bottom:40px;">Moments captured by our talented pilots above the skies.</p>
-            <div class="gallery-grid">
-                <div class="gallery-item full-width" onclick="openLightbox('https://i.ibb.co/Tx5zZBgn/file-00000000fbc471fa95bd1e081298a296.png')"><img src="https://i.ibb.co/Tx5zZBgn/file-00000000fbc471fa95bd1e081298a296.png"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg')"><img src="https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg')"><img src="https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg')"><img src="https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg')"><img src="https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/MDt3D4R1/Screenshot-20260114-151017.jpg')"><img src="https://i.ibb.co/MDt3D4R1/Screenshot-20260114-151017.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg')"><img src="https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg"></div>
-                <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg')"><img src="https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg"></div>
+            <p style="text-align:center; color:#555; margin-bottom:20px;">Moments captured by our talented pilots above the skies.</p>
+
+            <div id="pilotPhotoSubmitArea" style="display:none; max-width: 600px; margin: 0 auto 40px; background: white; padding: 20px; border-radius: 10px; border-top: 3px solid var(--pva-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left;">
+                <h3 style="color:var(--pva-green); margin-top:0; border-bottom: 1px solid #eee; padding-bottom: 10px;"><i class="fas fa-camera"></i> Submit Your Flight Photo</h3>
+                <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Upload your image to ImgBB or Discord and paste the direct image link here.</p>
+                <input type="text" id="photoUrlInput" class="admin-input" placeholder="Image URL (e.g. https://i.ibb.co/...)">
+                <input type="text" id="photoCaptionInput" class="admin-input" placeholder="Short Caption (e.g. Cruising over the Himalayas)">
+                <button class="btn-primary" onclick="submitPilotPhoto()" style="background:var(--pva-gold); color:black; width:100%; border:none; font-weight:800;">SEND TO STAFF FOR APPROVAL</button>
             </div>
+
+            <div class="gallery-grid" id="live-gallery-grid">
+                </div>
         </section>
 
         <section id="news" class="hidden-section page-section">
@@ -576,16 +577,23 @@
 
             <div id="adminControlPanel" style="display:none;">
                 
-                <div style="display:flex; gap:10px; justify-content:center; margin-bottom: 20px; border-bottom:2px solid #eee; padding-bottom:15px;">
-                    <button onclick="switchAdminTab('pending')" style="background:var(--pva-gold); color:#000; font-weight:800; border:none; padding:10px; border-radius:5px; cursor:pointer; flex:1;"><i class="fas fa-user-clock"></i> PENDING</button>
-                    <button onclick="switchAdminTab('event')" style="background:var(--pva-green); color:#fff; font-weight:800; border:none; padding:10px; border-radius:5px; cursor:pointer; flex:1;"><i class="fas fa-calendar-alt"></i> EVENTS</button>
-                    <button onclick="switchAdminTab('news')" style="background:var(--pva-green); color:#fff; font-weight:800; border:none; padding:10px; border-radius:5px; cursor:pointer; flex:1;"><i class="fas fa-newspaper"></i> NEWS</button>
+                <div style="display:flex; gap:10px; justify-content:center; margin-bottom: 20px; border-bottom:2px solid #eee; padding-bottom:15px; flex-wrap:wrap;">
+                    <button onclick="switchAdminTab('pending')" style="background:var(--pva-gold); color:#000; font-weight:800; border:none; padding:10px; border-radius:5px; cursor:pointer; flex:1; min-width:100px;"><i class="fas fa-user-clock"></i> PENDING</button>
+                    <button onclick="switchAdminTab('event')" style="background:var(--pva-green); color:#fff; font-weight:800; border:none; padding:10px; border-radius:5px; cursor:pointer; flex:1; min-width:100px;"><i class="fas fa-calendar-alt"></i> EVENTS</button>
+                    <button onclick="switchAdminTab('news')" style="background:var(--pva-green); color:#fff; font-weight:800; border:none; padding:10px; border-radius:5px; cursor:pointer; flex:1; min-width:100px;"><i class="fas fa-newspaper"></i> NEWS</button>
+                    <button onclick="switchAdminTab('gallery')" style="background:var(--pva-gold); color:#000; font-weight:800; border:none; padding:10px; border-radius:5px; cursor:pointer; flex:1; min-width:100px;"><i class="fas fa-images"></i> PHOTOS</button>
                 </div>
 
                 <div id="pendingPilotsArea" style="display:none;">
                     <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-check"></i> WAITING ROOM</h3>
                     <p style="text-align:center; font-size:0.85rem; color:#666;">Pilots waiting for your approval.</p>
                     <div id="pending-list" style="margin-top:15px; max-height: 300px; overflow-y: auto;"></div>
+                </div>
+
+                <div id="pendingGalleryArea" style="display:none;">
+                    <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-camera-retro"></i> PHOTO APPROVAL</h3>
+                    <p style="text-align:center; font-size:0.85rem; color:#666;">Flight photos submitted by pilots.</p>
+                    <div id="pending-gallery-list" style="margin-top:15px; max-height: 300px; overflow-y: auto;"></div>
                 </div>
 
                 <div id="addEventArea" style="display:none;">
