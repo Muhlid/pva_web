@@ -393,13 +393,19 @@
                 </p>
             </div>
 
+            <div style="max-width: 1000px; margin: 0 auto 15px; position: relative;">
+                <i class="fas fa-search" style="position: absolute; left: 15px; top: 14px; color: var(--pva-green); font-size: 1.2rem;"></i>
+                <input type="text" id="rosterSearch" onkeyup="filterRoster()" class="admin-input" placeholder="Search pilots by Callsign, Name, Discord or Rank..." style="padding-left: 45px; border: 2px solid var(--pva-gold); border-radius: 8px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 0;">
+            </div>
+
             <div class="table-responsive" style="max-width: 1000px; margin: 0 auto; background: white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); padding:20px;">
                <table class="staff-table" style="width: 100%; border-collapse: collapse;">
                     <thead>
                         <tr style="background: var(--pva-green); color: white;">
                             <th style="padding:15px; text-align:left;">Callsign</th>
                             <th style="padding:15px; text-align:left;">IFC Name</th>
-                            <th style="padding:15px; text-align:left;">Discord</th> <th style="padding:15px; text-align:left;">Rank</th>
+                            <th style="padding:15px; text-align:left;">Discord</th> 
+                            <th style="padding:15px; text-align:left;">Rank</th>
                             <th style="padding:15px; text-align:left;">Flight Hours</th>
                         </tr>
                     </thead>
