@@ -51,7 +51,7 @@
                 <li id="navPilotProfile" class="dropdown" style="display:none; align-items:center;">
                     <a style="cursor: pointer; color:var(--pva-gold); font-weight:800;"><i class="fas fa-user-astronaut"></i> <span id="displayPilotName">PVA000</span></a>
                     <div class="dropdown-content">
-                        <a style="cursor: pointer;" onclick="navigate('pilots')">Roster</a>
+                        <a style="cursor: pointer;" onclick="navigate('pilots')">Roster & Stats</a>
                         <a style="cursor: pointer; color: red;" onclick="pilotLogout()">Logout</a>
                     </div>
                 </li>
@@ -167,122 +167,122 @@
             </div>
         </section>
 
-       <section id="fleet" class="hidden-section page-section">
-    <h1 class="page-title">The PVA Fleet</h1>
-    <p class="subtitle">Legendary wings of PIA's heritage and modern giants of the global skies.</p>
-    
-    <div class="fleet-grid">
-        <div class="clean-card fleet-card">
-            <img src="https://i.ibb.co/Y7hBxvXF/79542be6-2408-4066-9f6d-e5d240ce52fa-1746209209.png">
-            <div class="card-body">
-                <h3>Airbus A320-200</h3>
-                <p class="card-meta">M 0.78 | 3,300nm | 180 Pax</p>
-                <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
-                    <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 2014 (Narrow-body Modernisation)</p>
-                    <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
-                    <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
-                        <div style="background: var(--pva-green); height: 100%; width: 38%; border-radius: 4px;"></div>
+        <section id="fleet" class="hidden-section page-section">
+            <h1 class="page-title">The PVA Fleet</h1>
+            <p class="subtitle">Legendary wings of PIA's heritage and modern giants of the global skies.</p>
+            
+            <div class="fleet-grid">
+                <div class="clean-card fleet-card">
+                    <img src="https://i.ibb.co/Y7hBxvXF/79542be6-2408-4066-9f6d-e5d240ce52fa-1746209209.png">
+                    <div class="card-body">
+                        <h3>Airbus A320-200</h3>
+                        <p class="card-meta">M 0.78 | 3,300nm | 180 Pax</p>
+                        <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+                            <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 2014 (Narrow-body Modernisation)</p>
+                            <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
+                            <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
+                                <div style="background: var(--pva-green); height: 100%; width: 38%; border-radius: 4px;"></div>
+                            </div>
+                            <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
+                                <strong>Heritage:</strong> Joined in 2014 to modernize the short-haul fleet. It's the backbone for domestic routes like Gilgit and Skardu.
+                            </p>
+                        </div>
                     </div>
-                    <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
-                        <strong>Heritage:</strong> Joined in 2014 to modernize the short-haul fleet. It's the backbone for domestic routes like Gilgit and Skardu.
-                    </p>
+                </div>
+
+                <div class="clean-card fleet-card">
+                    <img src="https://i.ibb.co/zT9WNhRW/6d6e6762-00b7-49eb-bb22-076e4e1ccfe7-1746211026.png">
+                    <div class="card-body">
+                        <h3>Boeing 777-200ER</h3>
+                        <p class="card-meta">M 0.84 | 7,065nm | 313 Pax</p>
+                        <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+                            <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 2004 (First 777 Delivery)</p>
+                            <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
+                            <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
+                                <div style="background: var(--pva-green); height: 100%; width: 82%; border-radius: 4px;"></div>
+                            </div>
+                            <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
+                                <strong>Heritage:</strong> Delivered in 2004, these jets revolutionized long-haul comfort on prime routes to London and Manchester.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clean-card fleet-card" style="border: 2px solid var(--pva-gold);">
+                    <img src="https://i.ibb.co/SXGc18Lf/0540ce4a-6b0f-4515-a5a1-67f3df2da594-1746211058.png">
+                    <div class="card-body">
+                        <h3>Boeing 777-200LR</h3>
+                        <p class="card-meta">M 0.84 | 8,555nm | 317 Pax</p>
+                        <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+                            <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 2006 (Worldliner Launch Customer)</p>
+                            <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
+                            <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
+                                <div style="background: #D4AF37; height: 100%; width: 100%; border-radius: 4px;"></div>
+                            </div>
+                            <p style="font-size: 0.75rem; color: #444; background: #fff9e6; padding: 8px; border-radius: 4px; font-style: italic; border: 1px solid var(--pva-gold);">
+                                <strong>Pride of Pakistan:</strong> PIA was the world's FIRST airline to fly the 777-200LR, enabling non-stop flights from Karachi to Toronto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clean-card fleet-card">
+                    <img src="https://i.ibb.co/ZRV2dD6k/67bf7950-906b-4b6d-abb5-73742cedb079-1746211058.png">
+                    <div class="card-body">
+                        <h3>Boeing 777-300ER</h3>
+                        <p class="card-meta">M 0.84 | 7,370nm | 396 Pax</p>
+                        <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+                            <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 2006 (The Flagship Fleet)</p>
+                            <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
+                            <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
+                                <div style="background: var(--pva-green); height: 100%; width: 85%; border-radius: 4px;"></div>
+                            </div>
+                            <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
+                                <strong>Heritage:</strong> The flagship of the fleet, known for its massive capacity. It's the primary choice for heavy Hajj operations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clean-card fleet-card">
+                    <img src="https://i.ibb.co/pB89HPWz/165d2710-b06c-4a4a-a70e-9b49c488d0a7-1746211078.png">
+                    <div class="card-body">
+                        <h3>Boeing 747-200 (Classic)</h3>
+                        <p class="card-meta">M 0.84 | 6,850nm | 452 Pax</p>
+                        <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+                            <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 1976 (The Golden Era)</p>
+                            <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
+                            <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
+                                <div style="background: var(--pva-green); height: 100%; width: 78%; border-radius: 4px;"></div>
+                            </div>
+                            <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
+                                <strong>Heritage:</strong> A true legend from the '70s. PIA was one of the few modern airlines to fly the Queen of the Skies at that time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clean-card fleet-card">
+                    <img src="https://i.ibb.co/pBKwsn5n/67e33b4f-b2db-44fc-82be-93e5da157666-1746211107.png">
+                    <div class="card-body">
+                        <h3>McDonnell DC-10</h3>
+                        <p class="card-meta">M 0.82 | 5,200nm | 380 Pax</p>
+                        <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
+                            <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 1974 (First Wide-body Jet)</p>
+                            <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
+                            <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
+                                <div style="background: var(--pva-green); height: 100%; width: 60%; border-radius: 4px;"></div>
+                            </div>
+                            <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
+                                <strong>Heritage:</strong> The first wide-body jet in PIA's history, opening the doors to prestigious routes like Paris, Amsterdam, and New York.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="clean-card fleet-card">
-            <img src="https://i.ibb.co/zT9WNhRW/6d6e6762-00b7-49eb-bb22-076e4e1ccfe7-1746211026.png">
-            <div class="card-body">
-                <h3>Boeing 777-200ER</h3>
-                <p class="card-meta">M 0.84 | 7,065nm | 313 Pax</p>
-                <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
-                    <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 2004 (First 777 Delivery)</p>
-                    <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
-                    <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
-                        <div style="background: var(--pva-green); height: 100%; width: 82%; border-radius: 4px;"></div>
-                    </div>
-                    <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
-                        <strong>Heritage:</strong> Delivered in 2004, these jets revolutionized long-haul comfort on prime routes to London and Manchester.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="clean-card fleet-card" style="border: 2px solid var(--pva-gold);">
-            <img src="https://i.ibb.co/SXGc18Lf/0540ce4a-6b0f-4515-a5a1-67f3df2da594-1746211058.png">
-            <div class="card-body">
-                <h3>Boeing 777-200LR</h3>
-                <p class="card-meta">M 0.84 | 8,555nm | 317 Pax</p>
-                <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
-                    <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 2006 (Worldliner Launch Customer)</p>
-                    <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
-                    <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
-                        <div style="background: #D4AF37; height: 100%; width: 100%; border-radius: 4px;"></div>
-                    </div>
-                    <p style="font-size: 0.75rem; color: #444; background: #fff9e6; padding: 8px; border-radius: 4px; font-style: italic; border: 1px solid var(--pva-gold);">
-                        <strong>Pride of Pakistan:</strong> PIA was the world's FIRST airline to fly the 777-200LR, enabling non-stop flights from Karachi to Toronto.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="clean-card fleet-card">
-            <img src="https://i.ibb.co/ZRV2dD6k/67bf7950-906b-4b6d-abb5-73742cedb079-1746211058.png">
-            <div class="card-body">
-                <h3>Boeing 777-300ER</h3>
-                <p class="card-meta">M 0.84 | 7,370nm | 396 Pax</p>
-                <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
-                    <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 2006 (The Flagship Fleet)</p>
-                    <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
-                    <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
-                        <div style="background: var(--pva-green); height: 100%; width: 85%; border-radius: 4px;"></div>
-                    </div>
-                    <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
-                        <strong>Heritage:</strong> The flagship of the fleet, known for its massive capacity. It's the primary choice for heavy Hajj operations.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="clean-card fleet-card">
-            <img src="https://i.ibb.co/pB89HPWz/165d2710-b06c-4a4a-a70e-9b49c488d0a7-1746211078.png">
-            <div class="card-body">
-                <h3>Boeing 747-200 (Classic)</h3>
-                <p class="card-meta">M 0.84 | 6,850nm | 452 Pax</p>
-                <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
-                    <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 1976 (The Golden Era)</p>
-                    <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
-                    <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
-                        <div style="background: var(--pva-green); height: 100%; width: 78%; border-radius: 4px;"></div>
-                    </div>
-                    <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
-                        <strong>Heritage:</strong> A true legend from the '70s. PIA was one of the few modern airlines to fly the Queen of the Skies at that time.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="clean-card fleet-card">
-            <img src="https://i.ibb.co/pBKwsn5n/67e33b4f-b2db-44fc-82be-93e5da157666-1746211107.png">
-            <div class="card-body">
-                <h3>McDonnell DC-10</h3>
-                <p class="card-meta">M 0.82 | 5,200nm | 380 Pax</p>
-                <div class="fleet-details" style="text-align: left; font-size: 0.85rem; border-top: 1px solid #eee; margin-top: 10px; padding-top: 10px;">
-                    <p><strong><i class="fas fa-calendar-alt"></i> PIA Entry:</strong> 1974 (First Wide-body Jet)</p>
-                    <p><strong><i class="fas fa-route"></i> Range Capability:</strong></p>
-                    <div style="background: #eee; height: 8px; border-radius: 4px; width: 100%; margin-bottom:10px;">
-                        <div style="background: var(--pva-green); height: 100%; width: 60%; border-radius: 4px;"></div>
-                    </div>
-                    <p style="font-size: 0.75rem; color: #555; background: #f0f4f2; padding: 8px; border-radius: 4px; font-style: italic;">
-                        <strong>Heritage:</strong> The first wide-body jet in PIA's history, opening the doors to prestigious routes like Paris, Amsterdam, and New York.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-         <section id="destinations" class="hidden-section page-section">
+        <section id="destinations" class="hidden-section page-section">
             <h1 class="page-title">Flight Network</h1>
             <p style="text-align:center; color:#555; margin-bottom:40px;">Explore our vast domestic and international route network.</p>
             <div class="dest-wrapper" style="text-align: left;">
@@ -354,9 +354,45 @@
         <section id="pilots" class="hidden-section page-section">
             <h1 class="page-title">PVA Roster</h1>
             <p style="text-align:center; color:#555; margin-bottom:20px;">Official roster of active Pakistan Virtual Airlines Pilots.</p>
+            
             <div style="text-align: right; max-width: 1000px; margin: 0 auto 15px;">
                 <button id="addPilotBtn" class="btn-primary" style="display:none; background:var(--pva-green);" onclick="openPilotRegisterModal()"><i class="fas fa-user-plus"></i> Register Profile</button>
             </div>
+
+            <div id="pilotStatsCard" style="display:none; max-width: 1000px; margin: 0 auto 30px; background: #1a1a1a; border-radius: 12px; padding: 25px; border: 1px solid var(--pva-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: var(--pva-gold); margin: 0; text-transform: uppercase; letter-spacing: 2px;"><i class="fas fa-id-card"></i> Pilot Performance Card</h3>
+                    <p style="font-size: 0.85rem; color: #888; margin-top: 5px;">
+                        <i class="fas fa-sync-alt"></i> Data synchronized with <strong>ATLAS System</strong>
+                    </p>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 0 20px;">
+                    <div>
+                        <span style="color: #aaa; font-size: 0.9rem;">Current Rank</span><br>
+                        <strong id="statRank" style="color: #fff; font-size: 1.4rem;">-</strong>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="color: #aaa; font-size: 0.9rem;">Total Flight Hours</span><br>
+                        <strong id="statHours" style="color: var(--pva-gold); font-size: 1.4rem;">0.00h</strong>
+                    </div>
+                </div>
+
+                <div style="padding: 0 20px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #fff; margin-bottom: 8px;">
+                        <span id="nextRankLabel">Next Rank: -</span>
+                        <span id="hoursRemaining" style="color:var(--pva-gold); font-weight:bold;">0h left</span>
+                    </div>
+                    <div style="background: #333; height: 16px; border-radius: 8px; width: 100%; overflow: hidden; border: 1px solid #555;">
+                        <div id="statsProgressBar" style="background: linear-gradient(90deg, var(--pva-green), var(--pva-gold)); height: 100%; width: 0%; transition: width 1s ease-in-out;"></div>
+                    </div>
+                </div>
+                
+                <p style="font-size: 0.75rem; color: #666; font-style: italic; text-align: center; border-top: 1px solid #333; padding-top: 15px; margin-top: 20px;">
+                    Note: Flight hours are manually verified and updated by Staff via ATLAS.
+                </p>
+            </div>
+
             <div class="table-responsive" style="max-width: 1000px; margin: 0 auto; background: white; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); padding:20px;">
                <table class="staff-table" style="width: 100%; border-collapse: collapse;">
                     <thead>
@@ -594,40 +630,6 @@
                 <button class="btn-primary" onclick="pilotLogin()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
                 <button class="btn-outline" onclick="resetPilotModal()" style="width:100%; margin-top:10px; border:none; color:#888;">Back</button>
             </div>
-
-            <div id="pilotStatsCard" style="display:none; background: #222; border-radius: 12px; padding: 20px; margin-top: 15px; border: 1px solid var(--pva-gold);">
-    <div style="text-align: center; margin-bottom: 15px;">
-        <h4 style="color: var(--pva-gold); margin: 0; text-transform: uppercase; letter-spacing: 1px;">Pilot Performance Card</h4>
-        <p style="font-size: 0.7rem; color: #888; margin-top: 5px;">
-            <i class="fas fa-sync-alt"></i> Data synchronized with <strong>ATLAS System</strong>
-        </p>
-    </div>
-
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-        <div>
-            <span style="color: #aaa; font-size: 0.8rem;">Current Rank</span><br>
-            <strong id="statRank" style="color: #fff; font-size: 1.1rem;">-</strong>
-        </div>
-        <div style="text-align: right;">
-            <span style="color: #aaa; font-size: 0.8rem;">Total Flight Hours</span><br>
-            <strong id="statHours" style="color: var(--pva-gold); font-size: 1.1rem;">0.00h</strong>
-        </div>
-    </div>
-
-    <div style="margin-bottom: 10px;">
-        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #fff; margin-bottom: 5px;">
-            <span id="nextRankLabel">Next Rank: -</span>
-            <span id="hoursRemaining">0h left</span>
-        </div>
-        <div style="background: #444; height: 12px; border-radius: 6px; width: 100%; overflow: hidden; border: 1px solid #555;">
-            <div id="statsProgressBar" style="background: linear-gradient(90deg, var(--pva-green), var(--pva-gold)); height: 100%; width: 0%; transition: width 1s ease-in-out;"></div>
-        </div>
-    </div>
-    
-    <p style="font-size: 0.65rem; color: #666; font-style: italic; text-align: center; border-top: 1px solid #333; padding-top: 10px;">
-        Note: Flight hours are manually verified and updated by Staff via ATLAS.
-    </p>
-</div>
             
             <div id="pilotRegisterArea" style="display:none;">
                 <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-plus"></i> NEW ENROLLMENT</h3>
