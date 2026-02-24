@@ -643,3 +643,36 @@ document.addEventListener('DOMContentLoaded', () => {
     loadHomePreviews();
     updateNavbarUI();
 });
+// =========================================
+// --- AKILLI PİLOT ARAMA MOTORU ---
+// =========================================
+
+window.filterRoster = function() {
+    const input = document.getElementById("rosterSearch");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("pilot-roster-body");
+    const tr = table.getElementsByTagName("tr");
+
+    // Tüm satırları (tr) döngüye al
+    for (let i = 0; i < tr.length; i++) {
+        let tds = tr[i].getElementsByTagName("td");
+        
+        // Eğer satırda veri (td) varsa kontrol et (Boş/Yükleniyor satırlarını geç)
+        if (tds.length > 0) {
+            let matchFound = false;
+            
+            // O satırdaki tüm sütunları (Callsign, Name, Rank vb.) kontrol et
+            for (let j = 0; j < tds.length; j++) {
+                if (tds[j]) {
+                    let txtValue = tds[j].textContent || tds[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        matchFound = true;
+                        break; // Kelime bulunduysa diğer sütunlara bakmaya gerek yok
+                    }
+                }
+            }
+            // Kelime bulunduysa satırı göster, bulunamadıysa gizle
+            tr[i].style.display = matchFound ? "" : "none";
+        }
+    }
+};
