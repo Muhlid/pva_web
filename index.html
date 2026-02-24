@@ -594,6 +594,40 @@
                 <button class="btn-primary" onclick="pilotLogin()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
                 <button class="btn-outline" onclick="resetPilotModal()" style="width:100%; margin-top:10px; border:none; color:#888;">Back</button>
             </div>
+
+            <div id="pilotStatsCard" style="display:none; background: #222; border-radius: 12px; padding: 20px; margin-top: 15px; border: 1px solid var(--pva-gold);">
+    <div style="text-align: center; margin-bottom: 15px;">
+        <h4 style="color: var(--pva-gold); margin: 0; text-transform: uppercase; letter-spacing: 1px;">Pilot Performance Card</h4>
+        <p style="font-size: 0.7rem; color: #888; margin-top: 5px;">
+            <i class="fas fa-sync-alt"></i> Data synchronized with <strong>ATLAS System</strong>
+        </p>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <div>
+            <span style="color: #aaa; font-size: 0.8rem;">Current Rank</span><br>
+            <strong id="statRank" style="color: #fff; font-size: 1.1rem;">-</strong>
+        </div>
+        <div style="text-align: right;">
+            <span style="color: #aaa; font-size: 0.8rem;">Total Flight Hours</span><br>
+            <strong id="statHours" style="color: var(--pva-gold); font-size: 1.1rem;">0.00h</strong>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #fff; margin-bottom: 5px;">
+            <span id="nextRankLabel">Next Rank: -</span>
+            <span id="hoursRemaining">0h left</span>
+        </div>
+        <div style="background: #444; height: 12px; border-radius: 6px; width: 100%; overflow: hidden; border: 1px solid #555;">
+            <div id="statsProgressBar" style="background: linear-gradient(90deg, var(--pva-green), var(--pva-gold)); height: 100%; width: 0%; transition: width 1s ease-in-out;"></div>
+        </div>
+    </div>
+    
+    <p style="font-size: 0.65rem; color: #666; font-style: italic; text-align: center; border-top: 1px solid #333; padding-top: 10px;">
+        Note: Flight hours are manually verified and updated by Staff via ATLAS.
+    </p>
+</div>
             
             <div id="pilotRegisterArea" style="display:none;">
                 <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-plus"></i> NEW ENROLLMENT</h3>
