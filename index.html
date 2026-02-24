@@ -11,7 +11,7 @@
 </head>
 <body>
     
-        <nav class="top-navbar">
+    <nav class="top-navbar">
         <div class="nav-container">
             <div class="nav-logo" onclick="navigate('home')" style="cursor:pointer;">
                 <img src="https://i.ibb.co/mVTDxrzD/image-1.png" alt="PVA Logo">
@@ -20,43 +20,43 @@
             
             <ul class="nav-links">
                 <li class="dropdown">
-                    <a href="javascript:void(0)">About us <i class="fas fa-angle-down"></i></a>
+                    <a style="cursor: pointer;">About us <i class="fas fa-angle-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="javascript:void(0)" onclick="navigate('about')">Our Hubs</a>
-                        <a href="javascript:void(0)" onclick="navigate('staff')">Staff Team</a>
+                        <a style="cursor: pointer;" onclick="navigate('about')">Our Hubs</a>
+                        <a style="cursor: pointer;" onclick="navigate('staff')">Staff Team</a>
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="javascript:void(0)">Operations <i class="fas fa-angle-down"></i></a>
+                    <a style="cursor: pointer;">Operations <i class="fas fa-angle-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="javascript:void(0)" onclick="navigate('fleet')">Our Fleet</a>
-                        <a href="javascript:void(0)" onclick="navigate('ranks')">Pilot Ranks</a>
-                        <a href="javascript:void(0)" onclick="navigate('destinations')">Destinations</a>
-                        <a href="javascript:void(0)" onclick="navigate('radar')">Live Radar</a>
+                        <a style="cursor: pointer;" onclick="navigate('fleet')">Our Fleet</a>
+                        <a style="cursor: pointer;" onclick="navigate('ranks')">Pilot Ranks</a>
+                        <a style="cursor: pointer;" onclick="navigate('destinations')">Destinations</a>
+                        <a style="cursor: pointer;" onclick="navigate('radar')">Live Radar</a>
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="javascript:void(0)">Public <i class="fas fa-angle-down"></i></a>
+                    <a style="cursor: pointer;">Public <i class="fas fa-angle-down"></i></a>
                     <div class="dropdown-content">
-                        <a href="javascript:void(0)" onclick="navigate('events')">Events</a>
-                        <a href="javascript:void(0)" onclick="navigate('news')">News</a>
-                        <a href="javascript:void(0)" onclick="navigate('gallery')">Gallery</a>
+                        <a style="cursor: pointer;" onclick="navigate('events')">Events</a>
+                        <a style="cursor: pointer;" onclick="navigate('news')">News</a>
+                        <a style="cursor: pointer;" onclick="navigate('gallery')">Gallery</a>
                     </div>
                 </li>
                 
-                <li style="display:flex; align-items:center;"><a href="javascript:void(0)" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
+                <li style="display:flex; align-items:center;"><a style="cursor: pointer;" onclick="navigate('apply')" class="nav-apply-btn">APPLY</a></li>
                 
-                <li id="navPilotLoginBtn" style="display:flex; align-items:center;"><a href="javascript:void(0)" onclick="openPilotModal()" class="nav-pilot-btn"><i class="fas fa-plane"></i> PILOT LOGIN</a></li>
+                <li id="navPilotLoginBtn" style="display:flex; align-items:center;"><a style="cursor: pointer;" onclick="openPilotModal()" class="nav-pilot-btn"><i class="fas fa-plane"></i> PILOT LOGIN</a></li>
                 
                 <li id="navPilotProfile" class="dropdown" style="display:none; align-items:center;">
-                    <a href="javascript:void(0)" style="color:var(--pva-gold); font-weight:800;"><i class="fas fa-user-astronaut"></i> <span id="displayPilotName">PVA000</span></a>
+                    <a style="cursor: pointer; color:var(--pva-gold); font-weight:800;"><i class="fas fa-user-astronaut"></i> <span id="displayPilotName">PVA000</span></a>
                     <div class="dropdown-content">
-                        <a href="javascript:void(0)" onclick="navigate('pilots')">Roster</a>
-                        <a href="javascript:void(0)" onclick="pilotLogout()" style="color: red;">Logout</a>
+                        <a style="cursor: pointer;" onclick="navigate('pilots')">Roster</a>
+                        <a style="cursor: pointer; color: red;" onclick="pilotLogout()">Logout</a>
                     </div>
                 </li>
 
-                <li style="display:flex; align-items:center;"><a href="javascript:void(0)" onclick="openAdminModal('all')" class="nav-login-btn"><i class="fas fa-lock"></i> ADMIN</a></li>
+                <li style="display:flex; align-items:center;"><a style="cursor: pointer;" onclick="openAdminModal('all')" class="nav-login-btn"><i class="fas fa-lock"></i> ADMIN</a></li>
             </ul>
 
             <div class="hamburger" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
@@ -69,19 +69,19 @@
             <span style="color:var(--pva-green);">MENU</span>
             <span class="close-mobile" onclick="toggleMobileMenu()">&times;</span>
         </div>
-        <a href="javascript:void(0)" onclick="navigate('home')">Home</a>
-        <a href="javascript:void(0)" onclick="navigate('about')">Hubs & About Us</a>
-        <a href="javascript:void(0)" onclick="navigate('fleet')">Fleet</a>
-        <a href="javascript:void(0)" onclick="navigate('ranks')">Ranks</a>
-        <a href="javascript:void(0)" onclick="navigate('destinations')">Destinations</a>
-        <a href="javascript:void(0)" onclick="navigate('events')">Events</a>
-        <a href="javascript:void(0)" onclick="navigate('news')">News</a>
-        <a href="javascript:void(0)" onclick="navigate('radar')">Live Radar</a>
-        <a href="javascript:void(0)" onclick="navigate('gallery')">Gallery</a>
-        <a href="javascript:void(0)" onclick="navigate('staff')">Staff</a>
-        <a href="javascript:void(0)" onclick="navigate('apply')">Apply Now</a>
-        <a href="javascript:void(0)" onclick="openPilotModal()" style="color:var(--pva-gold); font-weight:bold;"><i class="fas fa-key"></i> Pilot Login</a>
-        <a href="javascript:void(0)" onclick="openAdminModal('all')" style="color:var(--pva-green); font-weight:bold;"><i class="fas fa-lock"></i> Admin Login</a>
+        <a style="cursor: pointer;" onclick="navigate('home')">Home</a>
+        <a style="cursor: pointer;" onclick="navigate('about')">Hubs & About Us</a>
+        <a style="cursor: pointer;" onclick="navigate('fleet')">Fleet</a>
+        <a style="cursor: pointer;" onclick="navigate('ranks')">Ranks</a>
+        <a style="cursor: pointer;" onclick="navigate('destinations')">Destinations</a>
+        <a style="cursor: pointer;" onclick="navigate('events')">Events</a>
+        <a style="cursor: pointer;" onclick="navigate('news')">News</a>
+        <a style="cursor: pointer;" onclick="navigate('radar')">Live Radar</a>
+        <a style="cursor: pointer;" onclick="navigate('gallery')">Gallery</a>
+        <a style="cursor: pointer;" onclick="navigate('staff')">Staff</a>
+        <a style="cursor: pointer;" onclick="navigate('apply')">Apply Now</a>
+        <a style="cursor: pointer; color:var(--pva-gold); font-weight:bold;" onclick="openPilotModal()"><i class="fas fa-key"></i> Pilot Login</a>
+        <a style="cursor: pointer; color:var(--pva-green); font-weight:bold;" onclick="openAdminModal('all')"><i class="fas fa-lock"></i> Admin Login</a>
     </div>
 
     <main id="main-container">
@@ -246,7 +246,7 @@
                     </div>
                 </div>
             </div>
-                </section>
+        </section>
 
         <section id="pilots" class="hidden-section page-section">
             <h1 class="page-title">PVA Roster</h1>
@@ -265,12 +265,12 @@
                         </tr>
                     </thead>
                     <tbody id="pilot-roster-body">
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
         </section>
 
-                      <section id="staff" class="hidden-section page-section">
+        <section id="staff" class="hidden-section page-section">
             <h1 class="page-title">Leadership & Staff</h1>
             <p style="text-align:center; color:#555; margin-bottom:40px;">Meet the dedicated team behind Pakistan Virtual Airlines.</p>
 
@@ -305,13 +305,6 @@
             <h2 style="color:var(--pva-green); border-bottom:2px solid var(--pva-gold); padding-bottom:10px; margin-top:50px; margin-bottom:30px;"><i class="fas fa-users-cog"></i> Management Team</h2>
             
             <div class="staff-grid">
-                <div class="staff-card clean-card">
-                    <img src="https://i.ibb.co/JjcDzw7s/1365813-2.jpg" class="staff-avatar" alt="Muhlis" loading="lazy" decoding="async">
-                    <h3>Muhlis</h3>
-                    <h4>Digital Manager (PVA007)</h4>
-                    <p class="staff-desc">"Leading our digital evolution by developing cutting-edge web systems and managing the airline's technological infrastructure to provide a seamless pilot experience."</p>
-                    <a href="javascript:void(0)" class="btn-outline staff-btn">IFC PROFILE</a>
-                </div>
 
                 <div class="staff-card clean-card">
                     <img src="https://i.ibb.co/N2FWpwcF/7945c8ff57cae41e9050a915a66d213868cea0ac-2-288x288-1765475922.jpg" class="staff-avatar" alt="iiBaloch" loading="lazy" decoding="async">
@@ -321,12 +314,12 @@
                     <a href="https://community.infiniteflight.com/u/iibaloch/summary" target="_blank" class="btn-outline staff-btn">IFC PROFILE</a>
                 </div>
 
-                <div class="staff-card clean-card">
-                    <div class="staff-avatar" style="display:flex; align-items:center; justify-content:center; background:var(--pva-green); color:var(--pva-gold); font-size:4rem; font-weight:800; min-width:130px; min-height:130px;">M</div>
-                    <h3>Mo174</h3>
-                    <h4>Events Coordinator (PVA008)</h4>
-                    <p class="staff-desc">"Passionate about creating dynamic flight experiences. Focused on coordinating group operations and ensuring every pilot enjoys our community missions."</p>
-                    <a href="https://community.infiniteflight.com/u/mo174/summary" target="_blank" class="btn-outline staff-btn">IFC PROFILE</a>
+                 <div class="staff-card clean-card">
+                    <img src="https://i.ibb.co/B23848Rw/81439249783a57d888a90d6219fcc320510025ae-2-288x288.jpg" class="staff-avatar" alt="NeonlC" loading="lazy" decoding="async">
+                    <h3>NeonlC</h3>
+                    <h4>Trainer (PVA005)</h4>
+                    <p class="staff-desc">"Dedicated to mentoring the next generation of aviators. Ensuring our pilots master the skies with precision and professional flying techniques."</p>
+                    <a href="https://community.infiniteflight.com/u/neonic/summary" target="_blank" class="btn-outline staff-btn">IFC PROFILE</a>
                 </div>
 
                 <div class="staff-card clean-card">
@@ -335,17 +328,26 @@
                     <h4>Routes Manager (PVA006)</h4>
                     <p class="staff-desc">"Veteran IF player well-versed in airline operations. Fueled by a passion for realism, ensuring our flight network reflects real-world aviation standards."</p>
                     <a href="https://community.infiniteflight.com/u/aviator.ishaan_11/summary" target="_blank" class="btn-outline staff-btn">IFC PROFILE</a>
+                </div>          
+                
+                <div class="staff-card clean-card">
+                    <img src="https://i.ibb.co/JjcDzw7s/1365813-2.jpg" class="staff-avatar" alt="Muhlis" loading="lazy" decoding="async">
+                    <h3>Muhlis</h3>
+                    <h4>Digital Manager (PVA007)</h4>
+                    <p class="staff-desc">"Leading our digital evolution by developing cutting-edge web systems and managing the airline's technological infrastructure to provide a seamless pilot experience."</p>
+                    <a href="javascript:void(0)" class="btn-outline staff-btn">IFC PROFILE</a>
                 </div>
 
                 <div class="staff-card clean-card">
-                    <img src="https://i.ibb.co/B23848Rw/81439249783a57d888a90d6219fcc320510025ae-2-288x288.jpg" class="staff-avatar" alt="NeonlC" loading="lazy" decoding="async">
-                    <h3>NeonlC</h3>
-                    <h4>Trainer (PVA005)</h4>
-                    <p class="staff-desc">"Dedicated to mentoring the next generation of aviators. Ensuring our pilots master the skies with precision and professional flying techniques."</p>
-                    <a href="https://community.infiniteflight.com/u/neonic/summary" target="_blank" class="btn-outline staff-btn">IFC PROFILE</a>
+                    <div class="staff-avatar" style="display:flex; align-items:center; justify-content:center; background:var(--pva-green); color:var(--pva-gold); font-size:4rem; font-weight:800; min-width:130px; min-height:130px;">M</div>
+                    <h3>Mo174</h3>
+                    <h4>Events Coordinator (PVA008)</h4>
+                    <p class="staff-desc">"Passionate about creating dynamic flight experiences. Focused on coordinating group operations and ensuring every pilot enjoys our community missions."</p>
+                    <a href="https://community.infiniteflight.com/u/mo174/summary" target="_blank" class="btn-outline staff-btn">IFC PROFILE</a>
                 </div>
+                
             </div>
-                      </section>
+        </section>
         
         <section id="gallery" class="hidden-section page-section">
             <h1 class="page-title">Flight Gallery</h1>
@@ -387,19 +389,17 @@
         </section>
 
         <section id="radar" class="hidden-section page-section">
-    <h1 class="page-title">Live Flight Radar</h1>
-    <div class="radar-container" style="background:#1a1a1a; border-radius:15px; overflow:hidden; min-height:600px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-        <div id="live-radar-display" style="width:100%; height:600px;">
-            <p style="color:#fff; text-align:center; padding-top:280px;">Initialising Global Tracking System...</p>
-        </div>
-    </div>
-        </section>
-        
-        <div id="admin-radar-tool" style="display:none; margin-top:20px; border-top:1px solid #ccc; pt-20; width:100%;">
-            <input type="text" id="radarUrlInput" class="admin-input" placeholder="Paste new Radar Map Image URL here">
-            <button class="btn-primary" onclick="updateGlobalRadar()" style="background:var(--pva-gold); color:black; margin-top:10px; width:100%;">UPDATE LIVE RADAR</button>
-        </div>
-    </div>
+            <h1 class="page-title">Live Flight Radar</h1>
+            <div class="radar-container" style="background:#1a1a1a; border-radius:15px; overflow:hidden; min-height:600px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+                <div id="live-radar-display" style="width:100%; height:600px;">
+                    <p style="color:#fff; text-align:center; padding-top:280px;">Initialising Global Tracking System...</p>
+                </div>
+            </div>
+            
+            <div id="admin-radar-tool" style="display:none; margin-top:20px; border-top:1px solid #ccc; pt-20; width:100%;">
+                <input type="text" id="radarUrlInput" class="admin-input" placeholder="Paste new Radar Map Image URL here">
+                <button class="btn-primary" onclick="updateGlobalRadar()" style="background:var(--pva-gold); color:black; margin-top:10px; width:100%;">UPDATE LIVE RADAR</button>
+            </div>
         </section>
 
         <section id="apply" class="hidden-section page-section">
@@ -417,15 +417,15 @@
                 </h3>
                 <p style="font-size: 0.85rem; line-height: 1.6;">All logos and branding used by PVA are the sole property of Pakistan International airlines corporation limited. We are in no way affiliated with PIACL.</p>
             </div>
-            <div class="footer-col"><h4>ABOUT US</h4><a href="javascript:void(0)" onclick="navigate('about')">Our Hubs</a><a href="javascript:void(0)" onclick="navigate('staff')">Staff</a></div>
-            <div class="footer-col"><h4>OPERATIONS</h4><a href="javascript:void(0)" onclick="navigate('ranks')">Ranks</a><a href="javascript:void(0)" onclick="navigate('fleet')">Fleet</a></div>
-            <div class="footer-col"><h4>PUBLIC</h4><a href="javascript:void(0)" onclick="navigate('events')">Events</a><a href="javascript:void(0)" onclick="navigate('news')">News</a><a href="javascript:void(0)" onclick="navigate('gallery')">Gallery</a></div>
+            <div class="footer-col"><h4>ABOUT US</h4><a style="cursor: pointer;" onclick="navigate('about')">Our Hubs</a><a style="cursor: pointer;" onclick="navigate('staff')">Staff</a></div>
+            <div class="footer-col"><h4>OPERATIONS</h4><a style="cursor: pointer;" onclick="navigate('ranks')">Ranks</a><a style="cursor: pointer;" onclick="navigate('fleet')">Fleet</a></div>
+            <div class="footer-col"><h4>PUBLIC</h4><a style="cursor: pointer;" onclick="navigate('events')">Events</a><a style="cursor: pointer;" onclick="navigate('news')">News</a><a style="cursor: pointer;" onclick="navigate('gallery')">Gallery</a></div>
             <div class="footer-col"><h4>LINKS</h4><a href="https://www.instagram.com/pakistanvirtual.if?igsh=MW9tcXBzYXp0MXlkYg==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://community.infiniteflight.com/t/pakistan-virtual-airlines-great-people-to-fly-with-official-thread-2025/1039058" target="_blank">IFC Thread</a></div>
         </div>
         <div class="footer-bottom"><p>&copy; 2026 Pakistan Virtual Airlines.</p></div>
     </footer>
 
-        <div id="adminModal" class="modal-overlay">
+    <div id="adminModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 500px;">
             <span class="close-modal" onclick="closeAdminModal()">&times;</span>
             
@@ -435,7 +435,7 @@
                 <button class="btn-primary" onclick="checkAdminPass()" style="width:100%; margin-top:10px; background:var(--pva-green);">LOGIN</button>
             </div>
 
-                        <div id="adminControlPanel" style="display:none;">
+            <div id="adminControlPanel" style="display:none;">
                 
                 <div style="display:flex; gap:10px; justify-content:center; margin-bottom: 20px; border-bottom:2px solid #eee; padding-bottom:15px;">
                     <button onclick="switchAdminTab('pending')" style="background:var(--pva-gold); color:#000; font-weight:800; border:none; padding:10px; border-radius:5px; cursor:pointer; flex:1;"><i class="fas fa-user-clock"></i> PENDING</button>
@@ -470,7 +470,9 @@
                     <input type="text" id="newsImgInput" class="admin-input" placeholder="Image URL (Opsiyonel)">
                     <button class="btn-primary" onclick="addNews()" style="width:100%; margin-top:10px; background:var(--pva-green);">PUBLISH NEWS</button>
                 </div>
-                        </div>
+            </div>
+        </div>
+    </div>
 
     <div id="pilotModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 380px;">
@@ -493,7 +495,7 @@
             <div id="pilotRegisterArea" style="display:none;">
                 <h3 style="color:var(--pva-green); text-align:center;"><i class="fas fa-user-plus"></i> NEW ENROLLMENT</h3>
                 
-                                <div id="regStep1">
+                <div id="regStep1">
                     <p style="color:#666; font-size:0.85rem; font-weight:bold;">Step 1: Aviation Details</p>
                     <input type="text" id="regCallsign" class="admin-input" placeholder="Callsign (e.g. PVA042)">
                     <select id="regRank" class="admin-input" style="color: #555;">
@@ -511,7 +513,7 @@
                     </select>
                     <input type="number" id="regHours" class="admin-input" placeholder="Current Flight Hours">
                     <button class="btn-primary" onclick="nextRegStep(2)" style="width:100%; margin-top:10px; background:var(--pva-gold); color:black; font-weight:800;">NEXT <i class="fas fa-arrow-right"></i></button>
-                                </div>
+                </div>
 
                 <div id="regStep2" style="display:none;">
                     <p style="color:#666; font-size:0.85rem; font-weight:bold;">Step 2: Community Links</p>
@@ -543,7 +545,7 @@
         <img class="lightbox-img" id="lightboxImg" src="">
     </div>
 
-        <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     
     <script src="app.js"></script>
