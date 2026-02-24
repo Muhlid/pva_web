@@ -490,3 +490,22 @@ main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 #adminModal, #pilotModal {
     z-index: 1001;
 }
+/* --- PILOT MODAL ZORUNLU GÖRÜNÜM --- */
+#pilotModal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.9) !important; /* Arka planı iyice karartır */
+    z-index: 999999 !important; /* Sitedeki her şeyin EN ÜSTÜNE çıkarır */
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#pilotModal .modal-content {
+    background: #111 !important;
+    border: 1px solid var(--pva-gold);
+    z-index: 1000000 !important;
+    position: relative !important;
+}
