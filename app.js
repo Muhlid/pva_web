@@ -41,6 +41,7 @@ window.navigate = function(sectionId) {
     if(sectionId === 'home') loadHomePreviews();
     if(sectionId === 'pilots') loadPilots(); 
     if(sectionId === 'radar') loadLiveRadar();
+    if(sectionId === 'gallery') loadGallery(); // GALERİ YÜKLEME EKLENDİ
 };
 
 window.toggleMobileMenu = function() {
@@ -130,15 +131,18 @@ function updateNavbarUI() {
     const navLoginBtn = document.getElementById('navPilotLoginBtn');
     const navProfile = document.getElementById('navPilotProfile');
     const displayName = document.getElementById('displayPilotName');
+    const photoArea = document.getElementById('pilotPhotoSubmitArea'); // GALERİ FORMU GÖRÜNÜRLÜĞÜ
     
     if(navLoginBtn && navProfile && displayName) {
         if(isPilotLoggedIn && currentLoggedPilot) {
             navLoginBtn.style.display = 'none';
             navProfile.style.display = 'flex'; 
             displayName.innerText = currentLoggedPilot.callsign;
+            if (photoArea) photoArea.style.display = 'block'; // Giriş yaptıysa form açılsın
         } else {
             navLoginBtn.style.display = 'flex';
             navProfile.style.display = 'none';
+            if (photoArea) photoArea.style.display = 'none'; // Çıkış yaptıysa form gizlensin
         }
     }
 }
@@ -194,7 +198,7 @@ window.pilotLogin = async function() {
             isPilotLoggedIn = true;
             
             updateNavbarUI(); 
-            window.updatePilotStats(currentLoggedPilot); // KARNE GÜNCELLEME TETİKLENİYOR
+            window.updatePilotStats(currentLoggedPilot);
             window.closePilotModal(); 
             window.navigate('pilots'); 
             return;
@@ -222,7 +226,7 @@ window.pilotLogout = function() {
     isPilotLoggedIn = false;
     updateNavbarUI();
     const statsCard = document.getElementById('pilotStatsCard');
-    if (statsCard) statsCard.style.display = 'none'; // Çıkış yapınca karneyi gizle
+    if (statsCard) statsCard.style.display = 'none';
     window.navigate('home'); 
 };
 
@@ -231,11 +235,10 @@ window.updatePilotStats = function(pilotData) {
     if(!pilotData) return;
 
     const statsCard = document.getElementById('pilotStatsCard');
-    if(!statsCard) return; // HTML'de kart yoksa hata vermesin
+    if(!statsCard) return; 
 
     const currentHours = parseFloat(pilotData.hours) || 0;
     
-    // Rütbe Gereksinimleri (Saatlere Göre Sıralı)
     const rankTiers = [
         { name: "Cadet", min: 0 },
         { name: "Second Officer", min: 20 },
@@ -249,11 +252,9 @@ window.updatePilotStats = function(pilotData) {
         { name: "Sapphire", min: 2500 }
     ];
 
-    // Bir sonraki rütbeyi ve mevcut seviyeyi bul
     let nextRank = rankTiers.find(tier => tier.min > currentHours);
     let currentRank = pilotData.rank || "Cadet";
 
-    // Metinleri Güncelle
     const statRankEl = document.getElementById('statRank');
     const statHoursEl = document.getElementById('statHours');
     if(statRankEl) statRankEl.innerText = currentRank;
@@ -264,7 +265,6 @@ window.updatePilotStats = function(pilotData) {
     const statsProgressBar = document.getElementById('statsProgressBar');
 
     if (nextRank) {
-        // İlerleme yüzdesini hesapla
         let prevTier = rankTiers.slice().reverse().find(tier => tier.min <= currentHours) || rankTiers[0];
         let range = nextRank.min - prevTier.min;
         let earnedInTier = currentHours - prevTier.min;
@@ -275,13 +275,12 @@ window.updatePilotStats = function(pilotData) {
         if(hoursRemaining) hoursRemaining.innerText = remaining.toFixed(1) + "h left";
         if(statsProgressBar) statsProgressBar.style.width = Math.min(progress, 100) + "%";
     } else {
-        // En son rütbeye ulaşıldıysa
         if(nextRankLabel) nextRankLabel.innerText = "Ultimate Rank Reached!";
         if(hoursRemaining) hoursRemaining.innerText = "Max Level";
         if(statsProgressBar) statsProgressBar.style.width = "100%";
     }
 
-    statsCard.style.display = 'block'; // Kartı görünür yap
+    statsCard.style.display = 'block'; 
 };
 
 // --- ADMIN SİSTEMİ ---
@@ -302,10 +301,12 @@ window.checkAdminPass = function() {
 
 window.switchAdminTab = function(tab) {
     document.getElementById('pendingPilotsArea').style.display = 'none';
+    document.getElementById('pendingGalleryArea').style.display = 'none'; // GALERİ EKLENDİ
     document.getElementById('addEventArea').style.display = 'none';
     document.getElementById('addNewsArea').style.display = 'none';
 
     if(tab === 'pending') { document.getElementById('pendingPilotsArea').style.display = 'block'; loadPendingPilots(); }
+    if(tab === 'gallery') { document.getElementById('pendingGalleryArea').style.display = 'block'; loadPendingGallery(); } // GALERİ EKLENDİ
     if(tab === 'event') document.getElementById('addEventArea').style.display = 'block';
     if(tab === 'news') document.getElementById('addNewsArea').style.display = 'block';
 };
@@ -530,6 +531,111 @@ window.updateGlobalRadar = async function() {
         });
         alert("Radar updated!"); radarInput.value = ""; loadLiveRadar();
     } catch (error) { alert("Error: " + error.message); }
+};
+
+// =========================================
+// --- FOTOĞRAF GALERİSİ & ONAY SİSTEMİ ---
+// =========================================
+
+window.submitPilotPhoto = async function() {
+    const url = document.getElementById('photoUrlInput').value.trim();
+    const caption = document.getElementById('photoCaptionInput').value.trim();
+    
+    if(!url) return alert("Warning: Please provide a valid Image URL!");
+
+    await db.collection('pva_pending_gallery').add({
+        url: url,
+        caption: caption,
+        pilot: currentLoggedPilot ? currentLoggedPilot.callsign : "Unknown Pilot",
+        timestamp: Date.now()
+    });
+
+    alert("Awesome! Your photo has been sent to the Staff for approval.");
+    document.getElementById('photoUrlInput').value = "";
+    document.getElementById('photoCaptionInput').value = "";
+};
+
+window.loadGallery = async function() {
+    const grid = document.getElementById('live-gallery-grid');
+    if(!grid) return;
+    
+    const staticHTML = `
+        <div class="gallery-item full-width" onclick="openLightbox('https://i.ibb.co/Tx5zZBgn/file-00000000fbc471fa95bd1e081298a296.png')"><img src="https://i.ibb.co/Tx5zZBgn/file-00000000fbc471fa95bd1e081298a296.png"></div>
+        <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg')"><img src="https://i.ibb.co/DfNjp6j9/nfinite-Flight-2026-02-09-22-03-41.jpg"></div>
+        <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg')"><img src="https://i.ibb.co/qMnQC8Xy/nfinite-Flight-2026-01-19-13-39-36.jpg"></div>
+        <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg')"><img src="https://i.ibb.co/5gJD0M4W/nfinite-Flight-2026-02-02-20-28-21.jpg"></div>
+        <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg')"><img src="https://i.ibb.co/PZQNrV9Z/nfinite-Flight-2026-01-14-22-43-45-2.jpg"></div>
+        <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/MDt3D4R1/Screenshot-20260114-151017.jpg')"><img src="https://i.ibb.co/MDt3D4R1/Screenshot-20260114-151017.jpg"></div>
+        <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg')"><img src="https://i.ibb.co/1tyWDFtz/Screenshot-20260124-143037.jpg"></div>
+        <div class="gallery-item" onclick="openLightbox('https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg')"><img src="https://i.ibb.co/C559kYR9/nfinite-Flight-2026-02-09-22-05-17.jpg"></div>
+    `;
+    grid.innerHTML = staticHTML;
+
+    const snapshot = await db.collection('pva_gallery').orderBy('timestamp', 'desc').get();
+    snapshot.forEach(docSnap => {
+        const g = docSnap.data();
+        const docId = docSnap.id;
+        
+        let delBtn = isAdminLoggedIn ? `<button onclick="event.stopPropagation(); window.delItem('pva_gallery', '${docId}')" style="position:absolute; top:5px; right:5px; background:red; color:white; border:none; border-radius:3px; padding:4px 8px; cursor:pointer;"><i class="fas fa-trash"></i></button>` : "";
+        
+        grid.innerHTML += `
+        <div class="gallery-item" style="position:relative;" onclick="openLightbox('${g.url}')">
+            <img src="${g.url}">
+            <div style="position:absolute; bottom:0; left:0; width:100%; background:rgba(0,0,0,0.7); color:white; font-size:0.75rem; text-align:center; padding:6px 0;">
+                ${g.caption ? `<strong style="color:var(--pva-gold);">${g.caption}</strong><br>` : ''}
+                By ${g.pilot}
+            </div>
+            ${delBtn}
+        </div>`;
+    });
+};
+
+window.loadPendingGallery = async function() {
+    const cont = document.getElementById('pending-gallery-list');
+    if(!cont) return;
+    cont.innerHTML = "<p style='text-align:center;'>Syncing photos...</p>";
+    
+    const snapshot = await db.collection('pva_pending_gallery').orderBy('timestamp', 'desc').get();
+    cont.innerHTML = "";
+    
+    if(snapshot.empty) {
+        cont.innerHTML = "<p style='text-align:center; color:#888;'>No pending photos at the moment.</p>";
+        return;
+    }
+
+    snapshot.forEach(docSnap => {
+        const p = docSnap.data();
+        const docId = docSnap.id;
+        cont.innerHTML += `
+        <div style="background:#f9f9f9; border:1px solid #ddd; padding:10px; margin-bottom:10px; border-radius:5px;">
+            <img src="${p.url}" style="width:100%; height:150px; object-fit:cover; border-radius:5px; margin-bottom:10px;">
+            <p style="margin:0 0 5px 0;"><strong>Pilot:</strong> <span style="color:var(--pva-green); font-weight:bold;">${p.pilot}</span></p>
+            <p style="margin:0 0 10px 0; font-size:0.9rem; color:#555;"><strong>Caption:</strong> ${p.caption}</p>
+            <div style="display:flex; gap:10px;">
+                <button onclick="approvePhoto('${docId}')" style="background:green; color:white; border:none; padding:8px; border-radius:3px; cursor:pointer; flex:1;"><i class="fas fa-check"></i> Approve</button>
+                <button onclick="rejectPhoto('${docId}')" style="background:red; color:white; border:none; padding:8px; border-radius:3px; cursor:pointer; flex:1;"><i class="fas fa-trash"></i> Delete</button>
+            </div>
+        </div>`;
+    });
+};
+
+window.approvePhoto = async function(docId) {
+    const docRef = db.collection('pva_pending_gallery').doc(docId);
+    const docSnap = await docRef.get();
+    if(docSnap.exists) {
+        await db.collection('pva_gallery').add(docSnap.data());
+        await docRef.delete();
+        loadPendingGallery();
+        loadGallery(); 
+        alert("Success! Photo is now live in the Global Gallery.");
+    }
+};
+
+window.rejectPhoto = async function(docId) {
+    if(confirm("Are you sure you want to delete this photo submission?")) {
+        await db.collection('pva_pending_gallery').doc(docId).delete();
+        loadPendingGallery();
+    }
 };
 
 // --- SAYFA YÜKLENDİĞİNDE ---
