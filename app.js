@@ -8,9 +8,32 @@ const firebaseConfig = {
     appId: "1:1010465903072:web:54b5de0f1fdc93e2405b85"
 };
 
-// Firebase'i Başlat
+// --- FIREBASE BULUT (CLOUD) BAĞLANTISI ---
+const firebaseConfig = {
+    apiKey: "AIzaSyC6GMkseNNX2bZ-WffaLkcJxobH9IpaIG4",
+    authDomain: "pvalog-b8ea7.firebaseapp.com",
+    projectId: "pvalog-b8ea7",
+    storageBucket: "pvalog-b8ea7.firebasestorage.app",
+    messagingSenderId: "1010465903072",
+    appId: "1:1010465903072:web:54b5de0f1fdc93e2405b85"
+};
+
+// Mevcut (Web Sitesi) Firebase'i Başlat
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
+// 🔥 YENİ: ORBIT BEYNİNE (İKİNCİ VERİTABANINA) GİZLİ BAĞLANTI 🔥
+const orbitConfig = {
+    apiKey: "AIzaSyAgYTH6W-QtbKTEskDy_rGDxABGGGGph0E",
+    authDomain: "pvaorbit.firebaseapp.com",
+    projectId: "pvaorbit",
+    storageBucket: "pvaorbit.firebasestorage.app",
+    messagingSenderId: "947871793938",
+    appId: "1:947871793938:web:f0353c83385d1b8105a9cb"
+};
+// Orbit'i "OrbitDB" adıyla ikinci bir uygulama olarak başlatıyoruz
+const orbitApp = firebase.initializeApp(orbitConfig, "OrbitDB");
+const orbitDb = orbitApp.firestore();
 
 // --- GLOBAL DEĞİŞKENLER ---
 let isAdminLoggedIn = false;
@@ -361,33 +384,54 @@ window.rejectPilot = async function(docId) {
     }
 };
 
+// 🔥 ORBIT SİSTEMİNDEN PİLOTLARI ÇEKEN YENİ MOTOR
 async function loadPilots() {
     const tbody = document.getElementById('pilot-roster-body');
     if(!tbody) return;
-    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Syncing Database...</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Synchronizing with ATLAS (Orbit)... <i class="fas fa-spinner fa-spin"></i></td></tr>`;
 
-    const snapshot = await db.collection('pva_pilots').get();
-    tbody.innerHTML = "";
+    try {
+        // ESKİ db.collection YERİNE orbitDb KULLANIYORUZ!
+        const snapshot = await orbitDb.collection('pilots').get();
+        tbody.innerHTML = "";
 
-    if(snapshot.empty) {
-        tbody.innerHTML = `<tr><td colspan="5" style="padding:15px; text-align:center; color:#888;">No pilots registered yet.</td></tr>`;
-        return;
+        if(snapshot.empty) {
+            tbody.innerHTML = `<tr><td colspan="5" style="padding:15px; text-align:center; color:#888;">No active pilots found in Orbit.</td></tr>`;
+            return;
+        }
+
+        let orbitPilots = [];
+        snapshot.forEach(docSnap => {
+            orbitPilots.push({ id: docSnap.id, ...docSnap.data() });
+        });
+
+        // Uçuş saatine göre yüksekten düşüğe doğru sırala
+        orbitPilots.sort((a, b) => (b.hours || 0) - (a.hours || 0));
+
+        orbitPilots.forEach(p => {
+            // Sadece onaylanmış (approved) pilotları tabloya bas
+            if (p.status === "approved" || !p.status) {
+                const callsign = p.callsign || "N/A";
+                const username = p.username || "Unknown";
+                const rank = p.rankOverride && p.rankOverride !== "" ? p.rankOverride : (p.rank || "Cadet");
+                const hours = (parseFloat(p.hours) || 0).toFixed(1);
+                
+                // Kendi tasarımına uygun tablo HTML'i
+                tbody.innerHTML += `
+                <tr style="border-bottom:1px solid #eee; transition: 0.2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                    <td style="padding:15px; font-weight:bold; color:var(--pva-green);">${callsign}</td>
+                    <td style="padding:15px; font-weight:bold;">${username}</td>
+                    <td style="padding:15px;"><i class="fab fa-discord" style="color:#7289da;"></i> ${username}</td>
+                    <td style="padding:15px;">${rank}</td>
+                    <td style="padding:15px; font-weight:bold;">${hours}h</td>
+                </tr>`;
+            }
+        });
+
+    } catch (error) {
+        console.error("Orbit Atlas Sync Error:", error);
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:red;">Failed to connect to Orbit Database.</td></tr>`;
     }
-
-    snapshot.forEach(docSnap => {
-        const p = docSnap.data();
-        const docId = docSnap.id;
-        let delBtn = isAdminLoggedIn ? `<button onclick="window.deletePilot('${docId}')" style="background:red; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; float:right;"><i class="fas fa-trash"></i></button>` : "";
-        
-        tbody.innerHTML += `
-        <tr style="border-bottom:1px solid #eee;">
-            <td style="padding:15px; font-weight:bold; color:var(--pva-green);">${p.callsign}</td>
-            <td style="padding:15px;">${p.name}</td>
-            <td style="padding:15px;"><i class="fab fa-discord" style="color:#7289da;"></i> ${p.discord || "-"}</td>
-            <td style="padding:15px;">${p.rank}</td>
-            <td style="padding:15px;">${p.hours} ${delBtn}</td>
-        </tr>`;
-    });
 }
 
 window.deletePilot = async function(docId) {
