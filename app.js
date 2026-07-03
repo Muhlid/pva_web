@@ -8,16 +8,6 @@ const firebaseConfig = {
     appId: "1:1010465903072:web:54b5de0f1fdc93e2405b85"
 };
 
-// --- FIREBASE BULUT (CLOUD) BAĞLANTISI ---
-const firebaseConfig = {
-    apiKey: "AIzaSyC6GMkseNNX2bZ-WffaLkcJxobH9IpaIG4",
-    authDomain: "pvalog-b8ea7.firebaseapp.com",
-    projectId: "pvalog-b8ea7",
-    storageBucket: "pvalog-b8ea7.firebasestorage.app",
-    messagingSenderId: "1010465903072",
-    appId: "1:1010465903072:web:54b5de0f1fdc93e2405b85"
-};
-
 // Mevcut (Web Sitesi) Firebase'i Başlat
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
