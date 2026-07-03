@@ -1,4 +1,5 @@
 // --- FIREBASE BULUT (CLOUD) BAĞLANTISI ---
+// --- FIREBASE BAĞLANTI AYARLARI ---
 const firebaseConfig = {
     apiKey: "AIzaSyC6GMkseNNX2bZ-WffaLkcJxobH9IpaIG4",
     authDomain: "pvalog-b8ea7.firebaseapp.com",
@@ -8,11 +9,6 @@ const firebaseConfig = {
     appId: "1:1010465903072:web:54b5de0f1fdc93e2405b85"
 };
 
-// Mevcut (Web Sitesi) Firebase'i Başlat
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-// 🔥 YENİ: ORBIT BEYNİNE (İKİNCİ VERİTABANINA) GİZLİ BAĞLANTI 🔥
 const orbitConfig = {
     apiKey: "AIzaSyAgYTH6W-QtbKTEskDy_rGDxABGGGGph0E",
     authDomain: "pvaorbit.firebaseapp.com",
@@ -21,10 +17,14 @@ const orbitConfig = {
     messagingSenderId: "947871793938",
     appId: "1:947871793938:web:f0353c83385d1b8105a9cb"
 };
-// Orbit'i "OrbitDB" adıyla ikinci bir uygulama olarak başlatıyoruz
-const orbitApp = firebase.initializeApp(orbitConfig, "OrbitDB");
-const orbitDb = orbitApp.firestore();
 
+// 1. Ana veritabanını başlat
+const mainApp = firebase.initializeApp(firebaseConfig, "MainApp");
+const db = mainApp.firestore();
+
+// 2. İkinci veritabanını (Orbit) farklı isimle ("OrbitApp") başlat
+const orbitApp = firebase.initializeApp(orbitConfig, "OrbitApp");
+const orbitDb = orbitApp.firestore();
 // --- GLOBAL DEĞİŞKENLER ---
 let isAdminLoggedIn = false;
 let isPilotLoggedIn = false;
