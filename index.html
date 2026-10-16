@@ -87,8 +87,20 @@
     <main id="main-container">
 
         <section id="home" class="active-section">
-            <div class="hero-section">
-                <div class="hero-content">
+            <!-- YENİ NESİL VİDEO ARKA PLANLI HERO BÖLÜMÜ -->
+            <div class="hero-section" style="position: relative; overflow: hidden; background: #000;">
+                
+                <!-- VİDEO KATMANI -->
+                <video autoplay muted loop playsinline style="position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 0; transform: translateX(-50%) translateY(-50%); object-fit: cover;">
+                    <source src="https://res.cloudinary.com/dqxbeu9tc/video/upload/gemini_generated_video_90ade07c_qfs47c.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                
+                <!-- KARARTMA KATMANI (Yazıların okunması için) -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
+
+                <!-- İÇERİK (Yazılar ve Butonlar) -->
+                <div class="hero-content" style="z-index: 2; position: relative;">
                     <h1>Great People To Fly With</h1>
                     <p>Meet like-minded pilots, participate in our regular events, explore our extensive network and more.</p>
                     <div class="hero-buttons">
